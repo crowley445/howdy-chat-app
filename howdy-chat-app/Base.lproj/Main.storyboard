@@ -1,24 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Thin</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--AuthorisationVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AuthorisationVC" customModule="howdy_chat_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zyo-e7-8KP">
+                                <rect key="frame" x="0.0" y="318" width="375" height="349"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-ic-GSy">
+                                        <rect key="frame" x="136.5" y="8" width="102.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Iuj-cD-3we">
+                                        <rect key="frame" x="30" y="49.5" width="315" height="271.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwv-PW-Yb5">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="60.5"/>
+                                                <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Facebook">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="facebookButtonTappedWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yUf-dZ-zXT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akK-0S-jZH">
+                                                <rect key="frame" x="0.0" y="70.5" width="315" height="60.5"/>
+                                                <color key="backgroundColor" red="0.82745098039215681" green="0.28235294117647058" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Google+">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="googleButtonTappedWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="djw-cu-QjF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-Eg-sjt">
+                                                <rect key="frame" x="0.0" y="141" width="315" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Twitter">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="twitterButtonTappedWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uyK-c9-MQO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJg-yX-v41">
+                                                <rect key="frame" x="0.0" y="211" width="315" height="60.5"/>
+                                                <color key="backgroundColor" red="0.96470588239999999" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Email">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="emailButtonTappedWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="15I-YJ-bVS"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Iuj-cD-3we" firstAttribute="leading" secondItem="Zyo-e7-8KP" secondAttribute="leading" constant="30" id="IvN-m2-8cE"/>
+                                    <constraint firstItem="Opk-ic-GSy" firstAttribute="top" secondItem="Zyo-e7-8KP" secondAttribute="top" constant="8" id="QMk-er-9oe"/>
+                                    <constraint firstItem="Iuj-cD-3we" firstAttribute="top" secondItem="Opk-ic-GSy" secondAttribute="bottom" constant="20" id="T6I-rA-gLN"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iuj-cD-3we" secondAttribute="trailing" constant="30" id="ZSp-bS-UD8"/>
+                                    <constraint firstItem="Opk-ic-GSy" firstAttribute="centerX" secondItem="Zyo-e7-8KP" secondAttribute="centerX" id="pPE-V4-sN7"/>
+                                    <constraint firstAttribute="bottom" secondItem="Iuj-cD-3we" secondAttribute="bottom" constant="28" id="qg8-pV-jqJ"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="howdy-logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="BSX-BT-2df">
+                                <rect key="frame" x="66" y="86" width="243" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BSX-BT-2df" secondAttribute="height" multiplier="243:142" id="5gR-cy-7RI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BSX-BT-2df" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="66" id="2tp-sU-L5T"/>
+                            <constraint firstItem="BSX-BT-2df" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="PFc-Hb-59M"/>
+                            <constraint firstItem="Zyo-e7-8KP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="WSo-Db-xaM"/>
+                            <constraint firstItem="Zyo-e7-8KP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="brd-F4-9HF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BSX-BT-2df" secondAttribute="trailing" constant="66" id="k7m-7V-KYS"/>
+                            <constraint firstItem="Zyo-e7-8KP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kdf-jS-K5Q"/>
+                            <constraint firstItem="Zyo-e7-8KP" firstAttribute="top" secondItem="BSX-BT-2df" secondAttribute="bottom" constant="90" id="npG-F2-mxc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="37.600000000000001" y="33.733133433283363"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="howdy-logo-white" width="761" height="325"/>
+    </resources>
 </document>

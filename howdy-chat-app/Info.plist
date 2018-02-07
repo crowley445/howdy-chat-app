@@ -41,5 +41,27 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb200714390665302</string>
+            </array>
+        </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>200714390665302</string>
+    <key>FacebookDisplayName</key>
+    <string>howdy-chat-app</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    
 </dict>
 </plist>
