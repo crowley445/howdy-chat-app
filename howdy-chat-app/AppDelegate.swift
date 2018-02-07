@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import GoogleSignIn
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -25,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        TWTRTwitter.sharedInstance().start(withConsumerKey: TWTR_KEY, consumerSecret: TWTR_SECRET)
+        
         return true
     }
 
@@ -34,7 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         let googleHandled = GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
         
-        return fbHandled || googleHandled
+        let twtrHandle = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+        
+        return fbHandled || googleHandled || twtrHandle
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+import TwitterKit
 
 class AuthorisationService {
     static let instance = AuthorisationService()
@@ -20,16 +21,38 @@ class AuthorisationService {
             
             if let error = error {
                 print ("AuthorisationService: Failed to authorise with Facebook. \n Error: \(error)")
+                return
             }
             print("AuthorisationService: Successfully authorised with Facebook\n")
 
-            guard let token = FBSDKAccessToken.current().tokenString else { return }
+            guard let token = FBSDKAccessToken.current().tokenString else {
+                print("AuthorisationService: Failed to get tokens for Facebook credentials.")
+                return
+            }
             self.firebaseAuthorisation(withCredentials: FacebookAuthProvider.credential(withAccessToken: token) )
         }
     }
     
     func googleAuthorisation (sender: UIViewController) {
         GIDSignIn.sharedInstance().signIn()
+    }
+    
+    func twitterAuthorisation (sender: UIViewController) {
+        
+        TWTRTwitter.sharedInstance().logIn { (session, error) in
+            if let error = error {
+                print ("AuthorisationService: Failed to authorise with Twitter. \n Error: \(error)")
+                return
+            }
+            print("AuthorisationService: Successfully authorised with Twitter\n")
+            
+            guard let token = session?.authToken, let secret = session?.authTokenSecret else {
+                print("AuthorisationService: Failed to get tokens for Twitter credentials.")
+                return
+            }
+            
+            self.firebaseAuthorisation(withCredentials: TwitterAuthProvider.credential(withToken: token, secret: secret))
+        }
     }
     
     func firebaseAuthorisation(withCredentials credentials: AuthCredential) {
@@ -45,7 +68,7 @@ class AuthorisationService {
                 return
             }
             
-            let data = [ "name" : user.displayName ?? "", "email": user.email ?? "", "provider": user.providerID, "photoUrl": user.photoURL?.absoluteString ?? ""] as [String : Any]
+            let data = [ "name" : user.displayName ?? "", "email": user.email ?? "", "provider": credentials.provider, "photoUrl": user.photoURL?.absoluteString ?? ""] as [String : Any]
             DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data)
         }
     }

@@ -13,6 +13,7 @@
 		882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF6202B0A7D00913E4F /* Main.storyboard */; };
 		882ACFFA202B0A7D00913E4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF9202B0A7D00913E4F /* Assets.xcassets */; };
 		882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFFB202B0A7D00913E4F /* LaunchScreen.storyboard */; };
+		88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EEEE5F202B74ED008A67F3 /* Constants.swift */; };
 		88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F41592202B383B00792DAB /* GoogleService-Info.plist */; };
 		88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F41595202B3AE100792DAB /* AuthorisationService.swift */; };
 		88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4159B202B5E1700792DAB /* DatabaseService.swift */; };
@@ -28,6 +29,7 @@
 		882ACFF9202B0A7D00913E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882ACFFC202B0A7D00913E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		882ACFFE202B0A7D00913E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88EEEE5F202B74ED008A67F3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		88F41592202B383B00792DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88F41595202B3AE100792DAB /* AuthorisationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorisationService.swift; sourceTree = "<group>"; };
 		88F4159B202B5E1700792DAB /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		882ACFF1202B0A7D00913E4F /* howdy-chat-app */ = {
 			isa = PBXGroup;
 			children = (
+				88EEEE5E202B74DD008A67F3 /* Support */,
 				88F41594202B3AAD00792DAB /* Service */,
 				882ACFF2202B0A7D00913E4F /* AppDelegate.swift */,
 				882ACFF4202B0A7D00913E4F /* AuthorisationVC.swift */,
@@ -85,6 +88,14 @@
 				88F41592202B383B00792DAB /* GoogleService-Info.plist */,
 			);
 			path = "howdy-chat-app";
+			sourceTree = "<group>";
+		};
+		88EEEE5E202B74DD008A67F3 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				88EEEE5F202B74ED008A67F3 /* Constants.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		88F41594202B3AAD00792DAB /* Service */ = {
@@ -234,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
 				882ACFF5202B0A7D00913E4F /* AuthorisationVC.swift in Sources */,
 				88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,

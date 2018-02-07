@@ -8,4 +8,5 @@
 
 import Foundation
 
-typealias CompletionHandler = (_ success: Bool) -> Void
+let TWTR_KEY = "BCX0z4z9BLcw0MDIPYzq7Q5MN"
+let TWTR_SECRET = "rvjdInJwMjhkPhk4fDmdSnhUvPitlxLbTRZEsNl0JnpDWDzaJb"

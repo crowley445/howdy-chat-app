@@ -28,6 +28,7 @@ class AuthorisationVC: UIViewController, GIDSignInUIDelegate {
     
     @IBAction func twitterButtonTapped(_sender: Any) {
         print("AuthorisationVC: Twitter button tapped. \n")
+        AuthorisationService.instance.twitterAuthorisation(sender: self)
     }
     
     @IBAction func emailButtonTapped(_sender: Any) {
