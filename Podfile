@@ -16,4 +16,7 @@ target 'howdy-chat-app' do
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
   
+  pod 'GoogleSignIn'
+  pod 'TwitterKit'
+
 end

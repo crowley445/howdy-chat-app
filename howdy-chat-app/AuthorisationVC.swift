@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import GoogleSignIn
 
-class AuthorisationVC: UIViewController {
+class AuthorisationVC: UIViewController, GIDSignInUIDelegate {
+    
+    override func viewDidLoad() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signOut()
+    }
     
     @IBAction func facebookButtonTapped(_sender: Any) {
         print("AuthorisationVC: Facebook button tapped. \n")
@@ -17,10 +23,13 @@ class AuthorisationVC: UIViewController {
     
     @IBAction func googleButtonTapped(_sender: Any) {
         print("AuthorisationVC: Google button tapped. \n")
+        AuthorisationService.instance.googleAuthorisation(sender: self)
     }
+    
     @IBAction func twitterButtonTapped(_sender: Any) {
         print("AuthorisationVC: Twitter button tapped. \n")
     }
+    
     @IBAction func emailButtonTapped(_sender: Any) {
         print("AuthorisationVC: Email button tapped. \n")
     }

@@ -10,6 +10,7 @@ import Foundation
 import FBSDKLoginKit
 import FirebaseCore
 import FirebaseAuth
+import GoogleSignIn
 
 class AuthorisationService {
     static let instance = AuthorisationService()
@@ -25,6 +26,10 @@ class AuthorisationService {
             guard let token = FBSDKAccessToken.current().tokenString else { return }
             self.firebaseAuthorisation(withCredentials: FacebookAuthProvider.credential(withAccessToken: token) )
         }
+    }
+    
+    func googleAuthorisation (sender: UIViewController) {
+        GIDSignIn.sharedInstance().signIn()
     }
     
     func firebaseAuthorisation(withCredentials credentials: AuthCredential) {
