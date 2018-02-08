@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 let TWTR_KEY = "BCX0z4z9BLcw0MDIPYzq7Q5MN"
 let TWTR_SECRET = "rvjdInJwMjhkPhk4fDmdSnhUvPitlxLbTRZEsNl0JnpDWDzaJb"
+
+//Segues
+
+let TO_REGISTER_USER = "toRegisterUser"

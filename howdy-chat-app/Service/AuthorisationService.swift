@@ -34,6 +34,7 @@ class AuthorisationService {
     }
     
     func googleAuthorisation (sender: UIViewController) {
+        // Google sign in function is found in AppDelegate
         GIDSignIn.sharedInstance().signIn()
     }
     
