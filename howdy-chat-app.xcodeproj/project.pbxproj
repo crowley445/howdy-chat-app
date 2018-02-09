@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		16BEB82148A5B0C3AE8B8130 /* Pods_howdy_chat_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */; };
 		882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882ACFF2202B0A7D00913E4F /* AppDelegate.swift */; };
-		882ACFF5202B0A7D00913E4F /* AuthorisationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882ACFF4202B0A7D00913E4F /* AuthorisationVC.swift */; };
 		882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF6202B0A7D00913E4F /* Main.storyboard */; };
 		882ACFFA202B0A7D00913E4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF9202B0A7D00913E4F /* Assets.xcassets */; };
 		882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFFB202B0A7D00913E4F /* LaunchScreen.storyboard */; };
 		884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */; };
-		884F5FB6202CB5A8003BB566 /* SharedGestureFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F5FB5202CB5A8003BB566 /* SharedGestureFunctions.swift */; };
 		8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C12D202C66A2007142EE /* RoundedButton.swift */; };
 		8881C134202C817E007142EE /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C133202C817E007142EE /* RoundedTextField.swift */; };
+		88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */; };
+		88978E02202E0F6500D6FE71 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88978E00202E0F6500D6FE71 /* ActivityViewController.xib */; };
 		88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8269B202CAD5D00E9A015 /* LoginViewController.swift */; };
 		88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EEEE5F202B74ED008A67F3 /* Constants.swift */; };
 		88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F41592202B383B00792DAB /* GoogleService-Info.plist */; };
@@ -29,16 +29,16 @@
 		3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_howdy_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		882ACFEF202B0A7D00913E4F /* howdy-chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "howdy-chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		882ACFF2202B0A7D00913E4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		882ACFF4202B0A7D00913E4F /* AuthorisationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorisationVC.swift; sourceTree = "<group>"; };
 		882ACFF7202B0A7D00913E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		882ACFF9202B0A7D00913E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882ACFFC202B0A7D00913E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		882ACFFE202B0A7D00913E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
-		884F5FB5202CB5A8003BB566 /* SharedGestureFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedGestureFunctions.swift; sourceTree = "<group>"; };
 		8881C12D202C66A2007142EE /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		8881C133202C817E007142EE /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
-		88E8269B202CAD5D00E9A015 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		88978E00202E0F6500D6FE71 /* ActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
+		88E8269B202CAD5D00E9A015 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		88EEEE5F202B74ED008A67F3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		88F41592202B383B00792DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88F41595202B3AE100792DAB /* AuthorisationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorisationService.swift; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 		882ACFF1202B0A7D00913E4F /* howdy-chat-app */ = {
 			isa = PBXGroup;
 			children = (
-				884F5FB4202CB578003BB566 /* Shared */,
+				88978E03202E0F7300D6FE71 /* XIB */,
 				88EEEE5E202B74DD008A67F3 /* Utilities */,
 				88F41594202B3AAD00792DAB /* Service */,
 				8881C12A202C6633007142EE /* View */,
@@ -102,14 +102,6 @@
 			path = "howdy-chat-app";
 			sourceTree = "<group>";
 		};
-		884F5FB4202CB578003BB566 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				884F5FB5202CB5A8003BB566 /* SharedGestureFunctions.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
 		8881C12A202C6633007142EE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,11 +114,19 @@
 		8881C12B202C6645007142EE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				882ACFF4202B0A7D00913E4F /* AuthorisationVC.swift */,
 				88E8269B202CAD5D00E9A015 /* LoginViewController.swift */,
 				884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */,
+				88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		88978E03202E0F7300D6FE71 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				88978E00202E0F6500D6FE71 /* ActivityViewController.xib */,
+			);
+			path = XIB;
 			sourceTree = "<group>";
 		};
 		88EEEE5E202B74DD008A67F3 /* Utilities */ = {
@@ -225,6 +225,7 @@
 				882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */,
 				882ACFFA202B0A7D00913E4F /* Assets.xcassets in Resources */,
 				882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */,
+				88978E02202E0F6500D6FE71 /* ActivityViewController.xib in Resources */,
 				88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,12 +287,11 @@
 			files = (
 				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
 				884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */,
-				884F5FB6202CB5A8003BB566 /* SharedGestureFunctions.swift in Sources */,
 				8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */,
-				882ACFF5202B0A7D00913E4F /* AuthorisationVC.swift in Sources */,
 				88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */,
 				88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */,
 				8881C134202C817E007142EE /* RoundedTextField.swift in Sources */,
+				88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,
 				882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */,
 			);

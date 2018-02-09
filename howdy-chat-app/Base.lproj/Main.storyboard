@@ -254,6 +254,8 @@
                         <viewLayoutGuide key="safeArea" id="jQD-FJ-EqJ"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="TDP-lc-Lm1" id="bHi-hz-iHf"/>
+                        <outlet property="passwordTextField" destination="0ft-Nj-WDa" id="ZEC-cT-Xdx"/>
                         <segue destination="sXb-wP-SIE" kind="show" identifier="toRegisterUser" id="HMF-Wq-Psz"/>
                     </connections>
                 </viewController>
@@ -458,6 +460,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cNd-xV-EBY"/>
                     </view>
+                    <connections>
+                        <outlet property="confirmTextField" destination="N1b-OI-Sd6" id="f8p-5i-GvL"/>
+                        <outlet property="emailTextField" destination="mA7-MI-jPg" id="pob-db-IM2"/>
+                        <outlet property="nameTextField" destination="xzQ-hl-aND" id="UwT-kX-s9W"/>
+                        <outlet property="passwordTextField" destination="oxe-zX-HOY" id="8Mc-bc-APA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZrR-Lf-ngD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

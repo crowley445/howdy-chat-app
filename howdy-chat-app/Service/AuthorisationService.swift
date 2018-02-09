@@ -33,12 +33,12 @@ class AuthorisationService {
         }
     }
     
-    func googleAuthorisation (sender: UIViewController) {
+    func googleAuthorisation () {
         // Google sign in function is found in AppDelegate
         GIDSignIn.sharedInstance().signIn()
     }
     
-    func twitterAuthorisation (sender: UIViewController) {
+    func twitterAuthorisation () {
         
         TWTRTwitter.sharedInstance().logIn { (session, error) in
             if let error = error {
@@ -53,6 +53,38 @@ class AuthorisationService {
             }
             
             self.firebaseAuthorisation(withCredentials: TwitterAuthProvider.credential(withToken: token, secret: secret))
+        }
+    }
+
+    func emailAuthorisation (email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                print("AuthorisationService: Failed to sign in with email. \n\(error)")
+                return
+            }
+            
+            print("AuthorisationService: Successfully authorised with Email\n")
+        }
+    }
+
+    
+    
+    func registerNewUser (name: String, email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                print("AuthorisationService: Failed register new user. \n\(error)")
+                return
+            }
+            
+            print("AuthorisationService: Successfully registered new user.\n")
+
+            guard let user = user else {
+                print("AuthorisationService: Failed to get user after register new user")
+                return
+            }
+            
+            let data = [ "name" : name, "email": user.email ?? "", "provider": user.providerID, "photoUrl": ""] as [String : Any]
+            DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data)
         }
     }
     

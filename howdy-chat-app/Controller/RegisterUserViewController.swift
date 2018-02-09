@@ -10,6 +10,11 @@ import UIKit
 
 class RegisterUserViewController: UIViewController {
     
+    @IBOutlet weak var nameTextField : UITextField!
+    @IBOutlet weak var emailTextField : UITextField!
+    @IBOutlet weak var passwordTextField : UITextField!
+    @IBOutlet weak var confirmTextField : UITextField!
+
     @IBAction func closeButtonTapped ( _ sender: Any ) {
         print("RegisterUserViewController: Close button tapped. \n")
         dismiss(animated: true, completion: nil)
@@ -17,6 +22,13 @@ class RegisterUserViewController: UIViewController {
     
     @IBAction func registerButtonTapped ( _ sender: Any ) {
         print("RegisterUserViewController: Register button tapped. \n")
+        guard let name = nameTextField.text, nameTextField.text != "",
+        let email = emailTextField.text, emailTextField.text != "",
+        let password = passwordTextField.text, passwordTextField.text != "",
+            passwordTextField.text == confirmTextField.text else {
+                return
+        }
+        AuthorisationService.instance.registerNewUser(name: name, email: email, password: password)
     }
     
     @IBAction func termsAgreementButtonTapped ( _ sender: Any ) {
