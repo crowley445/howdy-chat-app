@@ -18,3 +18,8 @@ let TO_REGISTER_USER = "toRegisterUser"
 
 // Type Aliases
 typealias CompletionHandler = (_ success: Bool) -> Void
+
+//identifiers
+
+let GROUP_CELL_ID = "groupCell"
+let CONTACT_CELL_ID = "contactCell"

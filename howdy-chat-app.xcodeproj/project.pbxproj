@@ -13,6 +13,12 @@
 		882ACFFA202B0A7D00913E4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF9202B0A7D00913E4F /* Assets.xcassets */; };
 		882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFFB202B0A7D00913E4F /* LaunchScreen.storyboard */; };
 		884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */; };
+		8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C02031ABB50068F620 /* RoundedImage.swift */; };
+		8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C22031AD280068F620 /* GroupsViewController.swift */; };
+		8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C42031ADF40068F620 /* GroupCell.swift */; };
+		887F1FEA2031D096007384D0 /* AddContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FE92031D096007384D0 /* AddContactsViewController.swift */; };
+		887F1FEE2031D30E007384D0 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FED2031D30E007384D0 /* ContactCell.swift */; };
+		887F1FF12031D8FA007384D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FF02031D8FA007384D0 /* User.swift */; };
 		8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C12D202C66A2007142EE /* RoundedButton.swift */; };
 		8881C134202C817E007142EE /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C133202C817E007142EE /* RoundedTextField.swift */; };
 		88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */; };
@@ -34,6 +40,12 @@
 		882ACFFC202B0A7D00913E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		882ACFFE202B0A7D00913E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
+		8850B5C02031ABB50068F620 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
+		8850B5C22031AD280068F620 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		8850B5C42031ADF40068F620 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		887F1FE92031D096007384D0 /* AddContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactsViewController.swift; sourceTree = "<group>"; };
+		887F1FED2031D30E007384D0 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		887F1FF02031D8FA007384D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8881C12D202C66A2007142EE /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		8881C133202C817E007142EE /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +99,7 @@
 		882ACFF1202B0A7D00913E4F /* howdy-chat-app */ = {
 			isa = PBXGroup;
 			children = (
+				887F1FEF2031D8EC007384D0 /* Model */,
 				88978E03202E0F7300D6FE71 /* XIB */,
 				88EEEE5E202B74DD008A67F3 /* Utilities */,
 				88F41594202B3AAD00792DAB /* Service */,
@@ -102,11 +115,22 @@
 			path = "howdy-chat-app";
 			sourceTree = "<group>";
 		};
+		887F1FEF2031D8EC007384D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				887F1FF02031D8FA007384D0 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8881C12A202C6633007142EE /* View */ = {
 			isa = PBXGroup;
 			children = (
 				8881C12D202C66A2007142EE /* RoundedButton.swift */,
 				8881C133202C817E007142EE /* RoundedTextField.swift */,
+				8850B5C02031ABB50068F620 /* RoundedImage.swift */,
+				8850B5C42031ADF40068F620 /* GroupCell.swift */,
+				887F1FED2031D30E007384D0 /* ContactCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,6 +141,8 @@
 				88E8269B202CAD5D00E9A015 /* LoginViewController.swift */,
 				884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */,
 				88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */,
+				8850B5C22031AD280068F620 /* GroupsViewController.swift */,
+				887F1FE92031D096007384D0 /* AddContactsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -287,12 +313,18 @@
 			files = (
 				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
 				884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */,
+				887F1FEA2031D096007384D0 /* AddContactsViewController.swift in Sources */,
 				8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */,
+				8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */,
 				88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */,
 				88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */,
+				8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */,
+				887F1FF12031D8FA007384D0 /* User.swift in Sources */,
 				8881C134202C817E007142EE /* RoundedTextField.swift in Sources */,
 				88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */,
+				8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,
+				887F1FEE2031D30E007384D0 /* ContactCell.swift in Sources */,
 				882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
