@@ -84,7 +84,11 @@ class AuthorisationService {
             }
             
             let data = [ "name" : name, "email": user.email ?? "", "provider": user.providerID, "photoUrl": ""] as [String : Any]
-            DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data)
+            DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data, completion: { (success) in
+                if !success {
+                    print ("AuthorisationService: Failed to create database user.")
+                }
+            })
         }
     }
     
@@ -102,7 +106,11 @@ class AuthorisationService {
             }
             
             let data = [ "name" : user.displayName ?? "", "email": user.email ?? "", "provider": credentials.provider, "photoUrl": user.photoURL?.absoluteString ?? ""] as [String : Any]
-            DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data)
+            DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data, completion: { (success) in
+                if !success {
+                    print ("AuthorisationService: Failed to create database user.")
+                }
+            })
         }
     }
 }

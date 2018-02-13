@@ -17,7 +17,7 @@ class RegisterUserViewController: UIViewController {
 
     @IBAction func closeButtonTapped ( _ sender: Any ) {
         print("RegisterUserViewController: Close button tapped. \n")
-        dismiss(animated: true, completion: nil)
+        dismissDetail()
     }
     
     @IBAction func registerButtonTapped ( _ sender: Any ) {

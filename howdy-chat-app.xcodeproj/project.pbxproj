@@ -23,6 +23,9 @@
 		8881C134202C817E007142EE /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C133202C817E007142EE /* RoundedTextField.swift */; };
 		88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */; };
 		88978E02202E0F6500D6FE71 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88978E00202E0F6500D6FE71 /* ActivityViewController.xib */; };
+		88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A16F29203339620040F99D /* ViewControllerExtensions.swift */; };
+		88BCE79F2032FCDB002E1E7E /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */; };
+		88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */; };
 		88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8269B202CAD5D00E9A015 /* LoginViewController.swift */; };
 		88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EEEE5F202B74ED008A67F3 /* Constants.swift */; };
 		88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F41592202B383B00792DAB /* GoogleService-Info.plist */; };
@@ -50,6 +53,9 @@
 		8881C133202C817E007142EE /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		88978E00202E0F6500D6FE71 /* ActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
+		88A16F29203339620040F99D /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
+		88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		88E8269B202CAD5D00E9A015 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		88EEEE5F202B74ED008A67F3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		88F41592202B383B00792DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -99,10 +105,11 @@
 		882ACFF1202B0A7D00913E4F /* howdy-chat-app */ = {
 			isa = PBXGroup;
 			children = (
-				887F1FEF2031D8EC007384D0 /* Model */,
+				88A16F282033393F0040F99D /* Extensions */,
+				88F41594202B3AAD00792DAB /* Service */,
 				88978E03202E0F7300D6FE71 /* XIB */,
 				88EEEE5E202B74DD008A67F3 /* Utilities */,
-				88F41594202B3AAD00792DAB /* Service */,
+				887F1FEF2031D8EC007384D0 /* Model */,
 				8881C12A202C6633007142EE /* View */,
 				8881C12B202C6645007142EE /* Controller */,
 				882ACFF2202B0A7D00913E4F /* AppDelegate.swift */,
@@ -131,6 +138,7 @@
 				8850B5C02031ABB50068F620 /* RoundedImage.swift */,
 				8850B5C42031ADF40068F620 /* GroupCell.swift */,
 				887F1FED2031D30E007384D0 /* ContactCell.swift */,
+				88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -143,6 +151,7 @@
 				88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */,
 				8850B5C22031AD280068F620 /* GroupsViewController.swift */,
 				887F1FE92031D096007384D0 /* AddContactsViewController.swift */,
+				88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -153,6 +162,14 @@
 				88978E00202E0F6500D6FE71 /* ActivityViewController.xib */,
 			);
 			path = XIB;
+			sourceTree = "<group>";
+		};
+		88A16F282033393F0040F99D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88A16F29203339620040F99D /* ViewControllerExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		88EEEE5E202B74DD008A67F3 /* Utilities */ = {
@@ -314,8 +331,10 @@
 				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
 				884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */,
 				887F1FEA2031D096007384D0 /* AddContactsViewController.swift in Sources */,
+				88BCE79F2032FCDB002E1E7E /* ParticipantsCell.swift in Sources */,
 				8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */,
 				8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */,
+				88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */,
 				88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */,
 				88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */,
 				8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */,
@@ -325,6 +344,7 @@
 				8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,
 				887F1FEE2031D30E007384D0 /* ContactCell.swift in Sources */,
+				88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */,
 				882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

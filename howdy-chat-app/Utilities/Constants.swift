@@ -23,3 +23,7 @@ typealias CompletionHandler = (_ success: Bool) -> Void
 
 let GROUP_CELL_ID = "groupCell"
 let CONTACT_CELL_ID = "contactCell"
+let PARTICIPANTS_CELL_ID = "participantsCell"
+
+let SBID_CREATE_GROUP = "createGroupVC"
+let SBID_REGISTER_USER = "registerUserVC"

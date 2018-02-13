@@ -46,6 +46,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBAction func createAccountButtonTapped (_ sender: Any ) {
         print("AuthorisationVC: Create account button tapped. \n")
-        performSegue(withIdentifier: TO_REGISTER_USER, sender: nil)
+        guard let registerUser = storyboard?.instantiateViewController(withIdentifier: SBID_REGISTER_USER) as? RegisterUserViewController
+            else { return }
+        presentDetail(registerUser)
     }
 }

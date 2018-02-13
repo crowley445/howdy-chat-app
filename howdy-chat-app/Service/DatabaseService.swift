@@ -13,11 +13,32 @@ class DatabaseService {
     
     static let instance = DatabaseService()
     
-    private let REF_USER = Database.database().reference().child("user")
+    private let REF_USER = Database.database().reference().child("users")
+    private let REF_GROUPS = Database.database().reference().child("groups")
     
-    func createDatabaseUser( uid : String, data: Dictionary<String, Any> ) {
-        REF_USER.child(uid).updateChildValues(data)
+    // WRITE
+    
+    func createDatabaseUser( uid : String, data: Dictionary<String, Any>, completion: @escaping CompletionHandler ) {
+        REF_USER.child(uid).updateChildValues(data) { (error, ref) in
+            if let error = error {
+                print("DatabaseService: Failed to create user with error: \n \(error)")
+                completion(false)
+            }
+            completion(true)
+        }
     }
+    
+    func createGroup(withTitle title: String, forUserIds ids: [String], completion: @escaping CompletionHandler) {
+        REF_GROUPS.childByAutoId().updateChildValues(["title": title, "participants": ids]) { (error, ref) in
+            if let error = error {
+                print("DatabaseService: Failed to create group with error: \n \(error)")
+                completion(false)
+            }
+            completion(true)
+        }
+    }
+    
+    // READ
     
     func getUsers(completion: @escaping(_ userArray: [User]) -> Void) {
         var userArray = [User]()
@@ -36,3 +57,16 @@ class DatabaseService {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
