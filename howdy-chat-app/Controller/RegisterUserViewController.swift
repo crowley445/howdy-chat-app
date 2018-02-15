@@ -14,7 +14,41 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var emailTextField : UITextField!
     @IBOutlet weak var passwordTextField : UITextField!
     @IBOutlet weak var confirmTextField : UITextField!
+    @IBOutlet weak var profileImageView : UIImageView!
+    @IBOutlet weak var imageContainerHeightConstraint: NSLayoutConstraint!
+    
+    var profileImageSelected = false
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
+    @objc func keyboardWillShow(_ notif: Notification) {
+        let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+
+        imageContainerHeightConstraint.constant = 1
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notif: Notification) {
+        let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+
+        imageContainerHeightConstraint.constant = 130
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     @IBAction func closeButtonTapped ( _ sender: Any ) {
         print("RegisterUserViewController: Close button tapped. \n")
         dismissDetail()
@@ -28,11 +62,58 @@ class RegisterUserViewController: UIViewController {
             passwordTextField.text == confirmTextField.text else {
                 return
         }
-        AuthorisationService.instance.registerNewUser(name: name, email: email, password: password)
+        
+        if profileImageSelected {
+            StorageService.instance.uploadImageToStorage(image: profileImageView.image!, completion: { (urlString) in
+                AuthorisationService.instance.registerNewUser(name: name, email: email, password: password, photoUrl: urlString)
+            })
+        } else {
+            AuthorisationService.instance.registerNewUser(name: name, email: email, password: password, photoUrl: "")
+        }
+        
     }
     
     @IBAction func termsAgreementButtonTapped ( _ sender: Any ) {
         print("RegisterUserViewController: Terms Agreement button tapped. \n")
     }
+}
+
+extension RegisterUserViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+    @objc func profileImageViewTapped() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("RegisterUserViewController: Did cancel image picker.")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("RegisterUserViewController: Did select image from picker.")
+        
+        var selectedImageFromPicker : UIImage?
+        
+        if let editiedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editiedImage
+        }
+        else if let originalImage = info["UIImagePickerControllerReferenceURL"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            profileImageSelected = true
+            profileImageView.image = selectedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     
 }
+
+

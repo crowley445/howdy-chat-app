@@ -12,10 +12,11 @@ import Firebase
 class CreateGroupViewController: UIViewController {
     
     @IBOutlet weak var titleTextField : UITextField!
+    @IBOutlet weak var descriptionTextField : UITextField!
     @IBOutlet weak var participantsView : UICollectionView!
     @IBOutlet weak var countLabel : UILabel!
     
-    var addContactsVC : AddContactsViewController!
+    var addContactsVC : AddParticipantsViewController!
     var participants = [User]()
     
     override func viewDidLoad() {
@@ -40,18 +41,20 @@ class CreateGroupViewController: UIViewController {
         print("CreateGroupViewController: Create group button tapped.\n")
         
         guard let title = titleTextField.text, titleTextField.text != "",
-                let currentId = Auth.auth().currentUser?.uid,
-                    participants.count > 0
-                        else { return }
+                let description = descriptionTextField.text, descriptionTextField.text != "",
+                    let currentId = Auth.auth().currentUser?.uid,
+                        participants.count > 0
+                            else { return }
 
         var ids = participants.map{ $0.uid }
         ids.append(currentId)
         
-        DatabaseService.instance.createGroup(withTitle: title, forUserIds: ids) { (success) in
+        DatabaseService.instance.createGroup(withTitle: title, andDescription: description, forUserIds: ids) { (success) in
             if !success {
                 print ("CreateGroupViewController: Failed to create new group.\n")
             }
             print ("CreateGroupViewController: Successfully created new group.\n")
+            self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
         }
     }
     

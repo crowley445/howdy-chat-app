@@ -2,7 +2,7 @@
 import UIKit
 import Firebase
 
-class AddContactsViewController: UIViewController {
+class AddParticipantsViewController: UIViewController {
     
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var searchBar : UISearchBar!
@@ -32,7 +32,7 @@ class AddContactsViewController: UIViewController {
     }
 
     func getAllUsersForDisplay () {
-        DatabaseService.instance.getUsers { (users) in
+        DatabaseService.instance.getAllUsers { (users) in
             self.usersArray = users
             self.searchBar.isHidden = false
             self.filterUsersAndReloadTableView()
@@ -51,6 +51,7 @@ class AddContactsViewController: UIViewController {
     
     @IBAction func backButtonPressed( _ sender: Any) {
         print("AddContactsViewController: Back button pressed.")
+        dismissDetail()
     }
     
     @IBAction func nextButtonPressed( _ sender: Any) {
@@ -64,7 +65,7 @@ class AddContactsViewController: UIViewController {
     }
 }
 
-extension AddContactsViewController: UITableViewDelegate, UITableViewDataSource {
+extension AddParticipantsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -98,7 +99,7 @@ extension AddContactsViewController: UITableViewDelegate, UITableViewDataSource 
     
 }
 
-extension AddContactsViewController: UISearchBarDelegate {
+extension AddParticipantsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterUsersAndReloadTableView()
     }
@@ -108,7 +109,7 @@ extension AddContactsViewController: UISearchBarDelegate {
     }
 }
 
-extension AddContactsViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension AddParticipantsViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -140,6 +141,7 @@ extension AddContactsViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func scrollToEndOfCollectionView() {
+        if participants.count == 0 { return }
         let item = collectionView(self.participantsCollectionView, numberOfItemsInSection: 0) - 1
         let index = IndexPath(item: item, section: 0)
         self.participantsCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)

@@ -29,6 +29,7 @@ class AuthorisationService {
                 print("AuthorisationService: Failed to get tokens for Facebook credentials.")
                 return
             }
+            print(result)
             self.firebaseAuthorisation(withCredentials: FacebookAuthProvider.credential(withAccessToken: token) )
         }
     }
@@ -69,7 +70,7 @@ class AuthorisationService {
 
     
     
-    func registerNewUser (name: String, email: String, password: String) {
+    func registerNewUser (name: String, email: String, password: String, photoUrl : String) {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("AuthorisationService: Failed register new user. \n\(error)")
@@ -83,7 +84,7 @@ class AuthorisationService {
                 return
             }
             
-            let data = [ "name" : name, "email": user.email ?? "", "provider": user.providerID, "photoUrl": ""] as [String : Any]
+            let data = [ DBK_USER_NAME : name, DBK_USER_EMAIL: user.email ?? "", DBK_USER_PROVIDER: user.providerID, DBK_USER_PHOTO_URL: photoUrl] as [String : Any]
             DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data, completion: { (success) in
                 if !success {
                     print ("AuthorisationService: Failed to create database user.")
@@ -93,6 +94,7 @@ class AuthorisationService {
     }
     
     func firebaseAuthorisation(withCredentials credentials: AuthCredential) {
+        
         Auth.auth().signIn(with: credentials) { (user, error) in
             if let error = error {
                 print("AuthorisationService: Failed final authorisation with Firebase.\n Error: \(error)")
@@ -105,7 +107,7 @@ class AuthorisationService {
                 return
             }
             
-            let data = [ "name" : user.displayName ?? "", "email": user.email ?? "", "provider": credentials.provider, "photoUrl": user.photoURL?.absoluteString ?? ""] as [String : Any]
+            let data = [ DBK_USER_NAME : user.displayName ?? "", DBK_USER_EMAIL: user.email ?? "", DBK_USER_PROVIDER: credentials.provider, DBK_USER_PHOTO_URL: user.photoURL?.absoluteString ?? ""] as [String : Any]
             DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data, completion: { (success) in
                 if !success {
                     print ("AuthorisationService: Failed to create database user.")

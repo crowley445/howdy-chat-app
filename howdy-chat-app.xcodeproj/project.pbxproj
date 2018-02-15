@@ -12,11 +12,12 @@
 		882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF6202B0A7D00913E4F /* Main.storyboard */; };
 		882ACFFA202B0A7D00913E4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF9202B0A7D00913E4F /* Assets.xcassets */; };
 		882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFFB202B0A7D00913E4F /* LaunchScreen.storyboard */; };
+		883F03072035BF8A0025BE15 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F03062035BF8A0025BE15 /* StorageService.swift */; };
 		884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */; };
 		8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C02031ABB50068F620 /* RoundedImage.swift */; };
 		8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C22031AD280068F620 /* GroupsViewController.swift */; };
 		8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C42031ADF40068F620 /* GroupCell.swift */; };
-		887F1FEA2031D096007384D0 /* AddContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FE92031D096007384D0 /* AddContactsViewController.swift */; };
+		887F1FEA2031D096007384D0 /* AddParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */; };
 		887F1FEE2031D30E007384D0 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FED2031D30E007384D0 /* ContactCell.swift */; };
 		887F1FF12031D8FA007384D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FF02031D8FA007384D0 /* User.swift */; };
 		8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C12D202C66A2007142EE /* RoundedButton.swift */; };
@@ -24,6 +25,10 @@
 		88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */; };
 		88978E02202E0F6500D6FE71 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88978E00202E0F6500D6FE71 /* ActivityViewController.xib */; };
 		88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A16F29203339620040F99D /* ViewControllerExtensions.swift */; };
+		88B4C1D5203442A9003C5C1A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D4203442A9003C5C1A /* Group.swift */; };
+		88B4C1D7203442B9003C5C1A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D6203442B9003C5C1A /* Message.swift */; };
+		88B4C1D9203465EA003C5C1A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D8203465EA003C5C1A /* ChatViewController.swift */; };
+		88B4C1DB20346A34003C5C1A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1DA20346A34003C5C1A /* MessageCell.swift */; };
 		88BCE79F2032FCDB002E1E7E /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */; };
 		88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */; };
 		88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8269B202CAD5D00E9A015 /* LoginViewController.swift */; };
@@ -42,11 +47,12 @@
 		882ACFF9202B0A7D00913E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		882ACFFC202B0A7D00913E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		882ACFFE202B0A7D00913E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		883F03062035BF8A0025BE15 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
 		8850B5C02031ABB50068F620 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		8850B5C22031AD280068F620 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		8850B5C42031ADF40068F620 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
-		887F1FE92031D096007384D0 /* AddContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactsViewController.swift; sourceTree = "<group>"; };
+		887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantsViewController.swift; sourceTree = "<group>"; };
 		887F1FED2031D30E007384D0 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		887F1FF02031D8FA007384D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8881C12D202C66A2007142EE /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -54,6 +60,10 @@
 		88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		88978E00202E0F6500D6FE71 /* ActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
 		88A16F29203339620040F99D /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		88B4C1D4203442A9003C5C1A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		88B4C1D6203442B9003C5C1A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		88B4C1D8203465EA003C5C1A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		88B4C1DA20346A34003C5C1A /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
 		88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		88E8269B202CAD5D00E9A015 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -126,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				887F1FF02031D8FA007384D0 /* User.swift */,
+				88B4C1D4203442A9003C5C1A /* Group.swift */,
+				88B4C1D6203442B9003C5C1A /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,6 +151,7 @@
 				8850B5C42031ADF40068F620 /* GroupCell.swift */,
 				887F1FED2031D30E007384D0 /* ContactCell.swift */,
 				88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */,
+				88B4C1DA20346A34003C5C1A /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,8 +163,9 @@
 				884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */,
 				88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */,
 				8850B5C22031AD280068F620 /* GroupsViewController.swift */,
-				887F1FE92031D096007384D0 /* AddContactsViewController.swift */,
+				887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */,
 				88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */,
+				88B4C1D8203465EA003C5C1A /* ChatViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +199,7 @@
 			children = (
 				88F41595202B3AE100792DAB /* AuthorisationService.swift */,
 				88F4159B202B5E1700792DAB /* DatabaseService.swift */,
+				883F03062035BF8A0025BE15 /* StorageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -329,14 +344,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
+				883F03072035BF8A0025BE15 /* StorageService.swift in Sources */,
 				884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */,
-				887F1FEA2031D096007384D0 /* AddContactsViewController.swift in Sources */,
+				887F1FEA2031D096007384D0 /* AddParticipantsViewController.swift in Sources */,
 				88BCE79F2032FCDB002E1E7E /* ParticipantsCell.swift in Sources */,
 				8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */,
 				8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */,
+				88B4C1D5203442A9003C5C1A /* Group.swift in Sources */,
 				88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */,
 				88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */,
 				88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */,
+				88B4C1D9203465EA003C5C1A /* ChatViewController.swift in Sources */,
+				88B4C1DB20346A34003C5C1A /* MessageCell.swift in Sources */,
 				8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */,
 				887F1FF12031D8FA007384D0 /* User.swift in Sources */,
 				8881C134202C817E007142EE /* RoundedTextField.swift in Sources */,
@@ -344,6 +363,7 @@
 				8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,
 				887F1FEE2031D30E007384D0 /* ContactCell.swift in Sources */,
+				88B4C1D7203442B9003C5C1A /* Message.swift in Sources */,
 				88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */,
 				882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */,
 			);

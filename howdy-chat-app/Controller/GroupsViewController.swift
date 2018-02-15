@@ -11,6 +11,7 @@ import UIKit
 class GroupsViewController: UIViewController {
     
     @IBOutlet weak var groupTableView : UITableView!
+    var groupsArray = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,31 +19,64 @@ class GroupsViewController: UIViewController {
         groupTableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        observeGroupDatabaseAndReloadOnUpdate()
+    }
+    
+    func observeGroupDatabaseAndReloadOnUpdate () {
+        DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapshot) in
+            DatabaseService.instance.getAllGroups(completion: { (groupsArray) in
+                print("AAAAAHHHHH\nAAAHHHHH\n")
+                self.groupsArray = groupsArray
+                self.groupTableView.reloadData()
+            })
+        }
+    }
     @IBAction func menuButtonTapped (_ sender : Any) {
         print("GroupsViewController: Menu button tapped.")
     }
     
-    @IBAction func addChannelButtonTapped (_ sender: Any) {
+    @IBAction func addGroupButtonTapped (_ sender: Any) {
         print("GroupsViewController: Add group button tapped.")
+        guard let addParticipantsVC = storyboard?.instantiateViewController(withIdentifier: SBID_ADD_PARTICIPANTS) else { return }
+        presentDetail(addParticipantsVC)
     }
+    
+    @IBAction func unwindToGroupsViewController (segue:UIStoryboardSegue) {}
 }
 
 extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return groupsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_CELL_ID, for: indexPath) as? GroupCell else {
             return UITableViewCell()
         }
+        cell.configure(withGroup: groupsArray[indexPath.row])
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let chatVC = storyboard?.instantiateViewController(withIdentifier: SBID_CHAT) as? ChatViewController else { return }
+        DatabaseService.instance.getMembers(ids: groupsArray[indexPath.row].members) { (members) in
+            chatVC.group = self.groupsArray[indexPath.row]
+            chatVC.members = members
+            self.presentDetail(chatVC)
+        }
     }
-    
-    
 }
+
+
+
+
+
+
+

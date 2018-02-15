@@ -15,6 +15,7 @@ let TWTR_SECRET = "rvjdInJwMjhkPhk4fDmdSnhUvPitlxLbTRZEsNl0JnpDWDzaJb"
 
 //Segues
 let TO_REGISTER_USER = "toRegisterUser"
+let UNWIND_TO_GROUPS = "unwindToGroupsViewController"
 
 // Type Aliases
 typealias CompletionHandler = (_ success: Bool) -> Void
@@ -24,6 +25,42 @@ typealias CompletionHandler = (_ success: Bool) -> Void
 let GROUP_CELL_ID = "groupCell"
 let CONTACT_CELL_ID = "contactCell"
 let PARTICIPANTS_CELL_ID = "participantsCell"
+let CID_MESSAGE = "messageCell"
+let CID_USER_MESSAGE = "userMessageCell"
 
 let SBID_CREATE_GROUP = "createGroupVC"
+let SBID_ADD_PARTICIPANTS = "AddParticipantsViewController"
 let SBID_REGISTER_USER = "registerUserVC"
+let SBID_CHAT = "ChatViewController"
+
+let IMG_DEFAULT_PROFILE_SML = "default-profile-sml"
+
+
+// DATABASE KEYS
+let DBK_GROUPS = "groups"
+let DBK_GROUP_DESCRIPTION = "description"
+let DBK_GROUP_MEMBERS = "members"
+let DBK_GROUP_MESSAGES = "messages"
+let DBK_GROUP_TITLE = "title"
+
+let DBK_MESSAGE_SENDER_ID = "senderID"
+let DBK_MESSAGE_CONTENT = "content"
+
+let DBK_USERS = "users"
+let DBK_USER_EMAIL = "email"
+let DBK_USER_NAME = "name"
+let DBK_USER_PHOTO_URL = "url"
+let DBK_USER_PROVIDER = "provider"
+
+// Storage Keys
+
+let SK_PROFILE_IMG = "profile_image"
+
+
+
+
+
+
+
+
+
