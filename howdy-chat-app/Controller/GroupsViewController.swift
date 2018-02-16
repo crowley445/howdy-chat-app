@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import Firebase
 
 class GroupsViewController: UIViewController {
     
     @IBOutlet weak var groupTableView : UITableView!
+    @IBOutlet weak var menuButton: UIButton!
+    
     var groupsArray = [Group]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         groupTableView.delegate = self
         groupTableView.dataSource = self
+        menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        if Auth.auth().currentUser == nil {
+            guard let loginVC = storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController else { return }
+            present(loginVC, animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,12 +35,12 @@ class GroupsViewController: UIViewController {
     func observeGroupDatabaseAndReloadOnUpdate () {
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapshot) in
             DatabaseService.instance.getAllGroups(completion: { (groupsArray) in
-                print("AAAAAHHHHH\nAAAHHHHH\n")
                 self.groupsArray = groupsArray
                 self.groupTableView.reloadData()
             })
         }
     }
+    
     @IBAction func menuButtonTapped (_ sender : Any) {
         print("GroupsViewController: Menu button tapped.")
     }

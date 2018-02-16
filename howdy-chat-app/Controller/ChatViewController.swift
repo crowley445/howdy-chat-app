@@ -49,6 +49,7 @@ class ChatViewController: UIViewController {
             if !success {
                 print("ChatViewController: Failed to upload Message.\n")
             }
+            self.messageField.text = ""
             print("ChatViewController: Successfully uploaded Message")
         }
     }
@@ -66,22 +67,16 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
-        var cellID = ""
-        var displayName = ""
-        
-        if message.senderId == Auth.auth().currentUser?.uid {
-            cellID = CID_USER_MESSAGE
-            displayName = "You"
-        } else {
-            cellID = CID_MESSAGE
-            displayName = (members[message.senderId]?.name)!
-        }
+        let cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MESSAGE : CID_MESSAGE
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MessageCell else {
             return UITableViewCell()
         }
         
-        cell.configure(name: displayName, content: message.content)
+        if let user = members[message.senderId] {
+            cell.configure(withUser: user, andContent: message.content)
+        }
+
         return cell
     }
 }

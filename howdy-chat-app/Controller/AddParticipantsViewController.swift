@@ -76,15 +76,20 @@ extension AddParticipantsViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CONTACT_CELL_ID, for: indexPath) as? ContactCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CONTACT_CELL_ID, for: indexPath) as? ContactTableViewCell else {
             return UITableViewCell()
         }
         cell.configure(withUser: filteredUserArray[indexPath.row], setSelected: !participants.contains(where: {$0.uid == filteredUserArray[indexPath.row].uid}))
+        
         return cell
     }
     
+    func setImageForImageView(image: UIImage, view: UIImageView) {
+        view.image = image
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ContactCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? ContactTableViewCell else { return }
         cell.toggleCheckmark()
 
         if let i = participants.index(where: {$0.uid == cell.user.uid}) {
@@ -120,7 +125,7 @@ extension AddParticipantsViewController: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PARTICIPANTS_CELL_ID, for: indexPath) as? ParticipantsCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PARTICIPANTS_CELL_ID, for: indexPath) as? ContactCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.configure(withUser: participants[indexPath.row])

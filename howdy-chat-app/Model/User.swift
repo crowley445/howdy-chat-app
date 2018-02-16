@@ -14,13 +14,13 @@ class User {
     var name : String
     var email : String
     var uid : String
-    var image: UIImage
+    var imageURL: String
     
-    init(name: String, email: String, uid: String) {
+    init(name: String, email: String, uid: String, imageURL: String) {
         self.name = name
         self.email = email
         self.uid = uid
-        self.image = UIImage(named: "default-profile-sml")!
+        self.imageURL = imageURL
     }
     
 }

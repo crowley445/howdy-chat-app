@@ -14,19 +14,31 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var emailTextField : UITextField!
     @IBOutlet weak var passwordTextField : UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signOut()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(authSuccess), name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(authFailure), name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+    }
+    
+    @objc func authSuccess () {
+        performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+    }
+    
+    @objc func authFailure () {
+        print("LoginViewController: Authorisation failed!")
     }
     
     @IBAction func loginButtonTapped (_ sender: Any ) {
         print("AuthorisationVC: Login button tapped. \n")
-        
         guard let email = emailTextField.text, emailTextField.text != "", let password = passwordTextField.text, passwordTextField.text != "" else {
                 return
         }
         AuthorisationService.instance.emailAuthorisation(email: email, password: password)
+       
     }
     
     @IBAction func facebookButtonTapped (_ sender: Any ) {
@@ -50,4 +62,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             else { return }
         presentDetail(registerUser)
     }
+    
+    
 }

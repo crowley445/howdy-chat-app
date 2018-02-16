@@ -16,7 +16,7 @@ import TwitterKit
 class AuthorisationService {
     static let instance = AuthorisationService()
     
-    func facebookAuthorisation (sender: UIViewController) {
+    func facebookAuthorisation (sender: UIViewController ) {
         FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: sender) { (result, error) in
             
             if let error = error {
@@ -29,7 +29,7 @@ class AuthorisationService {
                 print("AuthorisationService: Failed to get tokens for Facebook credentials.")
                 return
             }
-            print(result)
+            
             self.firebaseAuthorisation(withCredentials: FacebookAuthProvider.credential(withAccessToken: token) )
         }
     }
@@ -65,6 +65,7 @@ class AuthorisationService {
             }
             
             print("AuthorisationService: Successfully authorised with Email\n")
+            NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
         }
     }
 
@@ -74,6 +75,7 @@ class AuthorisationService {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("AuthorisationService: Failed register new user. \n\(error)")
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
                 return
             }
             
@@ -81,6 +83,7 @@ class AuthorisationService {
 
             guard let user = user else {
                 print("AuthorisationService: Failed to get user after register new user")
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
                 return
             }
             
@@ -88,7 +91,10 @@ class AuthorisationService {
             DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data, completion: { (success) in
                 if !success {
                     print ("AuthorisationService: Failed to create database user.")
+                    NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+                    return
                 }
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
             })
         }
     }
@@ -98,12 +104,15 @@ class AuthorisationService {
         Auth.auth().signIn(with: credentials) { (user, error) in
             if let error = error {
                 print("AuthorisationService: Failed final authorisation with Firebase.\n Error: \(error)")
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+                return
             }
             
             print("AuthorisationService: Successfully authorised with Firebase\n")
             
             guard let user = user else {
                 print("AuthorisationService: Failed to get user from Firebase Authorisation.\n")
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
                 return
             }
             
@@ -111,7 +120,10 @@ class AuthorisationService {
             DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data, completion: { (success) in
                 if !success {
                     print ("AuthorisationService: Failed to create database user.")
+                    NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+                    return
                 }
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
             })
         }
     }

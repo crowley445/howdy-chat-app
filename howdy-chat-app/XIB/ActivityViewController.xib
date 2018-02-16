@@ -20,14 +20,21 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50Q-MF-jYw">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Md2-8l-iyv">
                     <rect key="frame" x="169" y="315" width="37" height="37"/>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="50Q-MF-jYw" secondAttribute="trailing" id="C4X-qj-Kfe"/>
                 <constraint firstItem="Md2-8l-iyv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DAk-kF-Wmz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="50Q-MF-jYw" secondAttribute="bottom" id="DGc-2b-iVb"/>
+                <constraint firstItem="50Q-MF-jYw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Znd-7f-8x6"/>
                 <constraint firstItem="Md2-8l-iyv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="hGl-P8-s1u"/>
+                <constraint firstItem="50Q-MF-jYw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="i6X-98-sU6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

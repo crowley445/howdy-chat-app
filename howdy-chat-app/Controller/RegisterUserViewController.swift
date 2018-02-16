@@ -24,11 +24,10 @@ class RegisterUserViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(authSuccess), name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(authFailure), name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+        
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped)))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
 
     @objc func keyboardWillShow(_ notif: Notification) {
@@ -47,6 +46,14 @@ class RegisterUserViewController: UIViewController {
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @objc func authSuccess() {
+        performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+    }
+    
+    @objc func authFailure() {
+        print("RegisterUserViewController: Authorisation failed!")
     }
     
     @IBAction func closeButtonTapped ( _ sender: Any ) {
@@ -69,8 +76,7 @@ class RegisterUserViewController: UIViewController {
             })
         } else {
             AuthorisationService.instance.registerNewUser(name: name, email: email, password: password, photoUrl: "")
-        }
-        
+        }        
     }
     
     @IBAction func termsAgreementButtonTapped ( _ sender: Any ) {

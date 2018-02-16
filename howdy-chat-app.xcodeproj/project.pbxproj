@@ -14,11 +14,13 @@
 		882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFFB202B0A7D00913E4F /* LaunchScreen.storyboard */; };
 		883F03072035BF8A0025BE15 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F03062035BF8A0025BE15 /* StorageService.swift */; };
 		884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */; };
+		8850A35B2036ECC500F77C77 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8850A35A2036ECC500F77C77 /* SWRevealViewController.m */; };
+		8850A35D2036EE9E00F77C77 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850A35C2036EE9E00F77C77 /* MenuViewController.swift */; };
 		8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C02031ABB50068F620 /* RoundedImage.swift */; };
 		8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C22031AD280068F620 /* GroupsViewController.swift */; };
 		8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C42031ADF40068F620 /* GroupCell.swift */; };
 		887F1FEA2031D096007384D0 /* AddParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */; };
-		887F1FEE2031D30E007384D0 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FED2031D30E007384D0 /* ContactCell.swift */; };
+		887F1FEE2031D30E007384D0 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FED2031D30E007384D0 /* ContactTableViewCell.swift */; };
 		887F1FF12031D8FA007384D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FF02031D8FA007384D0 /* User.swift */; };
 		8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C12D202C66A2007142EE /* RoundedButton.swift */; };
 		8881C134202C817E007142EE /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C133202C817E007142EE /* RoundedTextField.swift */; };
@@ -29,7 +31,7 @@
 		88B4C1D7203442B9003C5C1A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D6203442B9003C5C1A /* Message.swift */; };
 		88B4C1D9203465EA003C5C1A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D8203465EA003C5C1A /* ChatViewController.swift */; };
 		88B4C1DB20346A34003C5C1A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1DA20346A34003C5C1A /* MessageCell.swift */; };
-		88BCE79F2032FCDB002E1E7E /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */; };
+		88BCE79F2032FCDB002E1E7E /* ContactCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE79E2032FCDB002E1E7E /* ContactCollectionViewCell.swift */; };
 		88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */; };
 		88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8269B202CAD5D00E9A015 /* LoginViewController.swift */; };
 		88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EEEE5F202B74ED008A67F3 /* Constants.swift */; };
@@ -49,11 +51,15 @@
 		882ACFFE202B0A7D00913E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883F03062035BF8A0025BE15 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
+		8850A3572036ECC300F77C77 /* howdy-chat-app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "howdy-chat-app-Bridging-Header.h"; sourceTree = "<group>"; };
+		8850A3592036ECC500F77C77 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		8850A35A2036ECC500F77C77 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		8850A35C2036EE9E00F77C77 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8850B5C02031ABB50068F620 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		8850B5C22031AD280068F620 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		8850B5C42031ADF40068F620 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantsViewController.swift; sourceTree = "<group>"; };
-		887F1FED2031D30E007384D0 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		887F1FED2031D30E007384D0 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		887F1FF02031D8FA007384D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8881C12D202C66A2007142EE /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		8881C133202C817E007142EE /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
@@ -64,7 +70,7 @@
 		88B4C1D6203442B9003C5C1A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		88B4C1D8203465EA003C5C1A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		88B4C1DA20346A34003C5C1A /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
+		88BCE79E2032FCDB002E1E7E /* ContactCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCollectionViewCell.swift; sourceTree = "<group>"; };
 		88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		88E8269B202CAD5D00E9A015 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		88EEEE5F202B74ED008A67F3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 		882ACFF1202B0A7D00913E4F /* howdy-chat-app */ = {
 			isa = PBXGroup;
 			children = (
+				8850A3562036ECA400F77C77 /* Supporting Files */,
 				88A16F282033393F0040F99D /* Extensions */,
 				88F41594202B3AAD00792DAB /* Service */,
 				88978E03202E0F7300D6FE71 /* XIB */,
@@ -130,6 +137,16 @@
 				88F41592202B383B00792DAB /* GoogleService-Info.plist */,
 			);
 			path = "howdy-chat-app";
+			sourceTree = "<group>";
+		};
+		8850A3562036ECA400F77C77 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8850A3592036ECC500F77C77 /* SWRevealViewController.h */,
+				8850A35A2036ECC500F77C77 /* SWRevealViewController.m */,
+				8850A3572036ECC300F77C77 /* howdy-chat-app-Bridging-Header.h */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		887F1FEF2031D8EC007384D0 /* Model */ = {
@@ -149,8 +166,8 @@
 				8881C133202C817E007142EE /* RoundedTextField.swift */,
 				8850B5C02031ABB50068F620 /* RoundedImage.swift */,
 				8850B5C42031ADF40068F620 /* GroupCell.swift */,
-				887F1FED2031D30E007384D0 /* ContactCell.swift */,
-				88BCE79E2032FCDB002E1E7E /* ParticipantsCell.swift */,
+				887F1FED2031D30E007384D0 /* ContactTableViewCell.swift */,
+				88BCE79E2032FCDB002E1E7E /* ContactCollectionViewCell.swift */,
 				88B4C1DA20346A34003C5C1A /* MessageCell.swift */,
 			);
 			path = View;
@@ -166,6 +183,7 @@
 				887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */,
 				88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */,
 				88B4C1D8203465EA003C5C1A /* ChatViewController.swift */,
+				8850A35C2036EE9E00F77C77 /* MenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -248,6 +266,7 @@
 				TargetAttributes = {
 					882ACFEE202B0A7D00913E4F = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -347,22 +366,24 @@
 				883F03072035BF8A0025BE15 /* StorageService.swift in Sources */,
 				884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */,
 				887F1FEA2031D096007384D0 /* AddParticipantsViewController.swift in Sources */,
-				88BCE79F2032FCDB002E1E7E /* ParticipantsCell.swift in Sources */,
+				88BCE79F2032FCDB002E1E7E /* ContactCollectionViewCell.swift in Sources */,
 				8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */,
 				8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */,
 				88B4C1D5203442A9003C5C1A /* Group.swift in Sources */,
 				88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */,
 				88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */,
 				88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */,
+				8850A35B2036ECC500F77C77 /* SWRevealViewController.m in Sources */,
 				88B4C1D9203465EA003C5C1A /* ChatViewController.swift in Sources */,
 				88B4C1DB20346A34003C5C1A /* MessageCell.swift in Sources */,
 				8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */,
 				887F1FF12031D8FA007384D0 /* User.swift in Sources */,
+				8850A35D2036EE9E00F77C77 /* MenuViewController.swift in Sources */,
 				8881C134202C817E007142EE /* RoundedTextField.swift in Sources */,
 				88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */,
 				8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,
-				887F1FEE2031D30E007384D0 /* ContactCell.swift in Sources */,
+				887F1FEE2031D30E007384D0 /* ContactTableViewCell.swift in Sources */,
 				88B4C1D7203442B9003C5C1A /* Message.swift in Sources */,
 				88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */,
 				882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */,
@@ -503,12 +524,15 @@
 			baseConfigurationReference = 3040AB7A35152108EDA7CBEA /* Pods-howdy-chat-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GFGPMP69Q;
 				INFOPLIST_FILE = "howdy-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "self.edu.howdy-chat-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "howdy-chat-app/Supporting Files/howdy-chat-app-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -519,12 +543,14 @@
 			baseConfigurationReference = A933BEF8F0E1047E788634A1 /* Pods-howdy-chat-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GFGPMP69Q;
 				INFOPLIST_FILE = "howdy-chat-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "self.edu.howdy-chat-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "howdy-chat-app/Supporting Files/howdy-chat-app-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

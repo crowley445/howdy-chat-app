@@ -53,7 +53,8 @@ class DatabaseService {
                 let name = user.childSnapshot(forPath: DBK_USER_NAME).value as! String
                 let email = user.childSnapshot(forPath: DBK_USER_EMAIL).value as! String
                 let uid = user.key
-                let userObject = User(name: name, email: email, uid: uid)
+                let imageUrl = user.childSnapshot(forPath: DBK_USER_PHOTO_URL).value as! String
+                let userObject = User(name: name, email: email, uid: uid, imageURL: imageUrl)
                 if Auth.auth().currentUser?.uid != user.key {
                     userArray.append(userObject)
                 }
@@ -70,7 +71,9 @@ class DatabaseService {
                     let name = user.childSnapshot(forPath: DBK_USER_NAME).value as! String
                     let email = user.childSnapshot(forPath: DBK_USER_EMAIL).value as! String
                     let uid = user.key
-                    let userObject = User(name: name, email: email, uid: uid)
+                    let imageUrl = user.childSnapshot(forPath: DBK_USER_PHOTO_URL).value as! String
+                    
+                    let userObject = User(name: name, email: email, uid: uid, imageURL: imageUrl)
                     completion(userObject)
                 }
             }
@@ -85,7 +88,10 @@ class DatabaseService {
                 if !ids.contains(user.key) { continue }
                 let name = user.childSnapshot(forPath: DBK_USER_NAME).value as! String
                 let email = user.childSnapshot(forPath: DBK_USER_EMAIL).value as! String
-                members[user.key] = User(name: name, email: email, uid: user.key)
+                let uid = user.key
+                let imageUrl = user.childSnapshot(forPath: DBK_USER_PHOTO_URL).value as! String
+                
+                members[user.key] = User(name: name, email: email, uid: uid, imageURL: imageUrl)
             }
             
             completion(members)
