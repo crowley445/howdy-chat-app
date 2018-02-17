@@ -18,7 +18,7 @@ class ContactCollectionViewCell: UICollectionViewCell {
         self.profileImageView.image = UIImage(named: IMG_DEFAULT_PROFILE_SML)
         
         DispatchQueue.global().async {
-            StorageService.instance.getProfileImageFromStorage(withURLString: user.imageURL, completion: { (_image) in
+            StorageService.instance.getImageFromStorage(withURLString: user.imageURL, completion: { (_image) in
                 DispatchQueue.main.async {
                     self.profileImageView.image = _image
                 }

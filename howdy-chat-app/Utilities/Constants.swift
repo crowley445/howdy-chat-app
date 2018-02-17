@@ -51,6 +51,7 @@ let IMG_DEFAULT_PROFILE_SML = "default-profile-sml"
 let DBK_GROUPS = "groups"
 let DBK_GROUP_DESCRIPTION = "description"
 let DBK_GROUP_MEMBERS = "members"
+let DBK_GROUP_IMAGE_URL = "imageUrl"
 let DBK_GROUP_MESSAGES = "messages"
 let DBK_GROUP_TITLE = "title"
 
@@ -66,6 +67,8 @@ let DBK_USER_PROVIDER = "provider"
 // Storage Keys
 
 let SK_PROFILE_IMG = "profile_image"
+let SK_GROUP_IMG = "group_image"
+
 
 
 

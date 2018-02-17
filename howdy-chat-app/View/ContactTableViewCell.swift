@@ -23,7 +23,7 @@ class ContactTableViewCell: UITableViewCell {
         self.user = user
         
         DispatchQueue.global().async {
-            StorageService.instance.getProfileImageFromStorage(withURLString: self.user.imageURL, completion: { (_image) in
+            StorageService.instance.getImageFromStorage(withURLString: self.user.imageURL, completion: { (_image) in
                 DispatchQueue.main.async {
                     self.profileImageView.image = _image
                 }

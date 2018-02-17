@@ -9,7 +9,14 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
+
 class MenuViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self.revealViewController(), selector: #selector(SWRevealViewController.revealToggle(_:)), name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
+    }
+    
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         print("MenuViewController: Logout button tapped.\n")

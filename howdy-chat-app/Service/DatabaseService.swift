@@ -28,8 +28,8 @@ class DatabaseService {
         }
     }
     
-    func createGroup(withTitle title: String, andDescription description: String,  forUserIds ids: [String], completion: @escaping CompletionHandler) {
-        REF_GROUPS.childByAutoId().updateChildValues([DBK_GROUP_TITLE: title, DBK_GROUP_DESCRIPTION: description, DBK_GROUP_MEMBERS: ids]) { (error, ref) in
+    func createGroup(withTitle title: String, Description description: String, andImageUrl imageUrl: String, forUserIds ids: [String], completion: @escaping CompletionHandler) {
+        REF_GROUPS.childByAutoId().updateChildValues([DBK_GROUP_TITLE: title, DBK_GROUP_DESCRIPTION: description, DBK_GROUP_IMAGE_URL: imageUrl, DBK_GROUP_MEMBERS: ids]) { (error, ref) in
             if let error = error {
                 print("DatabaseService: Failed to create group with error: \n \(error)")
                 completion(false)
@@ -103,16 +103,17 @@ class DatabaseService {
         REF_GROUPS.observeSingleEvent(of: .value) { (dataSnapshot) in
             guard let groupSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else { return }
             for group in groupSnapshot {
-                print("AAAAA\n")
-                debugPrint(group.childSnapshot(forPath: DBK_GROUP_MEMBERS))
                 guard let membersArray = group.childSnapshot(forPath: DBK_GROUP_MEMBERS).value as? [String] else { return }
                 
                 if membersArray.contains((Auth.auth().currentUser?.uid)!) {
-
-                    let title = group.childSnapshot(forPath: DBK_GROUP_TITLE).value as! String
-                    let description = group.childSnapshot(forPath: DBK_GROUP_DESCRIPTION).value as! String
-                    let group = Group(title: title, description: description, key: group.key, members: membersArray)
+                    
+                    guard let title = group.childSnapshot(forPath: DBK_GROUP_TITLE).value as? String,
+                            let description = group.childSnapshot(forPath: DBK_GROUP_DESCRIPTION).value as? String,
+                                let imageUrl = group.childSnapshot(forPath: DBK_GROUP_IMAGE_URL).value as? String else { continue }
+                    
+                    let group = Group(title: title, description: description, key: group.key, members: membersArray, imageUrl: imageUrl)
                     groupsArray.append(group)
+                    
                 }
             }
             completion(groupsArray)

@@ -16,14 +16,13 @@ class StorageService {
     
     static let instance = StorageService()
     
-    let REF_PROFILE_IMG = Storage.storage().reference().child(SK_PROFILE_IMG)
-    
-    func uploadImageToStorage( image : UIImage, completion: @escaping (_ imgUrl : String) -> ()) {
-        
+    let REF_STORAGE = Storage.storage().reference()
+
+    func uploadImageToStorage (withImage image: UIImage, andFolderKey key: String, completion: @escaping (_ imgUrl : String) -> ()){
         guard let data = UIImageJPEGRepresentation(image, 0.1) else { return }
-        REF_PROFILE_IMG.child("\(NSUUID().uuidString).jpg").putData(data, metadata: nil) { (metadata, error) in
+        REF_STORAGE.child(key).child("\(NSUUID().uuidString).jpg").putData(data, metadata: nil) { (metadata, error) in
             if let error = error {
-                print("StorageService: Failed to upload profile image: \n \(error)")
+                print("StorageService: Failed to upload image: \n \(error)")
                 return
             }
             guard let imageURL = metadata?.downloadURL()?.absoluteString else { return }
@@ -31,7 +30,7 @@ class StorageService {
         }
     }
     
-    func getProfileImageFromStorage( withURLString url: String, completion: @escaping (_ image: UIImage) -> ()) {
+    func getImageFromStorage( withURLString url: String, completion: @escaping (_ image: UIImage) -> ()) {
         if let image = imageCache.object(forKey: url as NSString) {
             completion(image)
         }

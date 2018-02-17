@@ -15,19 +15,27 @@ class CreateGroupViewController: UIViewController {
     @IBOutlet weak var descriptionTextField : UITextField!
     @IBOutlet weak var participantsView : UICollectionView!
     @IBOutlet weak var countLabel : UILabel!
+    @IBOutlet weak var groupImageView: UIImageView!
     
     var addContactsVC : AddParticipantsViewController!
     var participants = [User]()
+    var groupImageSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         participantsView.delegate = self
         participantsView.dataSource = self
+        groupImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(groupImageViewTapped)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         countLabel.text  = "\(participants.count) OF \(addContactsVC.usersArray.count)"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(participantsView.frame)
     }
     
     @IBAction func backButtonTapped (_ sender: Any) {
@@ -49,17 +57,30 @@ class CreateGroupViewController: UIViewController {
         var ids = participants.map{ $0.uid }
         ids.append(currentId)
         
-        DatabaseService.instance.createGroup(withTitle: title, andDescription: description, forUserIds: ids) { (success) in
-            if !success {
-                print ("CreateGroupViewController: Failed to create new group.\n")
-            }
-            print ("CreateGroupViewController: Successfully created new group.\n")
-            self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+        if groupImageSelected {
+            StorageService.instance.uploadImageToStorage(withImage: groupImageView.image!, andFolderKey: SK_GROUP_IMG, completion: { (imageUrl) in
+                DatabaseService.instance.createGroup(withTitle: title, Description: description, andImageUrl: imageUrl, forUserIds: ids, completion: { (success) in
+                    if !success {
+                        print ("CreateGroupViewController: Failed to create new group.\n")
+                    }
+                    print ("CreateGroupViewController: Successfully created new group.\n")
+                    self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+                })
+            })
+        } else {
+            DatabaseService.instance.getUser(withUID: (Auth.auth().currentUser?.uid)!, completion: { (user) in
+                DatabaseService.instance.createGroup(withTitle: title, Description: description, andImageUrl: user.imageURL, forUserIds: ids, completion: { (success) in
+                    if !success {
+                        print ("CreateGroupViewController: Failed to create new group.\n")
+                    }
+                    print ("CreateGroupViewController: Successfully created new group.\n")
+                    self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+                })
+            })
         }
     }
-    
 }
-
+    
 extension CreateGroupViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -74,6 +95,7 @@ extension CreateGroupViewController: UICollectionViewDelegate, UICollectionViewD
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PARTICIPANTS_CELL_ID, for: indexPath) as? ContactCollectionViewCell else {
             return UICollectionViewCell()
         }
+        print(participants[indexPath.row].name)
         cell.configure(withUser: participants[indexPath.row])
         return cell
     }
@@ -82,5 +104,41 @@ extension CreateGroupViewController: UICollectionViewDelegate, UICollectionViewD
         participants.remove(at: indexPath.row)
         countLabel.text  = "\(participants.count) OF \(addContactsVC.usersArray.count)"
         participantsView.reloadData()
+    }
+}
+
+extension CreateGroupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+    @objc func groupImageViewTapped() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("RegisterUserViewController: Did cancel image picker.")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("RegisterUserViewController: Did select image from picker.")
+        
+        var selectedImageFromPicker : UIImage?
+        
+        if let editiedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editiedImage
+        }
+        else if let originalImage = info["UIImagePickerControllerReferenceURL"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            groupImageSelected = true
+            groupImageView.image = selectedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }

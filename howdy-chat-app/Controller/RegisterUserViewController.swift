@@ -71,7 +71,7 @@ class RegisterUserViewController: UIViewController {
         }
         
         if profileImageSelected {
-            StorageService.instance.uploadImageToStorage(image: profileImageView.image!, completion: { (urlString) in
+            StorageService.instance.uploadImageToStorage(withImage: profileImageView.image!, andFolderKey: SK_PROFILE_IMG, completion: { (urlString) in
                 AuthorisationService.instance.registerNewUser(name: name, email: email, password: password, photoUrl: urlString)
             })
         } else {
@@ -118,8 +118,6 @@ extension RegisterUserViewController: UIImagePickerControllerDelegate, UINavigat
         
         dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
 

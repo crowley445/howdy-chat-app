@@ -16,8 +16,8 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var groupTitleLabel: UILabel!
     
     var group : Group?
-    var messages = [Message]()
     var members = [String:User]()
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,7 @@ class ChatViewController: UIViewController {
             DatabaseService.instance.getMessagesFor(desiredGroup: self.group!, completion: { (messages) in
                 self.messages = messages
                 self.messageTableView.reloadData()
+                self.scrollToEnd()
             })
         }
     }
@@ -78,6 +79,11 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         return cell
+    }
+    
+    func scrollToEnd () {
+        let endIndex = IndexPath(row: self.messages.count - 1, section: 0)
+        self.messageTableView.scrollToRow(at: endIndex, at: .bottom, animated: false)
     }
 }
 
