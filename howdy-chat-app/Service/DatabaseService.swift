@@ -39,7 +39,7 @@ class DatabaseService {
     }
     
     func uploadPost(withMessage message: Message, forGroupKey key: String, completion: @escaping CompletionHandler) {
-        REF_GROUPS.child(key).child(DBK_GROUP_MESSAGES).childByAutoId().updateChildValues([DBK_MESSAGE_CONTENT: message.content, DBK_MESSAGE_SENDER_ID: message.senderId])
+        REF_GROUPS.child(key).child(DBK_GROUP_MESSAGES).childByAutoId().updateChildValues([DBK_MESSAGE_CONTENT: message.content, DBK_MESSAGE_SENDER_ID: message.senderId, DBK_MESSAGE_IMAGE_URL: message.imageUrl])
         completion(true)
     }
 
@@ -126,9 +126,13 @@ class DatabaseService {
             guard let messagesSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for message in messagesSnapshot {
-                let senderId = message.childSnapshot(forPath: DBK_MESSAGE_SENDER_ID).value as! String
-                let content = message.childSnapshot(forPath: DBK_MESSAGE_CONTENT).value as! String
-                let message = Message(senderId: senderId, content: content)
+                guard let senderId = message.childSnapshot(forPath: DBK_MESSAGE_SENDER_ID).value as? String,
+                        let content = message.childSnapshot(forPath: DBK_MESSAGE_CONTENT).value as? String,
+                            let imageUrl = message.childSnapshot(forPath: DBK_MESSAGE_IMAGE_URL).value as? String else {
+                    continue
+                }
+                
+                let message = Message(senderId: senderId, content: content, imageUrl: imageUrl)
                 messagesArray.append(message)
             }
             

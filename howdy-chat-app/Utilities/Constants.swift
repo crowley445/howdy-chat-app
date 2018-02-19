@@ -32,8 +32,10 @@ typealias CompletionHandler = (_ success: Bool) -> Void
 let GROUP_CELL_ID = "groupCell"
 let CONTACT_CELL_ID = "contactCell"
 let PARTICIPANTS_CELL_ID = "participantsCell"
-let CID_MESSAGE = "messageCell"
-let CID_USER_MESSAGE = "userMessageCell"
+let CID_MESSAGE = "MessageCell"
+let CID_USER_MESSAGE = "UserMessageCell"
+let CID_IMAGE_MESSAGE = "ImageMessageCell"
+let CID_USER_IMAGE_MESSAGE = "UserImageMessageCell"
 
 // STORYBOARD IDS
 let SBID_CREATE_GROUP = "createGroupVC"
@@ -57,6 +59,7 @@ let DBK_GROUP_TITLE = "title"
 
 let DBK_MESSAGE_SENDER_ID = "senderID"
 let DBK_MESSAGE_CONTENT = "content"
+let DBK_MESSAGE_IMAGE_URL = "imageUrl"
 
 let DBK_USERS = "users"
 let DBK_USER_EMAIL = "email"
@@ -68,6 +71,7 @@ let DBK_USER_PROVIDER = "provider"
 
 let SK_PROFILE_IMG = "profile_image"
 let SK_GROUP_IMG = "group_image"
+let SK_MESSAGE_IMG = "message_image"
 
 
 

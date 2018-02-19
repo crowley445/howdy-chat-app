@@ -16,7 +16,11 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var profileImageView : UIImageView!
     
     func configure( withUser user: User, andContent content: String ) {
-        self.nameLabel.text = Auth.auth().currentUser?.uid == user.uid ? "You" : user.name
+        
+        if let _nameLabel = self.nameLabel {
+            _nameLabel.text = user.name.components(separatedBy: " ")[0]
+        }
+        
         self.contentLabel.text = content
         self.profileImageView.image = UIImage(named: IMG_DEFAULT_PROFILE_SML)
         DispatchQueue.global().async {
@@ -26,5 +30,5 @@ class MessageCell: UITableViewCell {
                 }
             })
         }
-    }
+    }    
 }

@@ -38,6 +38,8 @@
 		88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F41592202B383B00792DAB /* GoogleService-Info.plist */; };
 		88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F41595202B3AE100792DAB /* AuthorisationService.swift */; };
 		88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4159B202B5E1700792DAB /* DatabaseService.swift */; };
+		88F84DCD203B0A5700318F70 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F84DCC203B0A5700318F70 /* RoundedView.swift */; };
+		88F84DD1203B537D00318F70 /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F84DD0203B537D00318F70 /* ImageMessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,8 @@
 		88F41592202B383B00792DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88F41595202B3AE100792DAB /* AuthorisationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorisationService.swift; sourceTree = "<group>"; };
 		88F4159B202B5E1700792DAB /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		88F84DCC203B0A5700318F70 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		88F84DD0203B537D00318F70 /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
 		A933BEF8F0E1047E788634A1 /* Pods-howdy-chat-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-howdy-chat-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-howdy-chat-app/Pods-howdy-chat-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +173,8 @@
 				887F1FED2031D30E007384D0 /* ContactTableViewCell.swift */,
 				88BCE79E2032FCDB002E1E7E /* ContactCollectionViewCell.swift */,
 				88B4C1DA20346A34003C5C1A /* MessageCell.swift */,
+				88F84DCC203B0A5700318F70 /* RoundedView.swift */,
+				88F84DD0203B537D00318F70 /* ImageMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
+				88F84DD1203B537D00318F70 /* ImageMessageCell.swift in Sources */,
 				883F03072035BF8A0025BE15 /* StorageService.swift in Sources */,
 				884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */,
 				887F1FEA2031D096007384D0 /* AddParticipantsViewController.swift in Sources */,
@@ -382,6 +389,7 @@
 				8881C134202C817E007142EE /* RoundedTextField.swift in Sources */,
 				88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */,
 				8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */,
+				88F84DCD203B0A5700318F70 /* RoundedView.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,
 				887F1FEE2031D30E007384D0 /* ContactTableViewCell.swift in Sources */,
 				88B4C1D7203442B9003C5C1A /* Message.swift in Sources */,

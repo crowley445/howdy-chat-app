@@ -32,7 +32,10 @@ class StorageService {
     
     func getImageFromStorage( withURLString url: String, completion: @escaping (_ image: UIImage) -> ()) {
         if let image = imageCache.object(forKey: url as NSString) {
+            print("CACHED:\n\(url)")
             completion(image)
+        }else {
+            print("NOT CACHED.")
         }
         
         guard  let url = URL(string: url) else { return }

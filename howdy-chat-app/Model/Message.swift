@@ -12,10 +12,13 @@ class Message {
     
     public private(set) var senderId: String
     public private(set) var content: String
-
-    init(senderId: String, content: String) {
+    public private(set) var imageUrl: String
+    public private(set) var image: UIImage?
+    
+    init(senderId: String, content: String, imageUrl: String?) {
         self.senderId = senderId
         self.content = content
+        self.imageUrl = imageUrl ?? ""
     }
     
 }

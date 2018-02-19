@@ -46,6 +46,7 @@ class AddParticipantsViewController: UIViewController {
             filteredUserArray = usersArray
         }
         participantsCountLabel.text  = "\(participants.count) OF \(usersArray.count)"
+        participantsCollectionView.reloadData()
         usersTableView.reloadData()
     }
     

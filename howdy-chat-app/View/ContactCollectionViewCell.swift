@@ -13,13 +13,11 @@ class ContactCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel : UILabel!
     
-    func configure (withUser user: User) {
-        self.nameLabel.text = user.name.components(separatedBy: " ")[0]
-        self.profileImageView.image = UIImage(named: IMG_DEFAULT_PROFILE_SML)
-        
+    func configure (withUser user: User) {        
         DispatchQueue.global().async {
             StorageService.instance.getImageFromStorage(withURLString: user.imageURL, completion: { (_image) in
                 DispatchQueue.main.async {
+                    self.nameLabel.text = user.name.components(separatedBy: " ")[0]
                     self.profileImageView.image = _image
                 }
             })

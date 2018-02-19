@@ -95,7 +95,6 @@ extension CreateGroupViewController: UICollectionViewDelegate, UICollectionViewD
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PARTICIPANTS_CELL_ID, for: indexPath) as? ContactCollectionViewCell else {
             return UICollectionViewCell()
         }
-        print(participants[indexPath.row].name)
         cell.configure(withUser: participants[indexPath.row])
         return cell
     }

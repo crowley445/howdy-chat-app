@@ -139,7 +139,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nuY-61-eU3">
                                                     <rect key="frame" x="15" y="11" width="345" height="68"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="psQ-t8-gyD" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="psQ-t8-gyD" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                                             <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -557,6 +557,258 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XDG-NH-Ldg">
+                                <rect key="frame" x="0.0" y="98" width="375" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="100" id="gy6-Yt-TfW" customClass="MessageCell" customModule="howdy_chat_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gy6-Yt-TfW" id="l9g-5O-jGu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="RFx-qA-ykO" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="11" width="60" height="60"/>
+                                                    <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="45F-6l-EAI"/>
+                                                        <constraint firstAttribute="width" constant="60" id="tzs-eE-Gi8"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYX-zm-rsA" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="86" y="11" width="274" height="71.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Zapp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="967-kn-tiM">
+                                                            <rect key="frame" x="8" y="8" width="65.5" height="14"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Any plans for the weekend? I was thinking of going to the cinema" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-QH-cxB">
+                                                            <rect key="frame" x="8" y="30" width="258" height="33.5"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.78808718919999998" green="0.78791451450000005" blue="0.80853986739999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="lrg-QH-cxB" firstAttribute="bottom" secondItem="lYX-zm-rsA" secondAttribute="bottomMargin" id="T6H-kk-U2c"/>
+                                                        <constraint firstItem="967-kn-tiM" firstAttribute="top" secondItem="lYX-zm-rsA" secondAttribute="topMargin" id="TWe-se-5n7"/>
+                                                        <constraint firstItem="lrg-QH-cxB" firstAttribute="top" secondItem="967-kn-tiM" secondAttribute="bottom" constant="8" id="VTo-gy-Q4q"/>
+                                                        <constraint firstItem="lrg-QH-cxB" firstAttribute="leading" secondItem="lYX-zm-rsA" secondAttribute="leadingMargin" id="fmt-cg-jDE"/>
+                                                        <constraint firstItem="967-kn-tiM" firstAttribute="leading" secondItem="lYX-zm-rsA" secondAttribute="leadingMargin" id="fqc-o4-YE3"/>
+                                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="967-kn-tiM" secondAttribute="trailing" id="hTj-js-ski"/>
+                                                        <constraint firstItem="lrg-QH-cxB" firstAttribute="trailing" secondItem="lYX-zm-rsA" secondAttribute="trailingMargin" id="od8-Mi-4lA"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="top" secondItem="l9g-5O-jGu" secondAttribute="topMargin" id="4B3-hf-sZ3"/>
+                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="l9g-5O-jGu" secondAttribute="trailingMargin" id="6dl-iA-Vz7"/>
+                                                <constraint firstItem="RFx-qA-ykO" firstAttribute="top" secondItem="l9g-5O-jGu" secondAttribute="topMargin" id="dkK-dW-l5k"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="RFx-qA-ykO" secondAttribute="bottom" id="kQj-5b-XpP"/>
+                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="leading" secondItem="RFx-qA-ykO" secondAttribute="trailing" constant="11" id="osG-ZP-Ijn"/>
+                                                <constraint firstItem="RFx-qA-ykO" firstAttribute="leading" secondItem="l9g-5O-jGu" secondAttribute="leadingMargin" id="sC0-sz-J2N"/>
+                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="l9g-5O-jGu" secondAttribute="bottomMargin" id="ttw-hX-ccQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="lrg-QH-cxB" id="0m1-1y-YH2"/>
+                                            <outlet property="nameLabel" destination="967-kn-tiM" id="ywo-E0-v2I"/>
+                                            <outlet property="profileImageView" destination="RFx-qA-ykO" id="vCm-kZ-noi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserMessageCell" rowHeight="100" id="RYO-2J-gqr" customClass="MessageCell" customModule="howdy_chat_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RYO-2J-gqr" id="3Zd-Ic-MPq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="n2N-fF-m0g" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="300" y="11" width="60" height="60"/>
+                                                    <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="DZq-i7-GD2"/>
+                                                        <constraint firstAttribute="height" constant="60" id="NF2-nr-ZsH"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itH-k2-tsb" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="227" y="11" width="62" height="78"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I dunno" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzl-G2-udb">
+                                                            <rect key="frame" x="8" y="8" width="46" height="62"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.098039215690000001" green="0.59607843140000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="Zzl-G2-udb" secondAttribute="bottom" id="ezQ-a2-QRO"/>
+                                                        <constraint firstItem="Zzl-G2-udb" firstAttribute="top" secondItem="itH-k2-tsb" secondAttribute="topMargin" id="hYp-cq-ZiG"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Zzl-G2-udb" secondAttribute="trailing" id="iHd-RR-Ez0"/>
+                                                        <constraint firstItem="Zzl-G2-udb" firstAttribute="leading" secondItem="itH-k2-tsb" secondAttribute="leadingMargin" id="klh-LI-gds"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="leading" secondItem="itH-k2-tsb" secondAttribute="trailing" constant="11" id="0xG-DZ-uqP"/>
+                                                <constraint firstItem="itH-k2-tsb" firstAttribute="top" secondItem="3Zd-Ic-MPq" secondAttribute="topMargin" id="2cW-Vx-JHW"/>
+                                                <constraint firstItem="itH-k2-tsb" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3Zd-Ic-MPq" secondAttribute="bottomMargin" id="9eD-h7-hlW"/>
+                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="top" secondItem="3Zd-Ic-MPq" secondAttribute="topMargin" id="FA2-9Y-Y03"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="n2N-fF-m0g" secondAttribute="bottom" id="I5n-ET-i5K"/>
+                                                <constraint firstItem="itH-k2-tsb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Zd-Ic-MPq" secondAttribute="leadingMargin" id="RAC-fw-0qJ"/>
+                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="trailing" secondItem="3Zd-Ic-MPq" secondAttribute="trailingMargin" id="f81-YD-fMD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="Zzl-G2-udb" id="hoz-91-Nu1"/>
+                                            <outlet property="profileImageView" destination="n2N-fF-m0g" id="zNz-aF-EF9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageMessageCell" rowHeight="200" id="8ww-nW-Rgy" customClass="ImageMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="228" width="375" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8ww-nW-Rgy" id="6N7-VS-zgj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="HHV-1b-Nrb" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="11" width="60" height="60"/>
+                                                    <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="Sls-pZ-g3T"/>
+                                                        <constraint firstAttribute="width" constant="60" id="diN-o8-jBe"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1b-P0-7SU" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="86" y="11" width="136" height="178"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKO-6t-umQ">
+                                                            <rect key="frame" x="8" y="8" width="33" height="34"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ztZ-zt-QFe">
+                                                            <rect key="frame" x="8" y="50" width="120" height="120"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="120" id="01O-Ef-ywW"/>
+                                                                <constraint firstAttribute="width" constant="120" id="mjg-n0-E0z"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.78808718919999998" green="0.78791451450000005" blue="0.80853986739999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="ztZ-zt-QFe" secondAttribute="bottom" id="AAL-ZU-aB4"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="ztZ-zt-QFe" secondAttribute="trailing" id="Alp-it-VJ3"/>
+                                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="wKO-6t-umQ" secondAttribute="trailing" id="BPL-YH-5Yj"/>
+                                                        <constraint firstItem="ztZ-zt-QFe" firstAttribute="leading" secondItem="b1b-P0-7SU" secondAttribute="leadingMargin" id="dZo-bq-8BU"/>
+                                                        <constraint firstItem="ztZ-zt-QFe" firstAttribute="top" secondItem="wKO-6t-umQ" secondAttribute="bottom" constant="8" id="lIU-wD-r1c"/>
+                                                        <constraint firstItem="wKO-6t-umQ" firstAttribute="leading" secondItem="b1b-P0-7SU" secondAttribute="leading" constant="8" id="ng3-hQ-FLn"/>
+                                                        <constraint firstItem="wKO-6t-umQ" firstAttribute="top" secondItem="b1b-P0-7SU" secondAttribute="top" constant="8" id="z1M-IS-dAV"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="b1b-P0-7SU" firstAttribute="leading" secondItem="HHV-1b-Nrb" secondAttribute="trailing" constant="11" id="2n0-PO-4Tf"/>
+                                                <constraint firstItem="HHV-1b-Nrb" firstAttribute="leading" secondItem="6N7-VS-zgj" secondAttribute="leadingMargin" id="St1-Mp-Adp"/>
+                                                <constraint firstItem="HHV-1b-Nrb" firstAttribute="top" secondItem="6N7-VS-zgj" secondAttribute="topMargin" id="X62-Rp-4Wm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="b1b-P0-7SU" secondAttribute="bottom" id="mw8-FT-zfW"/>
+                                                <constraint firstItem="b1b-P0-7SU" firstAttribute="top" secondItem="HHV-1b-Nrb" secondAttribute="top" id="oMW-IH-p6e"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageImageView" destination="ztZ-zt-QFe" id="OXl-30-OkP"/>
+                                            <outlet property="nameLabel" destination="wKO-6t-umQ" id="TPY-oC-5r7"/>
+                                            <outlet property="profileImageView" destination="HHV-1b-Nrb" id="fqf-yj-UrX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserImageMessageCell" rowHeight="180" id="vvp-2d-pzl" customClass="ImageMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="428" width="375" height="180"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vvp-2d-pzl" id="vFK-yh-UEA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="5By-ow-S0m" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="300" y="11" width="60" height="60"/>
+                                                    <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Dcj-ec-CLl"/>
+                                                        <constraint firstAttribute="height" constant="60" id="be8-Fm-KdF"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftf-Bu-Eij" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="156" y="11" width="136" height="136"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GJI-bG-Lfu">
+                                                            <rect key="frame" x="8" y="8" width="120" height="120"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="120" id="9cC-dZ-tUt"/>
+                                                                <constraint firstAttribute="width" constant="120" id="REX-SA-eRJ"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.098039215690000001" green="0.59607843140000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="leading" secondItem="ftf-Bu-Eij" secondAttribute="leadingMargin" id="EQg-jY-qic"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="GJI-bG-Lfu" secondAttribute="bottom" id="S6N-wd-a5c"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="GJI-bG-Lfu" secondAttribute="trailing" id="geb-g4-bUz"/>
+                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="top" secondItem="ftf-Bu-Eij" secondAttribute="topMargin" id="pcE-Hv-cQH"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5By-ow-S0m" firstAttribute="trailing" secondItem="vFK-yh-UEA" secondAttribute="trailingMargin" id="DHh-rK-5Sg"/>
+                                                <constraint firstItem="ftf-Bu-Eij" firstAttribute="top" secondItem="5By-ow-S0m" secondAttribute="top" id="F8D-dv-l84"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ftf-Bu-Eij" secondAttribute="bottom" id="L0n-g9-XEP"/>
+                                                <constraint firstItem="5By-ow-S0m" firstAttribute="top" secondItem="vFK-yh-UEA" secondAttribute="topMargin" id="Owq-ud-Zqw"/>
+                                                <constraint firstItem="5By-ow-S0m" firstAttribute="leading" secondItem="ftf-Bu-Eij" secondAttribute="trailing" constant="8" id="qMs-gT-HUb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageImageView" destination="GJI-bG-Lfu" id="iVN-oT-7ng"/>
+                                            <outlet property="profileImageView" destination="5By-ow-S0m" id="vaC-GE-Vyf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xg7-Oo-ZSy">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
@@ -564,7 +816,7 @@
                                         <rect key="frame" x="311" y="0.0" width="64" height="50"/>
                                         <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="GNy-kX-JFD"/>
+                                            <constraint firstAttribute="width" constant="64" id="TcG-JZ-AGF"/>
                                         </constraints>
                                         <state key="normal" title="Send">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -574,7 +826,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6b-FT-rMy" customClass="RoundedTextField" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="5" width="295" height="40"/>
+                                        <rect key="frame" x="62" y="4" width="241" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -585,173 +837,54 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muQ-KA-W7X">
+                                        <rect key="frame" x="8" y="8" width="46" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="vRK-uR-D90"/>
+                                        </constraints>
+                                        <state key="normal" title="IMG"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78808718919754028" green="0.78791451454162598" blue="0.80853986740112305" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="E6b-FT-rMy" firstAttribute="top" secondItem="Xg7-Oo-ZSy" secondAttribute="top" constant="5" id="6C0-I5-Vy7"/>
-                                    <constraint firstAttribute="bottom" secondItem="E6b-FT-rMy" secondAttribute="bottom" constant="5" id="Bit-PX-m0w"/>
-                                    <constraint firstItem="VJa-r6-h74" firstAttribute="top" secondItem="Xg7-Oo-ZSy" secondAttribute="top" id="Nov-nG-AnR"/>
-                                    <constraint firstAttribute="bottom" secondItem="VJa-r6-h74" secondAttribute="bottom" id="TLu-Sa-qBm"/>
-                                    <constraint firstAttribute="trailing" secondItem="VJa-r6-h74" secondAttribute="trailing" id="TP6-kh-sLq"/>
-                                    <constraint firstItem="E6b-FT-rMy" firstAttribute="leading" secondItem="Xg7-Oo-ZSy" secondAttribute="leading" constant="8" id="jLs-QH-QdU"/>
-                                    <constraint firstItem="VJa-r6-h74" firstAttribute="leading" secondItem="E6b-FT-rMy" secondAttribute="trailing" constant="8" id="sbf-NS-CHn"/>
-                                    <constraint firstAttribute="height" constant="50" id="xgO-Cx-1GB"/>
+                                    <constraint firstAttribute="trailing" secondItem="VJa-r6-h74" secondAttribute="trailing" id="Iat-3f-D1t"/>
+                                    <constraint firstAttribute="bottom" secondItem="E6b-FT-rMy" secondAttribute="bottom" constant="4" id="RMp-hj-JBr"/>
+                                    <constraint firstAttribute="bottom" secondItem="VJa-r6-h74" secondAttribute="bottom" id="Ra0-b5-9cJ"/>
+                                    <constraint firstItem="VJa-r6-h74" firstAttribute="leading" secondItem="E6b-FT-rMy" secondAttribute="trailing" constant="8" id="TXB-9M-sb3"/>
+                                    <constraint firstItem="VJa-r6-h74" firstAttribute="top" secondItem="Xg7-Oo-ZSy" secondAttribute="top" id="TqA-OB-DVf"/>
+                                    <constraint firstAttribute="bottom" secondItem="muQ-KA-W7X" secondAttribute="bottom" constant="8" id="ap1-9t-J3m"/>
+                                    <constraint firstItem="E6b-FT-rMy" firstAttribute="leading" secondItem="muQ-KA-W7X" secondAttribute="trailing" constant="8" id="cGV-3o-Xjz"/>
+                                    <constraint firstItem="muQ-KA-W7X" firstAttribute="top" secondItem="Xg7-Oo-ZSy" secondAttribute="top" constant="8" id="dWz-uP-UeO"/>
+                                    <constraint firstItem="muQ-KA-W7X" firstAttribute="leading" secondItem="Xg7-Oo-ZSy" secondAttribute="leading" constant="8" id="osX-0X-WQh"/>
+                                    <constraint firstAttribute="height" constant="50" id="q0c-xR-gof"/>
+                                    <constraint firstItem="E6b-FT-rMy" firstAttribute="top" secondItem="Xg7-Oo-ZSy" secondAttribute="top" constant="4" id="qLH-nY-VRJ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XDG-NH-Ldg">
-                                <rect key="frame" x="0.0" y="98" width="375" height="519"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="90" id="Ouf-i7-Xyv" customClass="MessageCell" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ouf-i7-Xyv" id="Oc3-4s-sje">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="Igx-Bo-ByN" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="11" width="54" height="54"/>
-                                                    <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="54" id="PUG-P9-AAD"/>
-                                                        <constraint firstAttribute="width" constant="54" id="TUa-Uc-Zd8"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Zappa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIO-Pz-MIW">
-                                                    <rect key="frame" x="77" y="11" width="229" height="19"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DP-so-gSs">
-                                                    <rect key="frame" x="306" y="11" width="54" height="68"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does anyone have any idea what we should do for sam's birthday? 😬" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rL-uR-fc4">
-                                                    <rect key="frame" x="77" y="34" width="229" height="33.5"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="4DP-so-gSs" firstAttribute="leading" secondItem="UIO-Pz-MIW" secondAttribute="trailing" id="0KC-G8-NNn"/>
-                                                <constraint firstItem="4DP-so-gSs" firstAttribute="leading" secondItem="2rL-uR-fc4" secondAttribute="trailing" id="6H7-UG-4oe"/>
-                                                <constraint firstItem="Igx-Bo-ByN" firstAttribute="leading" secondItem="Oc3-4s-sje" secondAttribute="leadingMargin" id="Jj5-dw-kA5"/>
-                                                <constraint firstItem="Igx-Bo-ByN" firstAttribute="top" secondItem="Oc3-4s-sje" secondAttribute="topMargin" id="PJ6-eg-YyC"/>
-                                                <constraint firstItem="UIO-Pz-MIW" firstAttribute="leading" secondItem="Igx-Bo-ByN" secondAttribute="trailing" constant="8" id="S6u-M9-g90"/>
-                                                <constraint firstItem="4DP-so-gSs" firstAttribute="bottom" secondItem="Oc3-4s-sje" secondAttribute="bottomMargin" id="U32-0T-gVT"/>
-                                                <constraint firstItem="4DP-so-gSs" firstAttribute="trailing" secondItem="Oc3-4s-sje" secondAttribute="trailingMargin" id="UEg-EN-q5D"/>
-                                                <constraint firstItem="2rL-uR-fc4" firstAttribute="leading" secondItem="UIO-Pz-MIW" secondAttribute="leading" id="dsN-3G-DdA"/>
-                                                <constraint firstItem="2rL-uR-fc4" firstAttribute="top" secondItem="UIO-Pz-MIW" secondAttribute="bottom" constant="4" id="evV-Kp-q7V"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Igx-Bo-ByN" secondAttribute="bottom" constant="14" id="h6b-iJ-JXQ"/>
-                                                <constraint firstItem="UIO-Pz-MIW" firstAttribute="top" secondItem="Igx-Bo-ByN" secondAttribute="top" id="lYo-mj-UgX"/>
-                                                <constraint firstItem="4DP-so-gSs" firstAttribute="top" secondItem="Oc3-4s-sje" secondAttribute="topMargin" id="wnj-ai-nfL"/>
-                                                <constraint firstItem="4DP-so-gSs" firstAttribute="width" secondItem="Igx-Bo-ByN" secondAttribute="width" id="yo0-BR-XQi"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="contentLabel" destination="2rL-uR-fc4" id="b4H-b7-nGZ"/>
-                                            <outlet property="nameLabel" destination="UIO-Pz-MIW" id="q9l-mw-HoP"/>
-                                            <outlet property="profileImageView" destination="Igx-Bo-ByN" id="fDw-pq-iXf"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userMessageCell" rowHeight="90" id="Oi8-2f-psN" customClass="MessageCell" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="118" width="375" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oi8-2f-psN" id="vZ1-R1-ptg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="BLF-uX-13U" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="306" y="11" width="54" height="54"/>
-                                                    <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="54" id="SW1-84-nPm"/>
-                                                        <constraint firstAttribute="height" constant="54" id="Tan-oW-m4r"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idA-pE-V0z">
-                                                    <rect key="frame" x="15" y="11" width="54" height="68"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imE-mX-Bli">
-                                                    <rect key="frame" x="77" y="11" width="221" height="19"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm free this weekend." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsl-bi-oTJ">
-                                                    <rect key="frame" x="77" y="34" width="221" height="17"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="BLF-uX-13U" firstAttribute="trailing" secondItem="vZ1-R1-ptg" secondAttribute="trailingMargin" id="19P-GA-5Db"/>
-                                                <constraint firstItem="BLF-uX-13U" firstAttribute="leading" secondItem="imE-mX-Bli" secondAttribute="trailing" constant="8" id="FpF-lb-aFh"/>
-                                                <constraint firstItem="Lsl-bi-oTJ" firstAttribute="leading" secondItem="idA-pE-V0z" secondAttribute="trailing" constant="8" id="G6B-AE-lcf"/>
-                                                <constraint firstItem="idA-pE-V0z" firstAttribute="top" secondItem="vZ1-R1-ptg" secondAttribute="topMargin" id="GGW-g8-HVG"/>
-                                                <constraint firstItem="BLF-uX-13U" firstAttribute="leading" secondItem="Lsl-bi-oTJ" secondAttribute="trailing" constant="8" id="RUs-fB-JHU"/>
-                                                <constraint firstItem="idA-pE-V0z" firstAttribute="width" secondItem="BLF-uX-13U" secondAttribute="width" id="a9Z-5Y-jr8"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="BLF-uX-13U" secondAttribute="bottom" constant="14" id="aN3-Ti-zzz"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="idA-pE-V0z" secondAttribute="bottom" id="cvF-v2-qW6"/>
-                                                <constraint firstItem="imE-mX-Bli" firstAttribute="top" secondItem="idA-pE-V0z" secondAttribute="top" id="dCv-av-zMA"/>
-                                                <constraint firstItem="idA-pE-V0z" firstAttribute="leading" secondItem="vZ1-R1-ptg" secondAttribute="leadingMargin" id="eze-d2-CQ7"/>
-                                                <constraint firstItem="Lsl-bi-oTJ" firstAttribute="top" secondItem="imE-mX-Bli" secondAttribute="bottom" constant="4" id="jBS-Ta-bSL"/>
-                                                <constraint firstItem="imE-mX-Bli" firstAttribute="leading" secondItem="idA-pE-V0z" secondAttribute="trailing" constant="8" id="rnS-6V-c1l"/>
-                                                <constraint firstItem="BLF-uX-13U" firstAttribute="top" secondItem="vZ1-R1-ptg" secondAttribute="topMargin" id="zfG-io-n1k"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="contentLabel" destination="Lsl-bi-oTJ" id="N2i-We-ekg"/>
-                                            <outlet property="nameLabel" destination="imE-mX-Bli" id="YcR-pf-PWv"/>
-                                            <outlet property="profileImageView" destination="BLF-uX-13U" id="VLd-px-wVW"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="top" secondItem="XDG-NH-Ldg" secondAttribute="bottom" id="3gC-eh-9Tk"/>
+                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="trailing" secondItem="OMK-Zx-zOb" secondAttribute="trailing" id="4tZ-fn-xCw"/>
                             <constraint firstItem="XDG-NH-Ldg" firstAttribute="leading" secondItem="OMK-Zx-zOb" secondAttribute="leading" id="7r5-av-lOx"/>
                             <constraint firstItem="sB8-WB-ok2" firstAttribute="trailing" secondItem="OMK-Zx-zOb" secondAttribute="trailing" id="8PH-t8-vhE"/>
+                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="bottom" secondItem="OMK-Zx-zOb" secondAttribute="bottom" id="9NM-cc-cKw"/>
                             <constraint firstItem="Pqa-85-xEv" firstAttribute="top" secondItem="XBB-Hu-Hg8" secondAttribute="top" id="Dsw-Ne-r7e"/>
                             <constraint firstItem="XDG-NH-Ldg" firstAttribute="top" secondItem="sB8-WB-ok2" secondAttribute="bottom" constant="8" id="MWg-qc-JDc"/>
-                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="bottom" secondItem="OMK-Zx-zOb" secondAttribute="bottom" id="PPD-TO-WNC"/>
-                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="trailing" secondItem="OMK-Zx-zOb" secondAttribute="trailing" id="Ug7-V6-dCj"/>
-                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="top" secondItem="XDG-NH-Ldg" secondAttribute="bottom" id="XEt-vn-ILJ"/>
                             <constraint firstItem="sB8-WB-ok2" firstAttribute="leading" secondItem="OMK-Zx-zOb" secondAttribute="leading" id="a8e-93-6IB"/>
                             <constraint firstItem="Pqa-85-xEv" firstAttribute="leading" secondItem="XBB-Hu-Hg8" secondAttribute="leading" id="aur-TY-XtU"/>
                             <constraint firstItem="sB8-WB-ok2" firstAttribute="top" secondItem="Pqa-85-xEv" secondAttribute="bottom" id="cRP-d5-dzz"/>
                             <constraint firstAttribute="trailing" secondItem="Pqa-85-xEv" secondAttribute="trailing" id="fWK-Ip-5qe"/>
                             <constraint firstItem="OMK-Zx-zOb" firstAttribute="trailing" secondItem="XDG-NH-Ldg" secondAttribute="trailing" id="g15-dR-LDh"/>
-                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="leading" secondItem="OMK-Zx-zOb" secondAttribute="leading" id="nh6-Xp-Tmw"/>
+                            <constraint firstItem="Xg7-Oo-ZSy" firstAttribute="leading" secondItem="OMK-Zx-zOb" secondAttribute="leading" id="pd8-k0-TGx"/>
                             <constraint firstItem="sB8-WB-ok2" firstAttribute="top" secondItem="OMK-Zx-zOb" secondAttribute="top" id="xqZ-ej-x0x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OMK-Zx-zOb"/>
                     </view>
                     <connections>
                         <outlet property="groupTitleLabel" destination="7id-Fw-bNL" id="GiS-IP-zml"/>
+                        <outlet property="imagePickerButton" destination="muQ-KA-W7X" id="DdD-NF-ca1"/>
+                        <outlet property="inputViewBottomAncor" destination="9NM-cc-cKw" id="DFr-dF-2GM"/>
                         <outlet property="messageField" destination="E6b-FT-rMy" id="8rI-cK-sEb"/>
                         <outlet property="messageTableView" destination="XDG-NH-Ldg" id="EhW-96-q2K"/>
                     </connections>
