@@ -882,6 +882,34 @@
             </objects>
             <point key="canvasLocation" x="1640.8" y="42.728635682158924"/>
         </scene>
+        <!--Test View Controller-->
+        <scene sceneID="beT-Re-dbK">
+            <objects>
+                <viewController id="rNd-fQ-7vZ" customClass="TestViewController" customModule="howdy_chat_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2uv-6T-0aq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1j-vh-P0s">
+                                <rect key="frame" x="148.5" y="318" width="77" height="30"/>
+                                <state key="normal" title="PRESS ME!"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="rNd-fQ-7vZ" eventType="touchUpInside" id="zyv-OF-7Tk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R1j-vh-P0s" firstAttribute="centerX" secondItem="2uv-6T-0aq" secondAttribute="centerX" id="ZxU-aI-caN"/>
+                            <constraint firstItem="R1j-vh-P0s" firstAttribute="centerY" secondItem="2uv-6T-0aq" secondAttribute="centerY" id="sEm-fe-CmK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="E8L-sv-ED5"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbe-EY-SzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2438" y="43"/>
+        </scene>
         <!--Create Group View Controller-->
         <scene sceneID="Xwo-cZ-PJ6">
             <objects>

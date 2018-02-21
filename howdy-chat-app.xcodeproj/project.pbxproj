@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16BEB82148A5B0C3AE8B8130 /* Pods_howdy_chat_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */; };
+		881A9269203DCC1300922E76 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A9268203DCC1300922E76 /* TestViewController.swift */; };
 		882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882ACFF2202B0A7D00913E4F /* AppDelegate.swift */; };
 		882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF6202B0A7D00913E4F /* Main.storyboard */; };
 		882ACFFA202B0A7D00913E4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF9202B0A7D00913E4F /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		3040AB7A35152108EDA7CBEA /* Pods-howdy-chat-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-howdy-chat-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-howdy-chat-app/Pods-howdy-chat-app.debug.xcconfig"; sourceTree = "<group>"; };
 		3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_howdy_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		881A9268203DCC1300922E76 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		882ACFEF202B0A7D00913E4F /* howdy-chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "howdy-chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		882ACFF2202B0A7D00913E4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		882ACFF7202B0A7D00913E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				88B4C1D8203465EA003C5C1A /* ChatViewController.swift */,
 				8850A35C2036EE9E00F77C77 /* MenuViewController.swift */,
 				88C03BE7203D7C2D002D7EE3 /* MediaViewController.swift */,
+				881A9268203DCC1300922E76 /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				887F1FEE2031D30E007384D0 /* ContactTableViewCell.swift in Sources */,
 				88B4C1D7203442B9003C5C1A /* Message.swift in Sources */,
 				88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */,
+				881A9269203DCC1300922E76 /* TestViewController.swift in Sources */,
 				882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

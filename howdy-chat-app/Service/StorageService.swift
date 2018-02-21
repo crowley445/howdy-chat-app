@@ -8,9 +8,9 @@
 
 import Foundation
 import Firebase
+import AVFoundation
 
 let imageCache = NSCache<NSString, UIImage>()
-
 
 class StorageService {
     
@@ -41,8 +41,6 @@ class StorageService {
         }
     }
     
-    
-    
     func getImageFromStorage( withURLString url: String, completion: @escaping (_ image: UIImage) -> ()) {
         if let image = imageCache.object(forKey: url as NSString) {
             completion(image)
@@ -55,12 +53,22 @@ class StorageService {
                 return
             }
             
-            if let imageData = data, let image = UIImage(data: imageData) {
-                imageCache.setObject(image, forKey: url.absoluteString as NSString)
-                completion(image)
+            var image = UIImage()
+            
+            if let imageData = data, let _image = UIImage(data: imageData) {
+                image = _image
             } else {
-                completion(UIImage(named:IMG_DEFAULT_PROFILE_SML)!)
+                let asset = AVAsset(url: url)
+                let imageGenerator = AVAssetImageGenerator(asset: asset)
+                do{
+                    image = UIImage(cgImage: try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil) )
+                } catch {
+                    completion(UIImage(named: IMG_DEFAULT_PROFILE_SML)!)
+                }
             }
+            
+            imageCache.setObject(image, forKey: url.absoluteString as NSString)
+            completion(image)
             
         }.resume() 
     }

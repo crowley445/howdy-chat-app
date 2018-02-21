@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import MobileCoreServices
+import AVKit
 
 class ChatViewController: UIViewController {
     
@@ -83,7 +84,7 @@ class ChatViewController: UIViewController {
             })
         }
     }
-    
+
     func getImagesForUsers() {
         for (i, o) in self.members.enumerated() {
             StorageService.instance.getImageFromStorage(withURLString: o.value.imageURL, completion: { (_image) in
@@ -136,9 +137,22 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if messages[indexPath.row].type == MessageType.Text { return }
-        let mediaVC = MediaViewController(withMessage: messages[indexPath.row])
-        present(mediaVC, animated: true, completion: nil)
+        let _message = messages[indexPath.row]
+        
+        if _message.type == MessageType.Text { return }
+        
+        if _message.type == MessageType.Image {
+            let mediaVC = MediaViewController(withMessage: _message)
+            present(mediaVC, animated: true, completion: nil)
+        } else if _message.type == MessageType.Video {
+            guard let url = URL(string: _message.content ) else { return }
+            let player = AVPlayer(url: url)
+            let controller = AVPlayerViewController()
+            controller.player = player
+            present(controller, animated: true, completion: {
+                player.play()
+            })
+        }
     }
     
     func scrollToEnd () {
