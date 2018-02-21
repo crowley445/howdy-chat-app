@@ -22,13 +22,12 @@ class MessageCell: UITableViewCell {
         }
         
         self.contentLabel.text = content
-        self.profileImageView.image = UIImage(named: IMG_DEFAULT_PROFILE_SML)
-        DispatchQueue.global().async {
-            StorageService.instance.getImageFromStorage(withURLString: user.imageURL, completion: { (_image) in
-                DispatchQueue.main.async {
-                    self.profileImageView.image = _image
-                }
-            })
+        self.profileImageView.image = user.image
+        
+        if let _chatBubble = self.contentLabel.superview {
+            _chatBubble.layer.cornerRadius = 8
         }
+        
+        self.selectionStyle = .none
     }    
 }

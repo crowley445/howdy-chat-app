@@ -139,7 +139,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nuY-61-eU3">
                                                     <rect key="frame" x="15" y="11" width="345" height="68"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="psQ-t8-gyD" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="psQ-t8-gyD" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                                             <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -324,7 +324,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="InE-Lt-zdm">
                                                     <rect key="frame" x="15" y="8" width="300" height="61.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-7Q-khJ" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-7Q-khJ" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="61.5" height="61.5"/>
                                                             <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -332,7 +332,16 @@
                                                                 <constraint firstAttribute="width" constant="61.5" id="iUD-h5-s1l"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="NO"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.96470588239999999" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="13"/>
+                                                                </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Greg Murphy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lh0-ar-nSL">
@@ -381,7 +390,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="95" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="bsZ-ob-oDn" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="bsZ-ob-oDn" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="16" width="70" height="70"/>
                                                     <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -568,8 +577,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="RFx-qA-ykO" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="11" width="60" height="60"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="RFx-qA-ykO" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="20" width="60" height="60"/>
                                                     <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="45F-6l-EAI"/>
@@ -579,8 +588,8 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYX-zm-rsA" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="86" y="11" width="274" height="71.5"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYX-zm-rsA">
+                                                    <rect key="frame" x="86" y="20" width="243.5" height="60.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Zapp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="967-kn-tiM">
                                                             <rect key="frame" x="8" y="8" width="65.5" height="14"/>
@@ -588,9 +597,9 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Any plans for the weekend? I was thinking of going to the cinema" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-QH-cxB">
-                                                            <rect key="frame" x="8" y="30" width="258" height="33.5"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Any plans for the weekend?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-QH-cxB">
+                                                            <rect key="frame" x="8" y="30" width="227.5" height="22.5"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -605,21 +614,16 @@
                                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="967-kn-tiM" secondAttribute="trailing" id="hTj-js-ski"/>
                                                         <constraint firstItem="lrg-QH-cxB" firstAttribute="trailing" secondItem="lYX-zm-rsA" secondAttribute="trailingMargin" id="od8-Mi-4lA"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="4"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="top" secondItem="l9g-5O-jGu" secondAttribute="topMargin" id="4B3-hf-sZ3"/>
-                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="l9g-5O-jGu" secondAttribute="trailingMargin" id="6dl-iA-Vz7"/>
-                                                <constraint firstItem="RFx-qA-ykO" firstAttribute="top" secondItem="l9g-5O-jGu" secondAttribute="topMargin" id="dkK-dW-l5k"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="RFx-qA-ykO" secondAttribute="bottom" id="kQj-5b-XpP"/>
-                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="leading" secondItem="RFx-qA-ykO" secondAttribute="trailing" constant="11" id="osG-ZP-Ijn"/>
+                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="leading" secondItem="RFx-qA-ykO" secondAttribute="trailing" constant="11" id="2IB-Yj-TTD"/>
+                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="top" secondItem="RFx-qA-ykO" secondAttribute="top" id="FgI-gl-Gm3"/>
+                                                <constraint firstItem="RFx-qA-ykO" firstAttribute="top" secondItem="l9g-5O-jGu" secondAttribute="top" constant="20" id="dkK-dW-l5k"/>
+                                                <constraint firstAttribute="bottom" secondItem="RFx-qA-ykO" secondAttribute="bottom" constant="20" id="hdy-Rw-edD"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lYX-zm-rsA" secondAttribute="bottom" constant="20" id="mVG-kQ-XmV"/>
                                                 <constraint firstItem="RFx-qA-ykO" firstAttribute="leading" secondItem="l9g-5O-jGu" secondAttribute="leadingMargin" id="sC0-sz-J2N"/>
-                                                <constraint firstItem="lYX-zm-rsA" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="l9g-5O-jGu" secondAttribute="bottomMargin" id="ttw-hX-ccQ"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lYX-zm-rsA" secondAttribute="trailing" constant="11" id="skh-K5-rMo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -635,49 +639,44 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="n2N-fF-m0g" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="300" y="11" width="60" height="60"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="n2N-fF-m0g" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="304" y="20" width="60" height="60"/>
                                                     <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="DZq-i7-GD2"/>
-                                                        <constraint firstAttribute="height" constant="60" id="NF2-nr-ZsH"/>
+                                                        <constraint firstAttribute="height" constant="60" id="aKt-OI-oJx"/>
+                                                        <constraint firstAttribute="width" constant="60" id="uaB-1N-OVn"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itH-k2-tsb" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="227" y="11" width="62" height="78"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itH-k2-tsb">
+                                                    <rect key="frame" x="218.5" y="20" width="74.5" height="37.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I dunno" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzl-G2-udb">
-                                                            <rect key="frame" x="8" y="8" width="46" height="62"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                            <rect key="frame" x="8" y="8" width="58.5" height="21.5"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.098039215690000001" green="0.59607843140000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="Zzl-G2-udb" secondAttribute="bottom" id="ezQ-a2-QRO"/>
-                                                        <constraint firstItem="Zzl-G2-udb" firstAttribute="top" secondItem="itH-k2-tsb" secondAttribute="topMargin" id="hYp-cq-ZiG"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="Zzl-G2-udb" secondAttribute="trailing" id="iHd-RR-Ez0"/>
-                                                        <constraint firstItem="Zzl-G2-udb" firstAttribute="leading" secondItem="itH-k2-tsb" secondAttribute="leadingMargin" id="klh-LI-gds"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="Zzl-G2-udb" secondAttribute="bottom" id="4oi-Kg-bpP"/>
+                                                        <constraint firstItem="Zzl-G2-udb" firstAttribute="top" secondItem="itH-k2-tsb" secondAttribute="topMargin" id="8Qm-RV-PIR"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Zzl-G2-udb" secondAttribute="trailing" id="Jg1-JM-UEr"/>
+                                                        <constraint firstItem="Zzl-G2-udb" firstAttribute="leading" secondItem="itH-k2-tsb" secondAttribute="leadingMargin" id="hIK-if-kpx"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="4"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="leading" secondItem="itH-k2-tsb" secondAttribute="trailing" constant="11" id="0xG-DZ-uqP"/>
-                                                <constraint firstItem="itH-k2-tsb" firstAttribute="top" secondItem="3Zd-Ic-MPq" secondAttribute="topMargin" id="2cW-Vx-JHW"/>
-                                                <constraint firstItem="itH-k2-tsb" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3Zd-Ic-MPq" secondAttribute="bottomMargin" id="9eD-h7-hlW"/>
-                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="top" secondItem="3Zd-Ic-MPq" secondAttribute="topMargin" id="FA2-9Y-Y03"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="n2N-fF-m0g" secondAttribute="bottom" id="I5n-ET-i5K"/>
-                                                <constraint firstItem="itH-k2-tsb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Zd-Ic-MPq" secondAttribute="leadingMargin" id="RAC-fw-0qJ"/>
-                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="trailing" secondItem="3Zd-Ic-MPq" secondAttribute="trailingMargin" id="f81-YD-fMD"/>
+                                                <constraint firstItem="itH-k2-tsb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Zd-Ic-MPq" secondAttribute="leading" constant="20" id="MDc-vy-U6d"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="itH-k2-tsb" secondAttribute="bottom" constant="20" id="MkM-27-xHp"/>
+                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="leading" secondItem="itH-k2-tsb" secondAttribute="trailing" constant="11" id="SPu-Dl-ac2"/>
+                                                <constraint firstItem="itH-k2-tsb" firstAttribute="top" secondItem="n2N-fF-m0g" secondAttribute="top" id="bmE-TU-kS1"/>
+                                                <constraint firstAttribute="trailing" secondItem="n2N-fF-m0g" secondAttribute="trailing" constant="11" id="i28-1U-66Z"/>
+                                                <constraint firstItem="n2N-fF-m0g" firstAttribute="top" secondItem="3Zd-Ic-MPq" secondAttribute="top" constant="20" id="jW1-m4-NQy"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="n2N-fF-m0g" secondAttribute="bottom" constant="20" id="w2y-BN-r9B"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -685,15 +684,15 @@
                                             <outlet property="profileImageView" destination="n2N-fF-m0g" id="zNz-aF-EF9"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageMessageCell" rowHeight="200" id="8ww-nW-Rgy" customClass="ImageMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MediaMessageCell" rowHeight="200" id="8ww-nW-Rgy" customClass="MediaMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="228" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8ww-nW-Rgy" id="6N7-VS-zgj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="HHV-1b-Nrb" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="11" width="60" height="60"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="HHV-1b-Nrb" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="20" width="60" height="60"/>
                                                     <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="Sls-pZ-g3T"/>
@@ -703,17 +702,17 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1b-P0-7SU" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="86" y="11" width="136" height="178"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1b-P0-7SU">
+                                                    <rect key="frame" x="86" y="20" width="136" height="158.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKO-6t-umQ">
-                                                            <rect key="frame" x="8" y="8" width="33" height="34"/>
+                                                            <rect key="frame" x="8" y="8" width="33" height="14.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ztZ-zt-QFe">
-                                                            <rect key="frame" x="8" y="50" width="120" height="120"/>
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ztZ-zt-QFe">
+                                                            <rect key="frame" x="8" y="30.5" width="120" height="120"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="120" id="01O-Ef-ywW"/>
                                                                 <constraint firstAttribute="width" constant="120" id="mjg-n0-E0z"/>
@@ -730,81 +729,71 @@
                                                         <constraint firstItem="wKO-6t-umQ" firstAttribute="leading" secondItem="b1b-P0-7SU" secondAttribute="leading" constant="8" id="ng3-hQ-FLn"/>
                                                         <constraint firstItem="wKO-6t-umQ" firstAttribute="top" secondItem="b1b-P0-7SU" secondAttribute="top" constant="8" id="z1M-IS-dAV"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="4"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="b1b-P0-7SU" firstAttribute="leading" secondItem="HHV-1b-Nrb" secondAttribute="trailing" constant="11" id="2n0-PO-4Tf"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b1b-P0-7SU" secondAttribute="bottom" constant="20" id="HIo-2a-kMX"/>
+                                                <constraint firstItem="HHV-1b-Nrb" firstAttribute="top" secondItem="6N7-VS-zgj" secondAttribute="top" constant="20" id="Kdq-S2-NYu"/>
                                                 <constraint firstItem="HHV-1b-Nrb" firstAttribute="leading" secondItem="6N7-VS-zgj" secondAttribute="leadingMargin" id="St1-Mp-Adp"/>
-                                                <constraint firstItem="HHV-1b-Nrb" firstAttribute="top" secondItem="6N7-VS-zgj" secondAttribute="topMargin" id="X62-Rp-4Wm"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="b1b-P0-7SU" secondAttribute="bottom" id="mw8-FT-zfW"/>
                                                 <constraint firstItem="b1b-P0-7SU" firstAttribute="top" secondItem="HHV-1b-Nrb" secondAttribute="top" id="oMW-IH-p6e"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="messageImageView" destination="ztZ-zt-QFe" id="OXl-30-OkP"/>
                                             <outlet property="nameLabel" destination="wKO-6t-umQ" id="TPY-oC-5r7"/>
                                             <outlet property="profileImageView" destination="HHV-1b-Nrb" id="fqf-yj-UrX"/>
+                                            <outlet property="thumbnailImageView" destination="ztZ-zt-QFe" id="OXl-30-OkP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserImageMessageCell" rowHeight="180" id="vvp-2d-pzl" customClass="ImageMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="428" width="375" height="180"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserMediaMessageCell" rowHeight="179" id="vvp-2d-pzl" customClass="MediaMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="428" width="375" height="179"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vvp-2d-pzl" id="vFK-yh-UEA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="5By-ow-S0m" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="300" y="11" width="60" height="60"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="5By-ow-S0m" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
+                                                    <rect key="frame" x="300" y="20" width="60" height="60"/>
                                                     <color key="backgroundColor" red="0.21176470589999999" green="0.3921568627" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="Dcj-ec-CLl"/>
-                                                        <constraint firstAttribute="height" constant="60" id="be8-Fm-KdF"/>
+                                                        <constraint firstAttribute="height" constant="60" id="Cik-CJ-k0i"/>
+                                                        <constraint firstAttribute="width" constant="60" id="pl1-ib-XJo"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftf-Bu-Eij" customClass="RoundedView" customModule="howdy_chat_app" customModuleProvider="target">
-                                                    <rect key="frame" x="156" y="11" width="136" height="136"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1L-Oh-Bmz">
+                                                    <rect key="frame" x="153" y="20" width="136" height="136"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GJI-bG-Lfu">
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GJI-bG-Lfu">
                                                             <rect key="frame" x="8" y="8" width="120" height="120"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="120" id="9cC-dZ-tUt"/>
-                                                                <constraint firstAttribute="width" constant="120" id="REX-SA-eRJ"/>
+                                                                <constraint firstAttribute="height" constant="120" id="Srn-gD-eBO"/>
+                                                                <constraint firstAttribute="width" constant="120" id="qq6-6b-nnY"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.098039215690000001" green="0.59607843140000005" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="leading" secondItem="ftf-Bu-Eij" secondAttribute="leadingMargin" id="EQg-jY-qic"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="GJI-bG-Lfu" secondAttribute="bottom" id="S6N-wd-a5c"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="GJI-bG-Lfu" secondAttribute="trailing" id="geb-g4-bUz"/>
-                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="top" secondItem="ftf-Bu-Eij" secondAttribute="topMargin" id="pcE-Hv-cQH"/>
+                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="bottom" secondItem="B1L-Oh-Bmz" secondAttribute="bottomMargin" id="3wA-Lr-TAI"/>
+                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="leading" secondItem="B1L-Oh-Bmz" secondAttribute="leadingMargin" id="5Vi-AX-W7j"/>
+                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="top" secondItem="B1L-Oh-Bmz" secondAttribute="topMargin" id="YoD-iF-kuv"/>
+                                                        <constraint firstItem="GJI-bG-Lfu" firstAttribute="trailing" secondItem="B1L-Oh-Bmz" secondAttribute="trailingMargin" id="qCw-dW-qb1"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="4"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5By-ow-S0m" firstAttribute="trailing" secondItem="vFK-yh-UEA" secondAttribute="trailingMargin" id="DHh-rK-5Sg"/>
-                                                <constraint firstItem="ftf-Bu-Eij" firstAttribute="top" secondItem="5By-ow-S0m" secondAttribute="top" id="F8D-dv-l84"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ftf-Bu-Eij" secondAttribute="bottom" id="L0n-g9-XEP"/>
-                                                <constraint firstItem="5By-ow-S0m" firstAttribute="top" secondItem="vFK-yh-UEA" secondAttribute="topMargin" id="Owq-ud-Zqw"/>
-                                                <constraint firstItem="5By-ow-S0m" firstAttribute="leading" secondItem="ftf-Bu-Eij" secondAttribute="trailing" constant="8" id="qMs-gT-HUb"/>
+                                                <constraint firstItem="5By-ow-S0m" firstAttribute="leading" secondItem="B1L-Oh-Bmz" secondAttribute="trailing" constant="11" id="4GT-Jx-uQX"/>
+                                                <constraint firstItem="5By-ow-S0m" firstAttribute="top" secondItem="vFK-yh-UEA" secondAttribute="top" constant="20" id="5Rh-tH-9Dh"/>
+                                                <constraint firstItem="B1L-Oh-Bmz" firstAttribute="top" secondItem="5By-ow-S0m" secondAttribute="top" id="MfM-CT-k5X"/>
+                                                <constraint firstItem="5By-ow-S0m" firstAttribute="trailing" secondItem="vFK-yh-UEA" secondAttribute="trailingMargin" id="Qn3-gL-JRI"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="B1L-Oh-Bmz" secondAttribute="bottom" constant="20" id="jhB-2c-kPi"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="messageImageView" destination="GJI-bG-Lfu" id="iVN-oT-7ng"/>
                                             <outlet property="profileImageView" destination="5By-ow-S0m" id="vaC-GE-Vyf"/>
+                                            <outlet property="thumbnailImageView" destination="GJI-bG-Lfu" id="iVN-oT-7ng"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -825,7 +814,7 @@
                                             <action selector="sendButtonTapped:" destination="b5W-GG-32c" eventType="touchUpInside" id="GqU-bJ-olT"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6b-FT-rMy" customClass="RoundedTextField" customModule="howdy_chat_app" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6b-FT-rMy">
                                         <rect key="frame" x="62" y="4" width="241" height="42"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
@@ -964,7 +953,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnG-rw-8JZ">
                                 <rect key="frame" x="0.0" y="90" width="375" height="140"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-T2-RGY" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-T2-RGY" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
                                         <rect key="frame" x="129" y="12" width="116" height="116"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ssn-T2-RGY" secondAttribute="height" multiplier="1:1" id="hPl-1x-hRa"/>
@@ -1092,7 +1081,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="95" height="116"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="0A2-a1-hl8" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="0A2-a1-hl8" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="16" width="70" height="70"/>
                                                             <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
@@ -1221,7 +1210,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aK0-N9-7xe">
                                 <rect key="frame" x="20" y="198" width="335" height="102"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDP-lc-Lm1" customClass="RoundedTextField" customModule="howdy_chat_app" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDP-lc-Lm1">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1243,7 +1232,7 @@
                                             <constraint firstAttribute="height" constant="2" id="ywf-bj-lov"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ft-Nj-WDa" customClass="RoundedTextField" customModule="howdy_chat_app" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ft-Nj-WDa">
                                         <rect key="frame" x="0.0" y="52" width="335" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1260,7 +1249,7 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6Q-d6-3yA" customClass="RoundedButton" customModule="howdy_chat_app" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6Q-d6-3yA">
                                 <rect key="frame" x="20" y="308" width="335" height="50"/>
                                 <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1285,7 +1274,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2fO-yO-lEN">
                                         <rect key="frame" x="70" y="82" width="235" height="65"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-Ny-qZ1" customClass="RoundedButton" customModule="howdy_chat_app" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpJ-Ny-qZ1">
                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                                 <state key="normal" title="F">
@@ -1304,7 +1293,7 @@
                                                     <action selector="facebookButtonTapped:" destination="KBB-An-066" eventType="touchUpInside" id="dz6-V4-q4a"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pse-yS-nO1" customClass="RoundedButton" customModule="howdy_chat_app" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pse-yS-nO1">
                                                 <rect key="frame" x="85" y="0.0" width="65" height="65"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                                 <state key="normal" title="T">
@@ -1323,7 +1312,7 @@
                                                     <action selector="twitterButtonTapped:" destination="KBB-An-066" eventType="touchUpInside" id="nh7-ZV-WuY"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-x6-Qs3" customClass="RoundedButton" customModule="howdy_chat_app" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-x6-Qs3">
                                                 <rect key="frame" x="170" y="0.0" width="65" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="tbe-x6-Qs3" secondAttribute="height" multiplier="1:1" id="CtL-Lv-nYV"/>
@@ -1548,7 +1537,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jn8-3f-eiX">
                                 <rect key="frame" x="0.0" y="90" width="375" height="130"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="8AM-Jm-dkG" customClass="RoundedImage" customModule="howdy_chat_app" customModuleProvider="target">
+                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-profile-sml" translatesAutoresizingMaskIntoConstraints="NO" id="8AM-Jm-dkG" customClass="CircleImageView" customModule="howdy_chat_app" customModuleProvider="target">
                                         <rect key="frame" x="130" y="8" width="114" height="114"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8AM-Jm-dkG" secondAttribute="height" multiplier="1:1" id="xOm-Wd-ZmN"/>
@@ -1642,7 +1631,7 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J90-Gk-XFN" customClass="RoundedButton" customModule="howdy_chat_app" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J90-Gk-XFN">
                                         <rect key="frame" x="0.0" y="214" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.22681602840000001" green="0.40788042549999998" blue="0.60307461019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>

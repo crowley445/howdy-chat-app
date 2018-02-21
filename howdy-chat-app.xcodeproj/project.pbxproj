@@ -16,16 +16,11 @@
 		884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */; };
 		8850A35B2036ECC500F77C77 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8850A35A2036ECC500F77C77 /* SWRevealViewController.m */; };
 		8850A35D2036EE9E00F77C77 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850A35C2036EE9E00F77C77 /* MenuViewController.swift */; };
-		8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C02031ABB50068F620 /* RoundedImage.swift */; };
 		8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C22031AD280068F620 /* GroupsViewController.swift */; };
 		8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850B5C42031ADF40068F620 /* GroupCell.swift */; };
 		887F1FEA2031D096007384D0 /* AddParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */; };
 		887F1FEE2031D30E007384D0 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FED2031D30E007384D0 /* ContactTableViewCell.swift */; };
 		887F1FF12031D8FA007384D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F1FF02031D8FA007384D0 /* User.swift */; };
-		8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C12D202C66A2007142EE /* RoundedButton.swift */; };
-		8881C134202C817E007142EE /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8881C133202C817E007142EE /* RoundedTextField.swift */; };
-		88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */; };
-		88978E02202E0F6500D6FE71 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88978E00202E0F6500D6FE71 /* ActivityViewController.xib */; };
 		88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A16F29203339620040F99D /* ViewControllerExtensions.swift */; };
 		88B4C1D5203442A9003C5C1A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D4203442A9003C5C1A /* Group.swift */; };
 		88B4C1D7203442B9003C5C1A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D6203442B9003C5C1A /* Message.swift */; };
@@ -33,13 +28,14 @@
 		88B4C1DB20346A34003C5C1A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1DA20346A34003C5C1A /* MessageCell.swift */; };
 		88BCE79F2032FCDB002E1E7E /* ContactCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE79E2032FCDB002E1E7E /* ContactCollectionViewCell.swift */; };
 		88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */; };
+		88C03BE8203D7C2D002D7EE3 /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C03BE7203D7C2D002D7EE3 /* MediaViewController.swift */; };
+		88E1834F203C3F3B004D8915 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E1834E203C3F3B004D8915 /* CircleImageView.swift */; };
 		88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8269B202CAD5D00E9A015 /* LoginViewController.swift */; };
 		88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EEEE5F202B74ED008A67F3 /* Constants.swift */; };
 		88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88F41592202B383B00792DAB /* GoogleService-Info.plist */; };
 		88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F41595202B3AE100792DAB /* AuthorisationService.swift */; };
 		88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4159B202B5E1700792DAB /* DatabaseService.swift */; };
-		88F84DCD203B0A5700318F70 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F84DCC203B0A5700318F70 /* RoundedView.swift */; };
-		88F84DD1203B537D00318F70 /* ImageMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F84DD0203B537D00318F70 /* ImageMessageCell.swift */; };
+		88F84DD1203B537D00318F70 /* MediaMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F84DD0203B537D00318F70 /* MediaMessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,16 +53,11 @@
 		8850A3592036ECC500F77C77 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		8850A35A2036ECC500F77C77 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8850A35C2036EE9E00F77C77 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		8850B5C02031ABB50068F620 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		8850B5C22031AD280068F620 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		8850B5C42031ADF40068F620 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantsViewController.swift; sourceTree = "<group>"; };
 		887F1FED2031D30E007384D0 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		887F1FF02031D8FA007384D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8881C12D202C66A2007142EE /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
-		8881C133202C817E007142EE /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
-		88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
-		88978E00202E0F6500D6FE71 /* ActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
 		88A16F29203339620040F99D /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		88B4C1D4203442A9003C5C1A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		88B4C1D6203442B9003C5C1A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -74,13 +65,14 @@
 		88B4C1DA20346A34003C5C1A /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		88BCE79E2032FCDB002E1E7E /* ContactCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCollectionViewCell.swift; sourceTree = "<group>"; };
 		88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		88C03BE7203D7C2D002D7EE3 /* MediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
+		88E1834E203C3F3B004D8915 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		88E8269B202CAD5D00E9A015 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		88EEEE5F202B74ED008A67F3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		88F41592202B383B00792DAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88F41595202B3AE100792DAB /* AuthorisationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorisationService.swift; sourceTree = "<group>"; };
 		88F4159B202B5E1700792DAB /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
-		88F84DCC203B0A5700318F70 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
-		88F84DD0203B537D00318F70 /* ImageMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageCell.swift; sourceTree = "<group>"; };
+		88F84DD0203B537D00318F70 /* MediaMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMessageCell.swift; sourceTree = "<group>"; };
 		A933BEF8F0E1047E788634A1 /* Pods-howdy-chat-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-howdy-chat-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-howdy-chat-app/Pods-howdy-chat-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,15 +158,12 @@
 		8881C12A202C6633007142EE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8881C12D202C66A2007142EE /* RoundedButton.swift */,
-				8881C133202C817E007142EE /* RoundedTextField.swift */,
-				8850B5C02031ABB50068F620 /* RoundedImage.swift */,
 				8850B5C42031ADF40068F620 /* GroupCell.swift */,
 				887F1FED2031D30E007384D0 /* ContactTableViewCell.swift */,
 				88BCE79E2032FCDB002E1E7E /* ContactCollectionViewCell.swift */,
 				88B4C1DA20346A34003C5C1A /* MessageCell.swift */,
-				88F84DCC203B0A5700318F70 /* RoundedView.swift */,
-				88F84DD0203B537D00318F70 /* ImageMessageCell.swift */,
+				88F84DD0203B537D00318F70 /* MediaMessageCell.swift */,
+				88E1834E203C3F3B004D8915 /* CircleImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,12 +173,12 @@
 			children = (
 				88E8269B202CAD5D00E9A015 /* LoginViewController.swift */,
 				884F5FB2202CB2EF003BB566 /* RegisterUserViewController.swift */,
-				88978DFF202E0F6500D6FE71 /* ActivityViewController.swift */,
 				8850B5C22031AD280068F620 /* GroupsViewController.swift */,
 				887F1FE92031D096007384D0 /* AddParticipantsViewController.swift */,
 				88BCE7A02032FE8C002E1E7E /* CreateGroupViewController.swift */,
 				88B4C1D8203465EA003C5C1A /* ChatViewController.swift */,
 				8850A35C2036EE9E00F77C77 /* MenuViewController.swift */,
+				88C03BE7203D7C2D002D7EE3 /* MediaViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,7 +186,6 @@
 		88978E03202E0F7300D6FE71 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				88978E00202E0F6500D6FE71 /* ActivityViewController.xib */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -308,7 +296,6 @@
 				882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */,
 				882ACFFA202B0A7D00913E4F /* Assets.xcassets in Resources */,
 				882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */,
-				88978E02202E0F6500D6FE71 /* ActivityViewController.xib in Resources */,
 				88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,12 +356,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
-				88F84DD1203B537D00318F70 /* ImageMessageCell.swift in Sources */,
+				88F84DD1203B537D00318F70 /* MediaMessageCell.swift in Sources */,
 				883F03072035BF8A0025BE15 /* StorageService.swift in Sources */,
 				884F5FB3202CB2EF003BB566 /* RegisterUserViewController.swift in Sources */,
 				887F1FEA2031D096007384D0 /* AddParticipantsViewController.swift in Sources */,
 				88BCE79F2032FCDB002E1E7E /* ContactCollectionViewCell.swift in Sources */,
-				8881C12E202C66A2007142EE /* RoundedButton.swift in Sources */,
 				8850B5C52031ADF40068F620 /* GroupCell.swift in Sources */,
 				88B4C1D5203442A9003C5C1A /* Group.swift in Sources */,
 				88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */,
@@ -385,12 +371,10 @@
 				88B4C1DB20346A34003C5C1A /* MessageCell.swift in Sources */,
 				8850B5C32031AD280068F620 /* GroupsViewController.swift in Sources */,
 				887F1FF12031D8FA007384D0 /* User.swift in Sources */,
+				88E1834F203C3F3B004D8915 /* CircleImageView.swift in Sources */,
 				8850A35D2036EE9E00F77C77 /* MenuViewController.swift in Sources */,
-				8881C134202C817E007142EE /* RoundedTextField.swift in Sources */,
-				88978E01202E0F6500D6FE71 /* ActivityViewController.swift in Sources */,
-				8850B5C12031ABB50068F620 /* RoundedImage.swift in Sources */,
-				88F84DCD203B0A5700318F70 /* RoundedView.swift in Sources */,
 				88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */,
+				88C03BE8203D7C2D002D7EE3 /* MediaViewController.swift in Sources */,
 				887F1FEE2031D30E007384D0 /* ContactTableViewCell.swift in Sources */,
 				88B4C1D7203442B9003C5C1A /* Message.swift in Sources */,
 				88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */,

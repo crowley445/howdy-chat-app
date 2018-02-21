@@ -30,12 +30,22 @@ class StorageService {
         }
     }
     
+    func uploadVideoToStorage (withURL videoURL: NSURL, andFolderKey key: String, completion: @escaping (_ vidUrl : String) -> ()) {
+        REF_STORAGE.child(key).child("\(NSUUID().uuidString).mov").putFile(from: videoURL as URL, metadata: nil) { (metadata, error) in
+            if let error = error {
+                print("StorageService: Failed to upload video: \n \(error)")
+                return
+            }
+            guard let videoURL = metadata?.downloadURL()?.absoluteString else { return }
+            completion(videoURL)
+        }
+    }
+    
+    
+    
     func getImageFromStorage( withURLString url: String, completion: @escaping (_ image: UIImage) -> ()) {
         if let image = imageCache.object(forKey: url as NSString) {
-            print("CACHED:\n\(url)")
             completion(image)
-        }else {
-            print("NOT CACHED.")
         }
         
         guard  let url = URL(string: url) else { return }
@@ -53,6 +63,19 @@ class StorageService {
             }
             
         }.resume() 
+    }
+    
+    func getProfileImages( forUsers users: [User], completion: @escaping (_ users: [User]) -> ()) {
+        var _users = [User]()
+        for u in users.enumerated() {
+            StorageService.instance.getImageFromStorage(withURLString: u.element.imageURL, completion: { (_image) in
+                u.element.image = _image
+                _users.append(u.element)
+                if _users.count == users.count {
+                    completion(_users)
+                }
+            })
+        }
     }
 }
 

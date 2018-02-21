@@ -34,8 +34,8 @@ let CONTACT_CELL_ID = "contactCell"
 let PARTICIPANTS_CELL_ID = "participantsCell"
 let CID_MESSAGE = "MessageCell"
 let CID_USER_MESSAGE = "UserMessageCell"
-let CID_IMAGE_MESSAGE = "ImageMessageCell"
-let CID_USER_IMAGE_MESSAGE = "UserImageMessageCell"
+let CID_MEDIA_MESSAGE = "MediaMessageCell"
+let CID_USER_MEDIA_MESSAGE = "UserMediaMessageCell"
 
 // STORYBOARD IDS
 let SBID_CREATE_GROUP = "createGroupVC"
@@ -59,7 +59,8 @@ let DBK_GROUP_TITLE = "title"
 
 let DBK_MESSAGE_SENDER_ID = "senderID"
 let DBK_MESSAGE_CONTENT = "content"
-let DBK_MESSAGE_IMAGE_URL = "imageUrl"
+let DBK_MESSAGE_TYPE = "type"
+let DBK_MESSAGE_TIME = "time"
 
 let DBK_USERS = "users"
 let DBK_USER_EMAIL = "email"
@@ -72,6 +73,7 @@ let DBK_USER_PROVIDER = "provider"
 let SK_PROFILE_IMG = "profile_image"
 let SK_GROUP_IMG = "group_image"
 let SK_MESSAGE_IMG = "message_image"
+let SK_MESSAGE_VID = "message_video"
 
 
 

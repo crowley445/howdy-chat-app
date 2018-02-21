@@ -28,14 +28,20 @@ class AddParticipantsViewController: UIViewController {
         searchBar.isHidden = true
         participantsCollectionView.delegate = self
         participantsCollectionView.dataSource = self
-        getAllUsersForDisplay()
+        getAllUsersForDisplay { (users) in
+            DispatchQueue.main.async {
+                self.usersArray = users
+                self.searchBar.isHidden = false
+                self.filterUsersAndReloadTableView()
+            }
+        }
     }
 
-    func getAllUsersForDisplay () {
+    func getAllUsersForDisplay (completion: @escaping (_ users: [User]) -> ()) {
         DatabaseService.instance.getAllUsers { (users) in
-            self.usersArray = users
-            self.searchBar.isHidden = false
-            self.filterUsersAndReloadTableView()
+            StorageService.instance.getProfileImages(forUsers: users, completion: { (_users) in
+                completion(_users)
+            })
         }
     }
     

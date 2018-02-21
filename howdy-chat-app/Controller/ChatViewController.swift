@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import MobileCoreServices
 
 class ChatViewController: UIViewController {
     
@@ -20,12 +21,12 @@ class ChatViewController: UIViewController {
     var group : Group?
     var members = [String:User]()
     var messages = [Message]()
-
+    let MessageType = Message.MessageType.self
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTableView.delegate = self
         messageTableView.dataSource = self
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notif:)), name: .UIKeyboardWillChangeFrame, object: nil)
         imagePickerButton.addTarget(self, action: #selector(imageButtonTapped), for: .touchUpInside)
     }
@@ -36,12 +37,14 @@ class ChatViewController: UIViewController {
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapShot) in
             DatabaseService.instance.getMessagesFor(desiredGroup: self.group!, completion: { (messages) in
                 self.messages = messages
+                self.setThumbnailForMediaMessages()
+                self.getImagesForUsers()
                 self.messageTableView.reloadData()
                 self.scrollToEnd()
             })
         }
     }
-    
+
     @objc func keyboardWillChange( notif: NSNotification) {
         self.inputViewBottomAncor.constant = -(notif.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
         let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
@@ -52,20 +55,50 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func backButtonTapped (_ sender: Any) {
-        print("ChatViewController: Back button tapped.\n")
         dismissDetail()
     }
     
     @IBAction func sendButtonTapped (_ sender: Any) {
-        print("ChatViewController: Send button tapped.\n")
         guard let content = messageField.text, messageField.text != "" else { return }
-        let message = Message(senderId: (Auth.auth().currentUser?.uid)!, content: content, imageUrl: "")
+        let message = Message(senderId: (Auth.auth().currentUser?.uid)!, type: MessageType.Text.rawValue, time : String( Int(NSDate().timeIntervalSince1970) ), content: content)
         DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (group?.key)!) { (success) in
             if !success {
                 print("ChatViewController: Failed to upload Message.\n")
             }
             self.messageField.text = ""
             print("ChatViewController: Successfully uploaded Message")
+        }
+    }
+    
+    func setThumbnailForMediaMessages() {
+        
+        for (i, m) in self.messages.enumerated() {
+            if m.type == MessageType.Text { continue }
+            StorageService.instance.getImageFromStorage(withURLString: m.content, completion: { (_image) in
+                m.thumbnail = _image
+                DispatchQueue.main.async {
+                    guard let cell = self.messageTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MediaMessageCell else { return }
+                    cell.thumbnailImageView.image = _image
+                }
+            })
+        }
+    }
+    
+    func getImagesForUsers() {
+        for (i, o) in self.members.enumerated() {
+            StorageService.instance.getImageFromStorage(withURLString: o.value.imageURL, completion: { (_image) in
+                o.value.image = _image
+                for m in self.messages {
+                    if m.senderId != o.value.uid { return }
+                    DispatchQueue.main.async {
+                        if let cell = self.messageTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MessageCell {
+                            cell.profileImageView.image = _image
+                        } else if let cell = self.messageTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MediaMessageCell {
+                            cell.profileImageView.image = _image
+                        }
+                    }
+                }
+            })
         }
     }
 }
@@ -85,21 +118,27 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let user = members[message.senderId]
         var cellID = ""
 
-        if message.imageUrl == "" {
+        if message.type == MessageType.Text {
             cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MESSAGE : CID_MESSAGE
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MessageCell {
                 cell.configure(withUser: user!, andContent: message.content)
                 return cell
             }
         } else {
-            cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_IMAGE_MESSAGE : CID_IMAGE_MESSAGE
-            if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? ImageMessageCell {
-                cell.configure(withUser: user!, andContent: message.imageUrl)
+            cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MEDIA_MESSAGE : CID_MEDIA_MESSAGE
+            if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MediaMessageCell {
+                cell.configure(withUser: user!, andMessage: message)
                 return cell
             }
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if messages[indexPath.row].type == MessageType.Text { return }
+        let mediaVC = MediaViewController(withMessage: messages[indexPath.row])
+        present(mediaVC, animated: true, completion: nil)
     }
     
     func scrollToEnd () {
@@ -115,35 +154,60 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
+        picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
         present(picker, animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("ChatViewController: Did cancel image picker.")
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL {
+            uploadToStorageAndCreateMediaPost(withNSURL: videoUrl)
+        }
+        
         var selectedImageFromPicker : UIImage?
         
-        if let editiedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+        if let editiedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             selectedImageFromPicker = editiedImage
         }
-        else if let originalImage = info["UIImagePickerControllerReferenceURL"] as? UIImage {
+        else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             selectedImageFromPicker = originalImage
         }
 
         if let selectedImage = selectedImageFromPicker {
-            StorageService.instance.uploadImageToStorage(withImage: selectedImage, andFolderKey: SK_MESSAGE_IMG, completion: { (imageUrl) in
-                let message = Message(senderId: (Auth.auth().currentUser?.uid)!, content: "", imageUrl: imageUrl)
-                DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!, completion: { (success) in
-                    if !success {
-                        print("ChatViewController: Failed to upload Message.\n")
-                        self.dismiss(animated: true, completion: nil)
-                    }
+            uploadToStorageAndCreatMediaPost(withImage: selectedImage)
+        }
+    }
+    
+    func uploadToStorageAndCreatMediaPost( withImage image: UIImage) {
+        StorageService.instance.uploadImageToStorage(withImage: image, andFolderKey: SK_MESSAGE_IMG, completion: { (imageUrl) in
+            let message = Message(senderId: (Auth.auth().currentUser?.uid)!, type: self.MessageType.Image.rawValue, time: String(Int(NSDate().timeIntervalSince1970) ), content: imageUrl)
+            
+            DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!, completion: { (success) in
+                if !success {
+                    print("ChatViewController: Failed to upload Message.\n")
                     self.dismiss(animated: true, completion: nil)
-                    print("ChatViewController: Successfully uploaded Message")
-                })
+                }
+                self.dismiss(animated: true, completion: nil)
+                print("ChatViewController: Successfully uploaded Message")
+            })
+        })
+    }
+    
+    func uploadToStorageAndCreateMediaPost ( withNSURL url: NSURL) {
+        StorageService.instance.uploadVideoToStorage(withURL: url, andFolderKey: SK_MESSAGE_VID) { (_url) in
+            let message = Message(senderId: (Auth.auth().currentUser?.uid)!, type: self.MessageType.Video.rawValue, time: String(Int(NSDate().timeIntervalSince1970)), content: _url)
+            
+            DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!, completion: { (success) in
+                if !success {
+                    print("ChatViewController: Failed to upload Message.\n")
+                    self.dismiss(animated: true, completion: nil)
+                }
+                self.dismiss(animated: true, completion: nil)
+                print("ChatViewController: Successfully uploaded Message")
             })
         }
     }

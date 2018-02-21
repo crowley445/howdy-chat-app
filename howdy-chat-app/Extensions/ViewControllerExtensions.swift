@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
     func presentDetail(_ viewControllerToPresent: UIViewController) {
         self.view.window?.layer.add(getTransition(duration: 0.3, type: kCATransitionPush, subtype: kCATransitionFromRight), forKey: kCATransition)
         present(viewControllerToPresent, animated: false, completion: nil)

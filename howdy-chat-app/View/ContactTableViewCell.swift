@@ -19,16 +19,8 @@ class ContactTableViewCell: UITableViewCell {
     func configure(withUser user : User, setSelected selected: Bool) {
         self.nameLabel.text = user.name
         self.checkImageView.isHidden = selected
-        self.profileImageView.image = UIImage(named: IMG_DEFAULT_PROFILE_SML)
         self.user = user
-        
-        DispatchQueue.global().async {
-            StorageService.instance.getImageFromStorage(withURLString: self.user.imageURL, completion: { (_image) in
-                DispatchQueue.main.async {
-                    self.profileImageView.image = _image
-                }
-            })
-        }
+        self.profileImageView.image = user.image
     }
     
     func toggleCheckmark() {
