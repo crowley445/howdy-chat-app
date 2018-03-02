@@ -17,6 +17,7 @@ class StorageService {
     static let instance = StorageService()
     
     let REF_STORAGE = Storage.storage().reference()
+    let MessageType = Message.MessageType.self
 
     func uploadImageToStorage (withImage image: UIImage, andFolderKey key: String, completion: @escaping (_ imgUrl : String) -> ()){
         guard let data = UIImageJPEGRepresentation(image, 0.1) else { return }
@@ -81,6 +82,20 @@ class StorageService {
                 _users.append(u.element)
                 if _users.count == users.count {
                     completion(_users)
+                }
+            })
+        }
+    }
+    
+    func getThumbnails( forMessages msgs: [Message], completion: @escaping(_ messages: [Message]) ->()) {
+        var _msgs = [Message]()
+        for m in msgs {
+            if m.type == MessageType.Text { continue }
+            StorageService.instance.getImageFromStorage(withURLString: m.content, completion: { (_image) in
+                m.thumbnail = _image
+                _msgs.append(m)
+                if msgs.count == _msgs.count {
+                    completion(_msgs)
                 }
             })
         }

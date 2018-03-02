@@ -23,7 +23,7 @@ class ChatViewController: UIViewController {
     var members = [String:User]()
     var messages = [Message]()
     let MessageType = Message.MessageType.self
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTableView.delegate = self
@@ -40,8 +40,6 @@ class ChatViewController: UIViewController {
                 self.messages = messages
                 self.setThumbnailForMediaMessages()
                 self.getImagesForUsers()
-                self.messageTableView.reloadData()
-                self.scrollToEnd()
             })
         }
     }
@@ -72,32 +70,25 @@ class ChatViewController: UIViewController {
     }
     
     func setThumbnailForMediaMessages() {
-        
-        for (i, m) in self.messages.enumerated() {
+        for (_, m) in self.messages.enumerated() {
             if m.type == MessageType.Text { continue }
             StorageService.instance.getImageFromStorage(withURLString: m.content, completion: { (_image) in
                 m.thumbnail = _image
                 DispatchQueue.main.async {
-                    guard let cell = self.messageTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MediaMessageCell else { return }
-                    cell.thumbnailImageView.image = _image
+                    self.messageTableView.reloadData()
+                    self.scrollToEnd()
                 }
             })
         }
     }
 
     func getImagesForUsers() {
-        for (i, o) in self.members.enumerated() {
-            StorageService.instance.getImageFromStorage(withURLString: o.value.imageURL, completion: { (_image) in
-                o.value.image = _image
-                for m in self.messages {
-                    if m.senderId != o.value.uid { return }
-                    DispatchQueue.main.async {
-                        if let cell = self.messageTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MessageCell {
-                            cell.profileImageView.image = _image
-                        } else if let cell = self.messageTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MediaMessageCell {
-                            cell.profileImageView.image = _image
-                        }
-                    }
+        for (_, m) in self.members.enumerated() {
+            StorageService.instance.getImageFromStorage(withURLString: m.value.imageURL, completion: { (_image) in
+                m.value.image = _image
+                DispatchQueue.main.async {
+                    self.messageTableView.reloadData()
+                    self.scrollToEnd()
                 }
             })
         }
@@ -118,17 +109,18 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let message = messages[indexPath.row]
         let user = members[message.senderId]
         var cellID = ""
+        let isChain = indexPath.row > 0 && message.senderId == messages[indexPath.row - 1].senderId
 
         if message.type == MessageType.Text {
             cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MESSAGE : CID_MESSAGE
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MessageCell {
-                cell.configure(withUser: user!, andContent: message.content)
+                cell.configure(withUser: user!, andContent: message.content, isChain: isChain)
                 return cell
             }
         } else {
             cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MEDIA_MESSAGE : CID_MEDIA_MESSAGE
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MediaMessageCell {
-                cell.configure(withUser: user!, andMessage: message)
+                cell.configure(withUser: user!, andMessage: message, isPartOfChain: isChain)
                 return cell
             }
         }

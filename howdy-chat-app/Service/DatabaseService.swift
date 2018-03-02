@@ -70,7 +70,11 @@ class DatabaseService {
     
     func getUser(withUID uid: String, completion: @escaping(_ user: User) -> ()) {
         REF_USERS.observeSingleEvent(of: .value) { (userSnapShot) in
-            guard let userSnapShot = userSnapShot.children.allObjects as? [DataSnapshot] else { return }
+            guard let userSnapShot = userSnapShot.children.allObjects as? [DataSnapshot] else {
+                print("DatabaseService: Failed to get user snap shot.")
+                return
+            }
+            
             for user in userSnapShot {
                 if user.key == uid {
                     let name = user.childSnapshot(forPath: DBK_USER_NAME).value as! String

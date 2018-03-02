@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import FBSDKLoginKit
 import FirebaseCore
+import FBSDKLoginKit
 import FirebaseAuth
 import GoogleSignIn
 import TwitterKit

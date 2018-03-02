@@ -13,8 +13,9 @@ class MediaMessageCell: UITableViewCell {
     @IBOutlet weak var nameLabel : UILabel!
     @IBOutlet weak var profileImageView : UIImageView!
     @IBOutlet weak var thumbnailImageView : UIImageView!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
-    func configure( withUser user: User, andMessage message: Message ) {
+    func configure( withUser user: User, andMessage message: Message, isPartOfChain isChain: Bool ) {
         
         if let _nameLabel = self.nameLabel {
             _nameLabel.text = user.name.components(separatedBy: " ")[0]
@@ -24,14 +25,17 @@ class MediaMessageCell: UITableViewCell {
             self.thumbnailImageView.image = _image
         }
         
-        self.thumbnailImageView.layer.cornerRadius = 4
+        self.thumbnailImageView.layer.cornerRadius = 10
         self.thumbnailImageView.clipsToBounds = true
-        
+        self.topConstraint.constant = isChain ? 0 : 50
+
         if let _chatBubble = self.thumbnailImageView.superview {
-            _chatBubble.layer.cornerRadius = 4
+            _chatBubble.layer.cornerRadius = 20
         }
         
         self.profileImageView.image = user.image
+        self.profileImageView.isHidden = isChain
+        
         self.selectionStyle = .none
     }
 

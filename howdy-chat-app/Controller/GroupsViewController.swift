@@ -15,6 +15,7 @@ class GroupsViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     
     var groupsArray = [Group]()
+    var colorsArray = [UIColor]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,9 @@ class GroupsViewController: UIViewController {
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapshot) in
             DatabaseService.instance.getAllGroups(completion: { (groupsArray) in
                 self.groupsArray = groupsArray
+                while self.groupsArray.count != self.colorsArray.count {
+                    self.colorsArray.append( HelperMethods.instance.getColorForCell(last: self.colorsArray.last))
+                }
                 self.groupTableView.reloadData()
             })
         }
@@ -68,16 +72,22 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_CELL_ID, for: indexPath) as? GroupCell else {
             return UITableViewCell()
         }
+        cell.backgroundCard.backgroundColor = self.colorsArray[indexPath.row]
         cell.configure(withGroup: groupsArray[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let chatVC = storyboard?.instantiateViewController(withIdentifier: SBID_CHAT) as? ChatViewController else { return }
+        let cell = tableView.cellForRow(at: indexPath) as! GroupCell
+        cell.responedToTap()
         DatabaseService.instance.getMembers(ids: groupsArray[indexPath.row].members) { (members) in
             chatVC.group = self.groupsArray[indexPath.row]
             chatVC.members = members
-            self.presentDetail(chatVC)
+            
+            cell.indicateSucces(completion: { _ in
+                self.presentDetail(chatVC)
+            })
         }
     }
 }
