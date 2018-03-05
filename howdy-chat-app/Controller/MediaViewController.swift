@@ -10,11 +10,19 @@ import UIKit
 
 class MediaViewController: UIViewController {
 
-    var message: Message!
-    let MessageType = Message.MessageType.self
+    var image : UIImage!
+    var startingRect: CGRect!
+    var imageView: UIImageView!
     
-    init(withMessage message: Message) {
-        self.message = message
+    var leftConstraint : NSLayoutConstraint!
+    var rightConstraint : NSLayoutConstraint!
+    var topConstraint : NSLayoutConstraint!
+    var bottomConstraint : NSLayoutConstraint!
+    var ratioConstraint : NSLayoutConstraint!
+    
+    init(imageView: UIImageView) {
+        self.image = imageView.image
+        self.startingRect = imageView.superview?.convert(imageView.frame, to: nil)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,22 +32,67 @@ class MediaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpStartingPosition()
+        setUpGestures()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.backgroundColor = UIColor.clear
+
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.backgroundColor = UIColor.white
-        if message.type == MessageType.Image {
-            let imageView = UIImageView(frame: view.frame)
-            imageView.image = message.thumbnail
-            imageView.contentMode = .scaleAspectFit
-            view.addSubview(imageView)
+        leftConstraint = NSLayoutConstraint(item: self.imageView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 0)
+        rightConstraint = NSLayoutConstraint(item: self.imageView, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: 0)
+        topConstraint = NSLayoutConstraint(item: self.imageView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0)
+        bottomConstraint = NSLayoutConstraint(item: self.imageView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
+        self.view.addConstraints([leftConstraint, rightConstraint, topConstraint, bottomConstraint])
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.view.layoutIfNeeded()
+            self.view.backgroundColor = UIColor.black
+        }) { _ in
+            
         }
         
-        let swipe = UISwipeGestureRecognizer(target: self, action:#selector(closeOnDownSwipe) )
-        swipe.direction = .down
-        view.addGestureRecognizer(swipe)
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseOut, animations: {
+            self.view.backgroundColor = UIColor.black
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+
+    func setUpStartingPosition() {
+        
+        self.view.backgroundColor = UIColor.clear
+        
+        imageView = UIImageView(frame: self.startingRect)
+        imageView.image = self.image
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        self.view.addSubview(imageView)
+        
+    }
+    
+    func setUpGestures() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeOnDownSwipe)))
     }
     
     @objc func closeOnDownSwipe() {
-        dismiss(animated: true, completion: nil)
+        
+        self.leftConstraint.constant = startingRect.origin.x
+        self.rightConstraint.constant = (startingRect.origin.x + startingRect.size.width) - UIScreen.main.bounds.width
+        
+        self.topConstraint.constant = startingRect.origin.y
+        self.bottomConstraint.constant = (startingRect.origin.y + startingRect.size.height) - UIScreen.main.bounds.height
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.view.backgroundColor = UIColor.clear
+            self.view.layoutIfNeeded()
+        }) { _ in
+            self.dismiss(animated: false, completion: nil)
+        }
+        
     }
 }
 

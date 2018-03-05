@@ -118,6 +118,7 @@ extension CreateGroupViewController: UIImagePickerControllerDelegate, UINavigati
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("RegisterUserViewController: Did cancel image picker.")
+        groupImageSelected = false
         dismiss(animated: true, completion: nil)
     }
     

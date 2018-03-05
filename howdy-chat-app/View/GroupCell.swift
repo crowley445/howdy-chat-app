@@ -19,7 +19,12 @@ class GroupCell: UITableViewCell {
         self.groupImageView.image = UIImage(named: IMG_DEFAULT_PROFILE_SML)
         self.titleLabel.text = group.title
         self.descriptionLabel.text = group.description
+        
         self.backgroundCard.layer.cornerRadius = 4
+        self.backgroundCard.layer.shadowRadius = 0.75
+        self.backgroundCard.layer.shadowOpacity = 0.25
+        self.backgroundCard.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        self.backgroundCard.layer.shadowColor = UIColor.black.cgColor
     
         DispatchQueue.global().async {
             StorageService.instance.getImageFromStorage(withURLString: group.imageUrl, completion: { (_image) in

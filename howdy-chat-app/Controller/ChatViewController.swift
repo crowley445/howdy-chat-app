@@ -40,6 +40,8 @@ class ChatViewController: UIViewController {
                 self.messages = messages
                 self.setThumbnailForMediaMessages()
                 self.getImagesForUsers()
+                self.messageTableView.reloadData()
+                self.scrollToEnd()
             })
         }
     }
@@ -76,7 +78,6 @@ class ChatViewController: UIViewController {
                 m.thumbnail = _image
                 DispatchQueue.main.async {
                     self.messageTableView.reloadData()
-                    self.scrollToEnd()
                 }
             })
         }
@@ -88,8 +89,25 @@ class ChatViewController: UIViewController {
                 m.value.image = _image
                 DispatchQueue.main.async {
                     self.messageTableView.reloadData()
-                    self.scrollToEnd()
                 }
+            })
+        }
+    }
+    
+    func presentMediaMessageContent( message: Message, imageView: UIImageView) {
+        if message.type == MessageType.Text { return }
+        
+        if message.type == MessageType.Image {
+            let media = MediaViewController(imageView: imageView)
+            media.modalPresentationStyle = .overCurrentContext
+            present(media, animated: false, completion: nil)
+        } else if message.type == MessageType.Video {
+            guard let url = URL(string: message.content ) else { return }
+            let player = AVPlayer(url: url)
+            let controller = AVPlayerViewController()
+            controller.player = player
+            present(controller, animated: true, completion: {
+                player.play()
             })
         }
     }
@@ -121,30 +139,12 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MEDIA_MESSAGE : CID_MEDIA_MESSAGE
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MediaMessageCell {
                 cell.configure(withUser: user!, andMessage: message, isPartOfChain: isChain)
+                cell.chatVC = self
                 return cell
             }
         }
         
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let _message = messages[indexPath.row]
-        
-        if _message.type == MessageType.Text { return }
-        
-        if _message.type == MessageType.Image {
-            let mediaVC = MediaViewController(withMessage: _message)
-            present(mediaVC, animated: true, completion: nil)
-        } else if _message.type == MessageType.Video {
-            guard let url = URL(string: _message.content ) else { return }
-            let player = AVPlayer(url: url)
-            let controller = AVPlayerViewController()
-            controller.player = player
-            present(controller, animated: true, completion: {
-                player.play()
-            })
-        }
     }
     
     func scrollToEnd () {
@@ -161,6 +161,8 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         picker.delegate = self
         picker.allowsEditing = true
         picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+        picker.sourceType = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) ?
+                            .camera : .photoLibrary
         present(picker, animated: true, completion: nil)
     }
     
@@ -189,15 +191,16 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
     
     func uploadToStorageAndCreatMediaPost( withImage image: UIImage) {
+        
+        self.dismiss(animated: true, completion: nil)
+
         StorageService.instance.uploadImageToStorage(withImage: image, andFolderKey: SK_MESSAGE_IMG, completion: { (imageUrl) in
             let message = Message(senderId: (Auth.auth().currentUser?.uid)!, type: self.MessageType.Image.rawValue, time: String(Int(NSDate().timeIntervalSince1970) ), content: imageUrl)
             
             DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!, completion: { (success) in
                 if !success {
                     print("ChatViewController: Failed to upload Message.\n")
-                    self.dismiss(animated: true, completion: nil)
                 }
-                self.dismiss(animated: true, completion: nil)
                 print("ChatViewController: Successfully uploaded Message")
             })
         })

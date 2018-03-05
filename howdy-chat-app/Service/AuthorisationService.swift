@@ -23,13 +23,13 @@ class AuthorisationService {
                 print ("AuthorisationService: Failed to authorise with Facebook. \n Error: \(error)")
                 return
             }
-            print("AuthorisationService: Successfully authorised with Facebook\n")
-
-            guard let token = FBSDKAccessToken.current().tokenString else {
+            
+            guard let current = FBSDKAccessToken.current(), let token = current.tokenString else {
                 print("AuthorisationService: Failed to get tokens for Facebook credentials.")
                 return
             }
             
+            print("AuthorisationService: Successfully authorised with Facebook\n")
             self.firebaseAuthorisation(withCredentials: FacebookAuthProvider.credential(withAccessToken: token) )
         }
     }
