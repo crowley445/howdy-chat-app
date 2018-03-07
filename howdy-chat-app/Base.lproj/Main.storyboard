@@ -1054,13 +1054,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YtA-xE-cIl">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YtA-xE-cIl">
                                 <rect key="frame" x="0.0" y="70" width="375" height="547"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="130" id="kTJ-jo-otk" customClass="MessageCell" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="130"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kTJ-jo-otk" id="614-bg-czm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
@@ -1115,7 +1115,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserMessageCell" rowHeight="120" id="NyH-oO-mCw" customClass="MessageCell" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="158" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="185.5" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NyH-oO-mCw" id="9Eb-yl-dSQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -1170,7 +1170,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MediaMessageCell" rowHeight="200" id="eA9-Xp-160" customClass="MediaMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="278" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="305.5" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eA9-Xp-160" id="bZR-yq-D8p">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -1234,7 +1234,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserMediaMessageCell" rowHeight="179" id="YJk-RO-rKH" customClass="MediaMessageCell" customModule="howdy_chat_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="478" width="375" height="179"/>
+                                        <rect key="frame" x="0.0" y="505.5" width="375" height="179"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YJk-RO-rKH" id="9Rh-1n-BIu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>

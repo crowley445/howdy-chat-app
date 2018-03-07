@@ -44,22 +44,18 @@ class ChatViewController: UIViewController {
         groupTitleLabel.text = group?.title.uppercased()
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapShot) in
             DatabaseService.instance.getMessagesFor(desiredGroup: self.group!, completion: { (messages) in
-                self.messages = messages
+                self.arrangeMessageByDate(messages: messages)
                 self.setThumbnailForMediaMessages()
                 self.getImagesForUsers()
-                self.messageTableView.reloadData()
-                self.scrollToEnd()
-                
-                self.makeMessagesByDay()
             })
         }
     }
 
-    func makeMessagesByDay() {
+    func arrangeMessageByDate( messages: [Message]) {
         var days = [Date]()
         var _messagesByDay = [MessagesForDay]()
         
-        for m in self.messages {
+        for m in messages {
             let date = Date(timeIntervalSince1970: (m.time as NSString).doubleValue)
             if days.count == 0 || !Calendar.current.isDate(date, inSameDayAs: days.last!) {
                 days.append(date)
@@ -67,14 +63,14 @@ class ChatViewController: UIViewController {
         }
         
         for d in days {
-            let _messages = self.messages.filter({ (m) -> Bool in
+            let _messages = messages.filter({ (m) -> Bool in
                 Calendar.current.isDate(d, inSameDayAs: Date(timeIntervalSince1970: (m.time as NSString).doubleValue))
             })
             
             let formatter = DateFormatter()
-            formatter.dateStyle = .short
+            formatter.dateStyle = .medium
             let _byDay = MessagesForDay(name: formatter.string(from: d), messages: _messages)
-            messagesByDay.append(_byDay)
+            _messagesByDay.append(_byDay)
         }
         
         self.messagesByDay = _messagesByDay
@@ -113,6 +109,7 @@ class ChatViewController: UIViewController {
                 m.thumbnail = _image
                 DispatchQueue.main.async {
                     self.messageTableView.reloadData()
+                    self.scrollToEnd()
                 }
             })
         }
@@ -124,6 +121,7 @@ class ChatViewController: UIViewController {
                 m.value.image = _image
                 DispatchQueue.main.async {
                     self.messageTableView.reloadData()
+                    self.scrollToEnd()
                 }
             })
         }
@@ -151,18 +149,22 @@ class ChatViewController: UIViewController {
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.messagesByDay.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return self.messagesByDay[section].messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.messagesByDay[section].name
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
+        let message = self.messagesByDay[indexPath.section].messages[indexPath.row]
         let user = members[message.senderId]
         var cellID = ""
-        let isChain = indexPath.row > 0 && message.senderId == messages[indexPath.row - 1].senderId
+        let isChain = indexPath.row > 0 && self.messagesByDay[indexPath.section].messages[indexPath.row - 1].senderId == message.senderId
 
         if message.type == MessageType.Text {
             cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MESSAGE : CID_MESSAGE
@@ -182,10 +184,40 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let _view = UIView()
+        let _label = UILabel(frame: _view.frame)
+        _label.textAlignment = .center
+        
+        _view.backgroundColor = UIColor.clear
+        
+        _label.attributedText = NSAttributedString(string: self.messagesByDay[section].name, attributes: [
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.font : UIFont(name: "Avenir-Heavy", size: _label.font.pointSize) ?? _label.font.fontName
+            ])
+        
+        
+        _label.translatesAutoresizingMaskIntoConstraints = false
+        _view.addConstraints([
+            NSLayoutConstraint(item: _label, attribute: .left, relatedBy: .equal, toItem: _view, attribute: .left, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: _label, attribute: .right, relatedBy: .equal, toItem: _view, attribute: .right, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: _label, attribute: .top, relatedBy: .equal, toItem: _view, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: _label, attribute: .bottom, relatedBy: .equal, toItem: _view, attribute: .bottom, multiplier: 1, constant: 0)
+            ])
+        
+        
+        _view.addSubview(_label)
+        
+        return _view
+    }
+    
     func scrollToEnd () {
-        if messages.count == 0 { return }
-        let endIndex = IndexPath(row: messages.count - 1, section: 0)
-        self.messageTableView.scrollToRow(at: endIndex, at: .bottom, animated: false)
+        DispatchQueue.main.async{
+            guard let _last = self.messagesByDay.last else { return }
+            let endIndex = IndexPath(row: _last.messages.count - 1, section: self.messagesByDay.count - 1)
+            self.messageTableView.scrollToRow(at: endIndex, at: .bottom, animated: false)
+        }
+
     }
 }
 
