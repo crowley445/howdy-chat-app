@@ -31,11 +31,7 @@ class MessageCell: UITableViewCell {
         self.topConstraint.constant = isChain ? 0 : 50
         
         if let _chatBubble = self.contentLabel.superview {
-            _chatBubble.layer.cornerRadius = 10
-            _chatBubble.layer.shadowRadius = 0.75
-            _chatBubble.layer.shadowOpacity = 0.25
-            _chatBubble.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-            _chatBubble.layer.shadowColor = UIColor.black.cgColor
+            _chatBubble.layer.cornerRadius = 2
         }
 
         self.selectionStyle = .none

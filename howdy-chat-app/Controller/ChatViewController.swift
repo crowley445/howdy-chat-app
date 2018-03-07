@@ -24,6 +24,13 @@ class ChatViewController: UIViewController {
     var messages = [Message]()
     let MessageType = Message.MessageType.self
 
+    struct MessagesForDay {
+        var name : String!
+        var messages = [Message]()
+    }
+    
+    var messagesByDay = [MessagesForDay]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTableView.delegate = self
@@ -34,7 +41,7 @@ class ChatViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        groupTitleLabel.text = group?.title
+        groupTitleLabel.text = group?.title.uppercased()
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapShot) in
             DatabaseService.instance.getMessagesFor(desiredGroup: self.group!, completion: { (messages) in
                 self.messages = messages
@@ -42,10 +49,38 @@ class ChatViewController: UIViewController {
                 self.getImagesForUsers()
                 self.messageTableView.reloadData()
                 self.scrollToEnd()
+                
+                self.makeMessagesByDay()
             })
         }
     }
 
+    func makeMessagesByDay() {
+        var days = [Date]()
+        var _messagesByDay = [MessagesForDay]()
+        
+        for m in self.messages {
+            let date = Date(timeIntervalSince1970: (m.time as NSString).doubleValue)
+            if days.count == 0 || !Calendar.current.isDate(date, inSameDayAs: days.last!) {
+                days.append(date)
+            }
+        }
+        
+        for d in days {
+            let _messages = self.messages.filter({ (m) -> Bool in
+                Calendar.current.isDate(d, inSameDayAs: Date(timeIntervalSince1970: (m.time as NSString).doubleValue))
+            })
+            
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            let _byDay = MessagesForDay(name: formatter.string(from: d), messages: _messages)
+            messagesByDay.append(_byDay)
+        }
+        
+        self.messagesByDay = _messagesByDay
+    }
+    
+    
     @objc func keyboardWillChange( notif: NSNotification) {
         self.inputViewBottomAncor.constant = -(notif.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
         let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
