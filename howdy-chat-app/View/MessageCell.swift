@@ -13,27 +13,34 @@ class MessageCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel : UILabel!
     @IBOutlet weak var contentLabel : UILabel!
+    @IBOutlet weak var timeLabel : UILabel!
     @IBOutlet weak var profileImageView : UIImageView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImgHeight: NSLayoutConstraint!
     
-    func configure( withUser user: User, andContent content: String, isChain: Bool ) {
+    func configure( user: User, message: Message, info: [String: Bool] ) {
 
+        self.profileImgHeight.constant = info["chain"]! ? 0 : 60
+        self.topConstraint.constant = info["chain"]! ? 0 : 40
+        
         if let _nameLabel = self.nameLabel {
-            _nameLabel.text = user.name.components(separatedBy: " ")[0]
-            _nameLabel.isHidden = isChain
+            _nameLabel.text = info["chain"]! ? "" : user.name.components(separatedBy: " ")[0]
         }
 
-        self.contentLabel.text = content
-        self.profileImageView.image = user.image
-        self.profileImageView.isHidden = isChain
-        self.profileImgHeight.constant = isChain ? 1: 60
-        self.topConstraint.constant = isChain ? 0 : 50
+        self.contentLabel.text = message.content
+        self.profileImageView.image = info["chain"]! ? nil : user.image
         
         if let _chatBubble = self.contentLabel.superview {
             _chatBubble.layer.cornerRadius = 2
         }
 
+        if let _timeLabel = self.timeLabel {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            _timeLabel.text = formatter.string(from: Date(timeIntervalSince1970: Double(message.time)! ))
+        }
+        
         self.selectionStyle = .none
     }
+    
 }

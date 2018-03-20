@@ -22,8 +22,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb200714390665302</string>
-                <string>twitterkit-BCX0z4z9BLcw0MDIPYzq7Q5MN</string>
-
+				<string>twitterkit-BCX0z4z9BLcw0MDIPYzq7Q5MN</string>
 			</array>
 		</dict>
 		<dict>
@@ -47,8 +46,8 @@
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
-        <string>twitter</string>
-        <string>twitterauth</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -73,12 +72,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    
-    <key>NSCameraUsageDescription</key>
-    <string>$(PRODUCT_NAME) needs access to use your camera</string>
-    
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>$(PRODUCT_NAME) needs access to use your photo library</string>
-    
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to use your camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to use your photo library</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to use your microphone</string>
 </dict>
 </plist>

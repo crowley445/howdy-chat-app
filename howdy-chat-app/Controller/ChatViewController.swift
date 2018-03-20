@@ -103,15 +103,17 @@ class ChatViewController: UIViewController {
     }
     
     func setThumbnailForMediaMessages() {
-        for (_, m) in self.messages.enumerated() {
-            if m.type == MessageType.Text { continue }
-            StorageService.instance.getImageFromStorage(withURLString: m.content, completion: { (_image) in
-                m.thumbnail = _image
-                DispatchQueue.main.async {
-                    self.messageTableView.reloadData()
-                    self.scrollToEnd()
-                }
-            })
+        for day in self.messagesByDay.enumerated() {
+            for (_, m) in day.element.messages.enumerated() {
+                if m.type == MessageType.Text { continue }
+                StorageService.instance.getImageFromStorage(withURLString: m.content, completion: { (_image) in
+                    m.thumbnail = _image
+                    DispatchQueue.main.async {
+                        self.messageTableView.reloadData()
+                        self.scrollToEnd()
+                    }
+                })
+            }
         }
     }
 
@@ -161,21 +163,28 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let message = self.messagesByDay[indexPath.section].messages[indexPath.row]
-        let user = members[message.senderId]
-        var cellID = ""
-        let isChain = indexPath.row > 0 && self.messagesByDay[indexPath.section].messages[indexPath.row - 1].senderId == message.senderId
+        guard let user = members[message.senderId] else { return UITableViewCell() }
 
+        let info = [
+            "chain" : indexPath.row > 0 && self.messagesByDay[indexPath.section].messages[indexPath.row - 1].senderId == message.senderId,
+            "last" : indexPath.row == self.messagesByDay[indexPath.section].messages.count - 1 ||
+                        indexPath.row < self.messagesByDay[indexPath.section].messages.count - 2 &&
+                            self.messagesByDay[indexPath.section].messages[indexPath.row + 1].senderId != message.senderId
+        ]
+        
+        
         if message.type == MessageType.Text {
-            cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MESSAGE : CID_MESSAGE
+            let cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MESSAGE : CID_MESSAGE
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MessageCell {
-                cell.configure(withUser: user!, andContent: message.content, isChain: isChain)
+                cell.configure(user: user, message: message, info: info)
                 return cell
             }
         } else {
-            cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MEDIA_MESSAGE : CID_MEDIA_MESSAGE
+            let cellID = message.senderId == Auth.auth().currentUser?.uid ? CID_USER_MEDIA_MESSAGE : CID_MEDIA_MESSAGE
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? MediaMessageCell {
-                cell.configure(withUser: user!, andMessage: message, isPartOfChain: isChain)
+                cell.configure(user: user, message: message, info: info)
                 cell.chatVC = self
                 return cell
             }
@@ -274,15 +283,16 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
     
     func uploadToStorageAndCreateMediaPost ( withNSURL url: NSURL) {
+        
+        self.dismiss(animated: true, completion: nil)
+
         StorageService.instance.uploadVideoToStorage(withURL: url, andFolderKey: SK_MESSAGE_VID) { (_url) in
             let message = Message(senderId: (Auth.auth().currentUser?.uid)!, type: self.MessageType.Video.rawValue, time: String(Int(NSDate().timeIntervalSince1970)), content: _url)
             
             DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!, completion: { (success) in
                 if !success {
                     print("ChatViewController: Failed to upload Message.\n")
-                    self.dismiss(animated: true, completion: nil)
                 }
-                self.dismiss(animated: true, completion: nil)
                 print("ChatViewController: Successfully uploaded Message")
             })
         }
