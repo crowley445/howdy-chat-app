@@ -21,7 +21,7 @@ class GroupsViewController: UIViewController {
         super.viewDidLoad()
         groupTableView.delegate = self
         groupTableView.dataSource = self
-        menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+
         if Auth.auth().currentUser == nil {
             guard let loginVC = storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController else { return }
             present(loginVC, animated: true, completion: nil)
@@ -36,19 +36,18 @@ class GroupsViewController: UIViewController {
     func observeGroupDatabaseAndReloadOnUpdate () {
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapshot) in
             DatabaseService.instance.getAllGroups(completion: { (groupsArray) in
-                self.groupsArray = groupsArray
-                while self.groupsArray.count != self.colorsArray.count {
-                    self.colorsArray.append( HelperMethods.instance.getColorForCell(last: self.colorsArray.last))
+                
+                for group in groupsArray {
+                    DatabaseService.instance.getMessagesFor(desiredGroup: group, completion: { (messages) in
+                        group.messages = messages
+                        self.groupsArray = groupsArray
+                        self.groupTableView.reloadData()
+                    })
                 }
-                self.groupTableView.reloadData()
             })
         }
     }
-    
-    @IBAction func menuButtonTapped (_ sender : Any) {
-        print("GroupsViewController: Menu button tapped.")
-    }
-    
+
     @IBAction func addGroupButtonTapped (_ sender: Any) {
         print("GroupsViewController: Add group button tapped.")
         guard let addParticipantsVC = storyboard?.instantiateViewController(withIdentifier: SBID_ADD_PARTICIPANTS) else { return }
@@ -72,7 +71,7 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_CELL_ID, for: indexPath) as? GroupCell else {
             return UITableViewCell()
         }
-        cell.backgroundCard.backgroundColor = self.colorsArray[indexPath.row]
+        cell.backgroundCard.backgroundColor = #colorLiteral(red: 0.1161550275, green: 0.1333996027, blue: 0.1527929688, alpha: 0)
         cell.configure(withGroup: groupsArray[indexPath.row])
         return cell
     }

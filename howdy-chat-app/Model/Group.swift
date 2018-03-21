@@ -16,6 +16,8 @@ class Group {
     public private(set) var members = [String]()
     public private(set) var imageUrl : String
     
+    var messages : [Message]?
+    
     init(title: String, description: String, key: String, members: [String], imageUrl: String){
         self.title = title
         self.description = description

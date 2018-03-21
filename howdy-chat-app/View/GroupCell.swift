@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GroupCell: UITableViewCell {
     
@@ -14,11 +15,27 @@ class GroupCell: UITableViewCell {
     @IBOutlet weak var titleLabel : UILabel!
     @IBOutlet weak var descriptionLabel : UILabel!
     @IBOutlet weak var backgroundCard: UIView!
+    
+    let MessageType = Message.MessageType.self
 
     func configure (withGroup group: Group) {
+        
         self.groupImageView.image = UIImage(named: IMG_DEFAULT_PROFILE_SML)
         self.titleLabel.text = group.title
-        self.descriptionLabel.text = group.description
+        
+        if let last_message = group.messages?.last {
+            DatabaseService.instance.getUser(withUID: last_message.senderId, completion: { (user) in
+                
+                let name = user.uid == Auth.auth().currentUser?.uid ? "Me: " : "\(user.name.components(separatedBy: " ")[0]): "
+                let message = last_message.type == self.MessageType.Text ? last_message.content : last_message.type.rawValue
+                
+                let _string = NSMutableAttributedString(string: name, attributes: [NSAttributedStringKey.font: UIFont( name: "HelveticaNeue-Bold", size: 12.0 )! ])
+                _string.append(NSAttributedString(string: message, attributes: [NSAttributedStringKey.font: UIFont( name: "HelveticaNeue", size: 12.0 )!]))
+
+                self.descriptionLabel.attributedText = _string
+            })
+        }
+      
         
         self.backgroundCard.layer.cornerRadius = 4
         self.backgroundCard.layer.shadowRadius = 0.75

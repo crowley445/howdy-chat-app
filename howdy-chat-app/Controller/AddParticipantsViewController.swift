@@ -36,6 +36,11 @@ class AddParticipantsViewController: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.heightConstraint.constant = CGFloat(participants.count > 0 ? 120 : 1)
+    }
 
     func getAllUsersForDisplay (completion: @escaping (_ users: [User]) -> ()) {
         DatabaseService.instance.getAllUsers { (users) in
@@ -107,6 +112,8 @@ extension AddParticipantsViewController: UITableViewDelegate, UITableViewDataSou
         
         participantsCollectionView.reloadData()
         scrollToEndOfCollectionView()
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

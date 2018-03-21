@@ -78,5 +78,7 @@
 	<string>$(PRODUCT_NAME) needs access to use your photo library</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to use your microphone</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

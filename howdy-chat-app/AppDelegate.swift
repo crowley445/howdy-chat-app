@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         TWTRTwitter.sharedInstance().start(withConsumerKey: TWTR_KEY, consumerSecret: TWTR_SECRET)
         
+        UIApplication.shared.statusBarStyle = .lightContent
+
         return true
     }
 
