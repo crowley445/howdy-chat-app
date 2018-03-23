@@ -33,9 +33,15 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         messageTableView.delegate = self
         messageTableView.dataSource = self
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notif:)), name: .UIKeyboardWillChangeFrame, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notif:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notif:)), name: .UIKeyboardWillHide, object: nil)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gesturedForCloseKeyboard)))
+
         imagePickerButton.addTarget(self, action: #selector(imageButtonTapped), for: .touchUpInside)
     }
 
@@ -78,11 +84,17 @@ class ChatViewController: UIViewController {
     
     
     @objc func keyboardWillChange( notif: NSNotification) {
-        self.inputViewBottomAncor.constant = -(notif.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+        
+        if notif.name == NSNotification.Name.UIKeyboardWillHide {
+            self.inputViewBottomAncor.constant = 0
+        } else if notif.name == NSNotification.Name.UIKeyboardWillShow{
+            self.inputViewBottomAncor.constant = -(notif.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+            self.scrollToEnd()
+        }
+        
         let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
-            self.scrollToEnd()
         }
     }
     
@@ -145,6 +157,10 @@ class ChatViewController: UIViewController {
                 player.play()
             })
         }
+    }
+    
+    @objc func gesturedForCloseKeyboard() {
+        self.view.endEditing(true)
     }
 }
 

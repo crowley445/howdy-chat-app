@@ -16,6 +16,8 @@ class DatabaseService {
     let REF_USERS = Database.database().reference().child(DBK_USERS)
     let REF_GROUPS = Database.database().reference().child(DBK_GROUPS)
     
+    let MessageType = Message.MessageType.self
+
     // WRITE
     
     func createDatabaseUser( uid : String, data: Dictionary<String, Any>, completion: @escaping CompletionHandler ) {

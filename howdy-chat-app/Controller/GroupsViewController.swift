@@ -12,7 +12,6 @@ import Firebase
 class GroupsViewController: UIViewController {
     
     @IBOutlet weak var groupTableView : UITableView!
-    @IBOutlet weak var menuButton: UIButton!
     
     var groupsArray = [Group]()
     var colorsArray = [UIColor]()
@@ -51,7 +50,25 @@ class GroupsViewController: UIViewController {
     @IBAction func addGroupButtonTapped (_ sender: Any) {
         print("GroupsViewController: Add group button tapped.")
         guard let addParticipantsVC = storyboard?.instantiateViewController(withIdentifier: SBID_ADD_PARTICIPANTS) else { return }
-        presentDetail(addParticipantsVC)
+        present(addParticipantsVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func logoutButtonTapped (_ sender: Any) {
+        print("GroupsViewController: Logout button tapped.")
+
+        let popup = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Logout", style: .destructive) { (tapped) in
+            do {
+                try Auth.auth().signOut()
+                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
+                self.present(loginVC!, animated: true, completion: nil)
+            } catch {
+                 print("GroupsViewController: Logout failed. \(error)")
+            }
+        }
+        
+        popup.addAction(action)
+        present(popup, animated: true, completion: nil)
     }
     
     @IBAction func unwindToGroupsViewController (segue:UIStoryboardSegue) {}

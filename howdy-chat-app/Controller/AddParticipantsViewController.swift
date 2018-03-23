@@ -9,6 +9,7 @@ class AddParticipantsViewController: UIViewController {
     @IBOutlet weak var participantsCollectionView : UICollectionView!
     @IBOutlet weak var participantsCountLabel : UILabel!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nextButton: UIButton!
     
     var usersArray = [User]()
     var filteredUserArray = [User]()
@@ -16,6 +17,7 @@ class AddParticipantsViewController: UIViewController {
         didSet{
             participantsCountLabel.text  = "\(participants.count) OF \(usersArray.count)"
             resizeCollectionView()
+            nextButton.isEnabled = participants.count > 0
         }
     }
     
@@ -26,6 +28,7 @@ class AddParticipantsViewController: UIViewController {
         searchBar.delegate = self
         searchBar.returnKeyType = .done
         searchBar.isHidden = true
+        nextButton.isEnabled = false
         participantsCollectionView.delegate = self
         participantsCollectionView.dataSource = self
         getAllUsersForDisplay { (users) in
@@ -63,7 +66,7 @@ class AddParticipantsViewController: UIViewController {
     
     @IBAction func backButtonPressed( _ sender: Any) {
         print("AddContactsViewController: Back button pressed.")
-        dismissDetail()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func nextButtonPressed( _ sender: Any) {
@@ -153,7 +156,7 @@ extension AddParticipantsViewController: UICollectionViewDelegate, UICollectionV
     }
     
     func resizeCollectionView () {
-        self.heightConstraint.constant = CGFloat(participants.count > 0 ? 120 : 1)
+        self.heightConstraint.constant = CGFloat(participants.count > 0 ? 100: 1)
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
