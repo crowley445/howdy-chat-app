@@ -106,11 +106,21 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
             })
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+        let leaveAction = UITableViewRowAction(style: .destructive, title: "LEAVE") { (rowAction, indexPath) in
+            DatabaseService.instance.leave(Group: self.groupsArray[indexPath.row])
+            self.groupsArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        leaveAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+
+        return [leaveAction]
+    }
 }
-
-
-
-
-
-
-

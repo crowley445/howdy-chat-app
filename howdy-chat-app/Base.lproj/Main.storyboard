@@ -153,8 +153,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does anyone have any idea what we should do for sam's birthday? 😬" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Z5-Eg-z7p">
-                                                            <rect key="frame" x="76" y="35.5" width="261" height="28.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your part of a new group. Join in on the discussion." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Z5-Eg-z7p">
+                                                            <rect key="frame" x="76" y="35.5" width="261" height="14.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -164,14 +164,14 @@
                                                     <constraints>
                                                         <constraint firstItem="psQ-t8-gyD" firstAttribute="leading" secondItem="uNZ-hz-CVh" secondAttribute="leadingMargin" id="11N-vn-jJd"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="psQ-t8-gyD" secondAttribute="bottom" id="Psq-HJ-4Sb"/>
-                                                        <constraint firstItem="8Z5-Eg-z7p" firstAttribute="top" secondItem="jNG-bn-wI3" secondAttribute="bottom" constant="8" id="dVr-Ty-ia1"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8Z5-Eg-z7p" secondAttribute="bottom" constant="8" id="SnG-bt-Eoh"/>
+                                                        <constraint firstItem="8Z5-Eg-z7p" firstAttribute="leading" secondItem="psQ-t8-gyD" secondAttribute="trailing" constant="8" id="YTX-mw-3sh"/>
                                                         <constraint firstItem="jNG-bn-wI3" firstAttribute="top" secondItem="uNZ-hz-CVh" secondAttribute="top" constant="8" id="eO4-zu-zPA"/>
+                                                        <constraint firstItem="8Z5-Eg-z7p" firstAttribute="top" secondItem="jNG-bn-wI3" secondAttribute="bottom" constant="8" id="fZn-jW-eY3"/>
                                                         <constraint firstItem="psQ-t8-gyD" firstAttribute="top" secondItem="uNZ-hz-CVh" secondAttribute="topMargin" id="hQO-Go-Tdc"/>
                                                         <constraint firstItem="jNG-bn-wI3" firstAttribute="leading" secondItem="psQ-t8-gyD" secondAttribute="trailing" constant="8" id="iwX-6W-FIf"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8Z5-Eg-z7p" secondAttribute="bottom" constant="8" id="qzp-u5-EaY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="8Z5-Eg-z7p" secondAttribute="trailing" constant="8" id="uHv-pv-cFV"/>
                                                         <constraint firstAttribute="trailing" secondItem="jNG-bn-wI3" secondAttribute="trailing" constant="8" id="vhl-CE-kxH"/>
-                                                        <constraint firstAttribute="trailing" secondItem="8Z5-Eg-z7p" secondAttribute="trailing" constant="8" id="yKS-hE-nRc"/>
-                                                        <constraint firstItem="8Z5-Eg-z7p" firstAttribute="leading" secondItem="psQ-t8-gyD" secondAttribute="trailing" constant="8" id="zeq-Ks-xC7"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

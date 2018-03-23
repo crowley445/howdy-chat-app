@@ -40,6 +40,15 @@ class DatabaseService {
         }
     }
     
+    func leave( Group group: Group ) {
+        let uids = group.members.filter{ $0 != Auth.auth().currentUser?.uid }
+        if uids.count == 0{
+            REF_GROUPS.child(group.key).removeValue()
+        } else {
+            REF_GROUPS.child(group.key).updateChildValues([DBK_GROUP_MEMBERS: uids])
+        }
+    }
+    
     func uploadPost(withMessage message: Message, forGroupKey key: String, completion: @escaping CompletionHandler) {
         
         let values = [DBK_MESSAGE_SENDER_ID: message.senderId, DBK_MESSAGE_TYPE: message.type.rawValue, DBK_MESSAGE_TIME: message.time, DBK_MESSAGE_CONTENT: message.content] as [String : Any]
@@ -127,6 +136,7 @@ class DatabaseService {
                     
                 }
             }
+            print("COUNT: \(groupsArray.count)")
             completion(groupsArray)
         }
     }
