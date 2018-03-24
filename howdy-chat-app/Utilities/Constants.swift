@@ -43,6 +43,7 @@ let SBID_ADD_PARTICIPANTS = "AddParticipantsViewController"
 let SBID_REGISTER_USER = "registerUserVC"
 let SBID_LOGIN_USER = "Login View Controller"
 let SBID_CHAT = "ChatViewController"
+let SBID_INFO = "GroupInfoViewController"
 
 // IMAGE NAMES
 

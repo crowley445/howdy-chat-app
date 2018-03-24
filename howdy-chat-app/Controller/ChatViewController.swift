@@ -114,6 +114,15 @@ class ChatViewController: UIViewController {
         }
     }
     
+    @IBAction func infoButtonTapped (_ sender: Any) {
+        guard let infoVC = storyboard?.instantiateViewController(withIdentifier: SBID_INFO) as? GroupInfoViewController else {
+            return
+        }
+        infoVC.members = Array(members.values)
+        infoVC.modalPresentationStyle = .custom
+        present(infoVC, animated: false, completion: nil)
+    }
+    
     func setThumbnailForMediaMessages() {
         for day in self.messagesByDay.enumerated() {
             for (_, m) in day.element.messages.enumerated() {
