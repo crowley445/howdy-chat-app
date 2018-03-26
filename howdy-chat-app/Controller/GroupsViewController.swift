@@ -57,7 +57,7 @@ class GroupsViewController: UIViewController {
         print("GroupsViewController: Logout button tapped.")
 
         let popup = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "Logout", style: .destructive) { (tapped) in
+        let logout_action = UIAlertAction(title: "Logout", style: .destructive) { (tapped) in
             do {
                 try Auth.auth().signOut()
                 let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
@@ -66,8 +66,13 @@ class GroupsViewController: UIViewController {
                  print("GroupsViewController: Logout failed. \(error)")
             }
         }
+        let cancel_action = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            popup.dismiss(animated: true, completion: nil)
+        }
         
-        popup.addAction(action)
+        popup.addAction(logout_action)
+        popup.addAction(cancel_action)
+        
         present(popup, animated: true, completion: nil)
     }
     
@@ -98,9 +103,7 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath) as! GroupCell
         cell.responedToTap()
         DatabaseService.instance.getMembers(ids: groupsArray[indexPath.row].members) { (members) in
-            chatVC.group = self.groupsArray[indexPath.row]
-            chatVC.members = members
-            
+            chatVC.group = self.groupsArray[indexPath.row]            
             cell.indicateSucces(completion: { _ in
                 self.presentDetail(chatVC)
             })

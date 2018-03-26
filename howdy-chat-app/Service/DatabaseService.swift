@@ -49,6 +49,12 @@ class DatabaseService {
         }
     }
     
+    func add ( participants: [User], toGroup group: Group ) {
+        var uids = group.members
+        participants.forEach { uids.append($0.uid) }
+        REF_GROUPS.child(group.key).updateChildValues([ DBK_GROUP_MEMBERS : uids ])
+    }
+    
     func uploadPost(withMessage message: Message, forGroupKey key: String, completion: @escaping CompletionHandler) {
         
         let values = [DBK_MESSAGE_SENDER_ID: message.senderId, DBK_MESSAGE_TYPE: message.type.rawValue, DBK_MESSAGE_TIME: message.time, DBK_MESSAGE_CONTENT: message.content] as [String : Any]
@@ -139,6 +145,16 @@ class DatabaseService {
             print("COUNT: \(groupsArray.count)")
             completion(groupsArray)
         }
+    }
+    
+    func getGroup( withDataSnapShot data: DataSnapshot ) -> Group? {
+        
+        guard let members = data.childSnapshot(forPath: DBK_GROUP_MEMBERS).value as? [String],
+                let title = data.childSnapshot(forPath: DBK_GROUP_TITLE).value as? String,
+                let description = data.childSnapshot(forPath: DBK_GROUP_DESCRIPTION).value as? String,
+                let imageUrl = data.childSnapshot(forPath: DBK_GROUP_IMAGE_URL).value as? String else { return nil }
+        return Group(title: title, description: description, key: data.key, members: members, imageUrl: imageUrl)
+        
     }
 
     func getMessagesFor (desiredGroup: Group, completion: @escaping (_ messages: [Message]) -> Void) {

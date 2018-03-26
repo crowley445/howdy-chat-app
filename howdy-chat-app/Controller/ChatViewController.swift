@@ -18,6 +18,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var groupTitleLabel: UILabel!
     @IBOutlet weak var inputViewBottomAncor: NSLayoutConstraint!
     @IBOutlet weak var imagePickerButton: UIButton!
+    @IBOutlet weak var infoView : UIView!
+    @IBOutlet weak var collectionView : UICollectionView!
+    @IBOutlet weak var addParticipantImg: UIImageView!
     
     var group : Group?
     var members = [String:User]()
@@ -30,6 +33,8 @@ class ChatViewController: UIViewController {
     }
     
     var messagesByDay = [MessagesForDay]()
+    var infoHeight : NSLayoutConstraint!
+    var infoOriginalHeight: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,26 +42,45 @@ class ChatViewController: UIViewController {
         messageTableView.delegate = self
         messageTableView.dataSource = self
 
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notif:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notif:)), name: .UIKeyboardWillHide, object: nil)
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gesturedForCloseKeyboard)))
 
         imagePickerButton.addTarget(self, action: #selector(imageButtonTapped), for: .touchUpInside)
+        
+        infoOriginalHeight = infoView.frame.height
+        infoHeight = NSLayoutConstraint(item: infoView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
+        infoView.addConstraint(infoHeight)
+        
+        self.addParticipantImg.alpha = 0
+        self.collectionView.alpha = 0
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         groupTitleLabel.text = group?.title.uppercased()
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapShot) in
-            DatabaseService.instance.getMessagesFor(desiredGroup: self.group!, completion: { (messages) in
-                self.arrangeMessageByDate(messages: messages)
-                self.setThumbnailForMediaMessages()
-                self.getImagesForUsers()
-            })
+            let data = dataSnapShot.childSnapshot(forPath: (self.group?.key)! )
+            guard let group = DatabaseService.instance.getGroup(withDataSnapShot: data) else { return }
+            
+            self.group = group
+            
+            DatabaseService.instance.getMembers(ids: self.group!.members) { (members) in
+                self.members = members
+                self.collectionView.reloadData()
+                DatabaseService.instance.getMessagesFor(desiredGroup: self.group!, completion: { (messages) in
+                    self.arrangeMessageByDate(messages: messages)
+                    self.setThumbnailForMediaMessages()
+                    self.getImagesForUsers()
+                })
+            }
         }
     }
-
+    
     func arrangeMessageByDate( messages: [Message]) {
         var days = [Date]()
         var _messagesByDay = [MessagesForDay]()
@@ -88,6 +112,7 @@ class ChatViewController: UIViewController {
         if notif.name == NSNotification.Name.UIKeyboardWillHide {
             self.inputViewBottomAncor.constant = 0
         } else if notif.name == NSNotification.Name.UIKeyboardWillShow{
+            closeInfoView()
             self.inputViewBottomAncor.constant = -(notif.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
             self.scrollToEnd()
         }
@@ -114,13 +139,50 @@ class ChatViewController: UIViewController {
         }
     }
     
+    @IBAction func addMemberButtonTapped (_ sender: Any ) {
+        guard let addVC = storyboard?.instantiateViewController(withIdentifier: SBID_ADD_PARTICIPANTS) as? AddParticipantsViewController else { return }
+        addVC.usersToIgnore = Array(members.values)
+        present(addVC, animated: true, completion: nil)
+    }
+    
     @IBAction func infoButtonTapped (_ sender: Any) {
-        guard let infoVC = storyboard?.instantiateViewController(withIdentifier: SBID_INFO) as? GroupInfoViewController else {
-            return
+        
+        if self.infoView.frame.height < 50 {
+            openInfoView()
+        } else {
+            closeInfoView()
         }
-        infoVC.members = Array(members.values)
-        infoVC.modalPresentationStyle = .custom
-        present(infoVC, animated: false, completion: nil)
+
+    }
+    
+    func openInfoView() {
+        self.view.endEditing(true)
+        
+        infoHeight.constant = infoOriginalHeight
+        
+        UIView.animateKeyframes(withDuration: 0.4, delay: 0.0, options: .calculationModeLinear, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75, animations: {
+                self.view.layoutIfNeeded()
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.25, animations: {
+                self.addParticipantImg.alpha = 1
+                self.collectionView.alpha = 1
+            })
+        }, completion: nil)
+    }
+    
+    func closeInfoView() {
+        infoHeight.constant = CGFloat(0)
+        
+        UIView.animateKeyframes(withDuration: 0.4, delay: 0.0, options: .calculationModeLinear, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
+                self.addParticipantImg.alpha = 0
+                self.collectionView.alpha = 0
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }, completion: nil)
     }
     
     func setThumbnailForMediaMessages() {
@@ -165,6 +227,33 @@ class ChatViewController: UIViewController {
             present(controller, animated: true, completion: {
                 player.play()
             })
+        }
+    }
+    
+    func addMembers ( users: [User] ) {
+        if users.count == 0 { return }
+        DatabaseService.instance.add(participants: users, toGroup: group!)
+        var _text = "Added "
+        
+        for (index, user) in users.enumerated() {
+            if index == 0 {
+                _text.append(user.name.components(separatedBy: " ")[0])
+            } else if index == users.count - 1 {
+                _text.append(" and \(user.name.components(separatedBy: " ")[0])")
+            } else {
+                _text.append(", \(user.name.components(separatedBy: " ")[0])")
+            }
+        }
+        
+        _text.append(" to the group.")
+        
+        let message = Message(senderId: (Auth.auth().currentUser?.uid)!, type: MessageType.Text.rawValue, time: String( Int(NSDate().timeIntervalSince1970) ), content: _text)
+        
+        DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!) { (success) in
+            if !success {
+                print("ChatViewController: Failed to upload Message.\n")
+            }
+            print("ChatViewController: Successfully uploaded Message")
         }
     }
     
@@ -252,6 +341,25 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             self.messageTableView.scrollToRow(at: endIndex, at: .bottom, animated: false)
         }
 
+    }
+}
+
+extension ChatViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return members.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PARTICIPANTS_CELL_ID, for: indexPath) as? ContactCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure(withUser: Array(members.values)[indexPath.row])
+        return cell
     }
 }
 

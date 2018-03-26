@@ -15,11 +15,12 @@ class AddParticipantsViewController: UIViewController {
     var filteredUserArray = [User]()
     var participants = [User]() {
         didSet{
-            participantsCountLabel.text  = "\(participants.count) OF \(usersArray.count)"
+            participantsCountLabel.text  = "\(participants.count) OF \(filteredUserArray.count)"
             resizeCollectionView()
             nextButton.isEnabled = participants.count > 0
         }
     }
+    var usersToIgnore : [User]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +55,18 @@ class AddParticipantsViewController: UIViewController {
     }
     
     func filterUsersAndReloadTableView () {
+        
+        filteredUserArray = usersArray
+        
         if let query = searchBar.text, searchBar.text != "" {
             filteredUserArray = usersArray.filter{$0.name.contains(query)}
-        } else{
-            filteredUserArray = usersArray
         }
-        participantsCountLabel.text  = "\(participants.count) OF \(usersArray.count)"
+        
+        if let toIgnore = self.usersToIgnore {
+            filteredUserArray = filteredUserArray.filter { a in !toIgnore.contains(where: {a.uid == $0.uid})}
+        }
+        
+        participantsCountLabel.text  = "\(participants.count) OF \(filteredUserArray.count)"
         participantsCollectionView.reloadData()
         usersTableView.reloadData()
     }
@@ -71,6 +78,13 @@ class AddParticipantsViewController: UIViewController {
     
     @IBAction func nextButtonPressed( _ sender: Any) {
         print("AddContactsViewController: Next button pressed.")
+        
+        if let chatVC = presentingViewController as? ChatViewController {
+            chatVC.addMembers(users: participants)
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
         guard let createGroupVC = storyboard?.instantiateViewController(withIdentifier: SBID_CREATE_GROUP) as? CreateGroupViewController else {
             return
         }
