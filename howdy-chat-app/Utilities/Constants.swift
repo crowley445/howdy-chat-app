@@ -40,8 +40,8 @@ let CID_USER_MEDIA_MESSAGE = "UserMediaMessageCell"
 // STORYBOARD IDS
 let SBID_CREATE_GROUP = "createGroupVC"
 let SBID_ADD_PARTICIPANTS = "AddParticipantsViewController"
-let SBID_REGISTER_USER = "registerUserVC"
-let SBID_LOGIN_USER = "Login View Controller"
+let SBID_REGISTER_USER = "RegisterUserViewController"
+let SBID_LOGIN_USER = "LoginViewController"
 let SBID_CHAT = "ChatViewController"
 let SBID_INFO = "GroupInfoViewController"
 

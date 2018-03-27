@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16BEB82148A5B0C3AE8B8130 /* Pods_howdy_chat_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */; };
+		8805B07A206A92B200E5BF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8805B079206A92B200E5BF67 /* Assets.xcassets */; };
 		881A9269203DCC1300922E76 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A9268203DCC1300922E76 /* TestViewController.swift */; };
 		882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882ACFF2202B0A7D00913E4F /* AppDelegate.swift */; };
 		882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF6202B0A7D00913E4F /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		889104A920665D7100337CFD /* GroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889104A820665D7100337CFD /* GroupInfoViewController.swift */; };
 		889B11BA203EC457005B3735 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889B11B9203EC457005B3735 /* HelperMethods.swift */; };
 		88A16F2A203339620040F99D /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A16F29203339620040F99D /* ViewControllerExtensions.swift */; };
+		88A63869206A62B90063E2F5 /* SocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A63868206A62B90063E2F5 /* SocialButton.swift */; };
 		88B4C1D5203442A9003C5C1A /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D4203442A9003C5C1A /* Group.swift */; };
 		88B4C1D7203442B9003C5C1A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D6203442B9003C5C1A /* Message.swift */; };
 		88B4C1D9203465EA003C5C1A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4C1D8203465EA003C5C1A /* ChatViewController.swift */; };
@@ -38,7 +40,6 @@
 		88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F41595202B3AE100792DAB /* AuthorisationService.swift */; };
 		88F4159C202B5E1700792DAB /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F4159B202B5E1700792DAB /* DatabaseService.swift */; };
 		88F84DD1203B537D00318F70 /* MediaMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F84DD0203B537D00318F70 /* MediaMessageCell.swift */; };
-		88F9385A204ED97C00BA640B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F93859204ED97A00BA640B /* Assets.xcassets */; };
 		88F9385C204EDBDE00BA640B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9385B204EDBDD00BA640B /* GradientView.swift */; };
 		88F9385E204EEC9F00BA640B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9385D204EEC9F00BA640B /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		3040AB7A35152108EDA7CBEA /* Pods-howdy-chat-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-howdy-chat-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-howdy-chat-app/Pods-howdy-chat-app.debug.xcconfig"; sourceTree = "<group>"; };
 		3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_howdy_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8805B079206A92B200E5BF67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		881A9268203DCC1300922E76 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		882ACFEF202B0A7D00913E4F /* howdy-chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "howdy-chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		882ACFF2202B0A7D00913E4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		889104A820665D7100337CFD /* GroupInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoViewController.swift; sourceTree = "<group>"; };
 		889B11B9203EC457005B3735 /* HelperMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
 		88A16F29203339620040F99D /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		88A63868206A62B90063E2F5 /* SocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialButton.swift; sourceTree = "<group>"; };
 		88B4C1D4203442A9003C5C1A /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		88B4C1D6203442B9003C5C1A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		88B4C1D8203465EA003C5C1A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +84,6 @@
 		88F41595202B3AE100792DAB /* AuthorisationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorisationService.swift; sourceTree = "<group>"; };
 		88F4159B202B5E1700792DAB /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		88F84DD0203B537D00318F70 /* MediaMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMessageCell.swift; sourceTree = "<group>"; };
-		88F93859204ED97A00BA640B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88F9385B204EDBDD00BA640B /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		88F9385D204EEC9F00BA640B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		A933BEF8F0E1047E788634A1 /* Pods-howdy-chat-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-howdy-chat-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-howdy-chat-app/Pods-howdy-chat-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,11 +140,11 @@
 				8881C12A202C6633007142EE /* View */,
 				8881C12B202C6645007142EE /* Controller */,
 				882ACFF2202B0A7D00913E4F /* AppDelegate.swift */,
-				88F93859204ED97A00BA640B /* Assets.xcassets */,
 				882ACFF6202B0A7D00913E4F /* Main.storyboard */,
 				882ACFFB202B0A7D00913E4F /* LaunchScreen.storyboard */,
 				882ACFFE202B0A7D00913E4F /* Info.plist */,
 				88F41592202B383B00792DAB /* GoogleService-Info.plist */,
+				8805B079206A92B200E5BF67 /* Assets.xcassets */,
 			);
 			path = "howdy-chat-app";
 			sourceTree = "<group>";
@@ -178,6 +180,7 @@
 				88F84DD0203B537D00318F70 /* MediaMessageCell.swift */,
 				88E1834E203C3F3B004D8915 /* CircleImageView.swift */,
 				88F9385D204EEC9F00BA640B /* CustomTextField.swift */,
+				88A63868206A62B90063E2F5 /* SocialButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -311,8 +314,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */,
-				88F9385A204ED97C00BA640B /* Assets.xcassets in Resources */,
 				882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */,
+				8805B07A206A92B200E5BF67 /* Assets.xcassets in Resources */,
 				88F41593202B383B00792DAB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +410,7 @@
 			files = (
 				88F9385E204EEC9F00BA640B /* CustomTextField.swift in Sources */,
 				889104A920665D7100337CFD /* GroupInfoViewController.swift in Sources */,
+				88A63869206A62B90063E2F5 /* SocialButton.swift in Sources */,
 				88EEEE60202B74ED008A67F3 /* Constants.swift in Sources */,
 				88F84DD1203B537D00318F70 /* MediaMessageCell.swift in Sources */,
 				889B11BA203EC457005B3735 /* HelperMethods.swift in Sources */,

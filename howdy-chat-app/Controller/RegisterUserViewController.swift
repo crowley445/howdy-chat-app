@@ -13,9 +13,7 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var nameTextField : UITextField!
     @IBOutlet weak var emailTextField : UITextField!
     @IBOutlet weak var passwordTextField : UITextField!
-    @IBOutlet weak var confirmTextField : UITextField!
     @IBOutlet weak var profileImageView : UIImageView!
-    @IBOutlet weak var imageContainerHeightConstraint: NSLayoutConstraint!
     
     var profileImageSelected = false
     
@@ -33,18 +31,16 @@ class RegisterUserViewController: UIViewController {
     @objc func keyboardWillShow(_ notif: Notification) {
         let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
 
-        imageContainerHeightConstraint.constant = 1
         UIView.animate(withDuration: duration) {
-            self.view.layoutIfNeeded()
+            
         }
     }
     
     @objc func keyboardWillHide(_ notif: Notification) {
         let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
 
-        imageContainerHeightConstraint.constant = 130
         UIView.animate(withDuration: duration) {
-            self.view.layoutIfNeeded()
+            
         }
     }
     
@@ -65,10 +61,7 @@ class RegisterUserViewController: UIViewController {
         print("RegisterUserViewController: Register button tapped. \n")
         guard let name = nameTextField.text, nameTextField.text != "",
         let email = emailTextField.text, emailTextField.text != "",
-        let password = passwordTextField.text, passwordTextField.text != "",
-            passwordTextField.text == confirmTextField.text else {
-                return
-        }
+        let password = passwordTextField.text, passwordTextField.text != "" else { return }
         
         if profileImageSelected {
             StorageService.instance.uploadImageToStorage(withImage: profileImageView.image!, andFolderKey: SK_PROFILE_IMG, completion: { (urlString) in
