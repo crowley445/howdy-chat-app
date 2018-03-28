@@ -10,6 +10,7 @@
 		16BEB82148A5B0C3AE8B8130 /* Pods_howdy_chat_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */; };
 		8805B07A206A92B200E5BF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8805B079206A92B200E5BF67 /* Assets.xcassets */; };
 		881A9269203DCC1300922E76 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881A9268203DCC1300922E76 /* TestViewController.swift */; };
+		8827DC2F206BC946005DB589 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827DC2E206BC946005DB589 /* ActivityViewController.swift */; };
 		882ACFF3202B0A7D00913E4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882ACFF2202B0A7D00913E4F /* AppDelegate.swift */; };
 		882ACFF8202B0A7D00913E4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFF6202B0A7D00913E4F /* Main.storyboard */; };
 		882ACFFD202B0A7D00913E4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882ACFFB202B0A7D00913E4F /* LaunchScreen.storyboard */; };
@@ -49,6 +50,7 @@
 		3ED651E6D79FCB4BE6B186DC /* Pods_howdy_chat_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_howdy_chat_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8805B079206A92B200E5BF67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		881A9268203DCC1300922E76 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		8827DC2E206BC946005DB589 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		882ACFEF202B0A7D00913E4F /* howdy-chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "howdy-chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		882ACFF2202B0A7D00913E4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		882ACFF7202B0A7D00913E4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				88C03BE7203D7C2D002D7EE3 /* MediaViewController.swift */,
 				881A9268203DCC1300922E76 /* TestViewController.swift */,
 				889104A820665D7100337CFD /* GroupInfoViewController.swift */,
+				8827DC2E206BC946005DB589 /* ActivityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				88BCE7A12032FE8C002E1E7E /* CreateGroupViewController.swift in Sources */,
 				88F41596202B3AE100792DAB /* AuthorisationService.swift in Sources */,
 				88E8269C202CAD5D00E9A015 /* LoginViewController.swift in Sources */,
+				8827DC2F206BC946005DB589 /* ActivityViewController.swift in Sources */,
 				8850A35B2036ECC500F77C77 /* SWRevealViewController.m in Sources */,
 				88B4C1D9203465EA003C5C1A /* ChatViewController.swift in Sources */,
 				88B4C1DB20346A34003C5C1A /* MessageCell.swift in Sources */,

@@ -75,7 +75,7 @@ class AuthorisationService {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("AuthorisationService: Failed register new user. \n\(error)")
-                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_REGISTER_FAILURE, object: nil)
                 return
             }
             
@@ -83,7 +83,7 @@ class AuthorisationService {
 
             guard let user = user else {
                 print("AuthorisationService: Failed to get user after register new user")
-                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_REGISTER_FAILURE, object: nil)
                 return
             }
             
@@ -91,10 +91,10 @@ class AuthorisationService {
             DatabaseService.instance.createDatabaseUser(uid: user.uid, data: data, completion: { (success) in
                 if !success {
                     print ("AuthorisationService: Failed to create database user.")
-                    NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+                    NotificationCenter.default.post(name: NOTIF_FIREBASE_REGISTER_FAILURE, object: nil)
                     return
                 }
-                NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
+                NotificationCenter.default.post(name: NOTIF_FIREBASE_REGISTER_SUCCESS, object: nil)
             })
         }
     }

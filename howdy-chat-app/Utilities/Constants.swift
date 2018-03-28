@@ -24,6 +24,10 @@ let NOTIF_CHANNEL_SELECTED = Notification.Name("channelSelected")
 
 let NOTIF_FIREBASE_AUTH_SUCCESS = Notification.Name("firebaseAuthSuccess")
 let NOTIF_FIREBASE_AUTH_FAILURE = Notification.Name("firebaseAuthFailure")
+let NOTIF_FIREBASE_REGISTER_SUCCESS = Notification.Name("firebaseRegisterSuccess")
+let NOTIF_FIREBASE_REGISTER_FAILURE = Notification.Name("firebaseRegisterFailure")
+
+let NOTIF_ACTIVITY_COMPLETE = Notification.Name("activityComplete")
 
 // Type Aliases
 typealias CompletionHandler = (_ success: Bool) -> Void
@@ -44,6 +48,7 @@ let SBID_REGISTER_USER = "RegisterUserViewController"
 let SBID_LOGIN_USER = "LoginViewController"
 let SBID_CHAT = "ChatViewController"
 let SBID_INFO = "GroupInfoViewController"
+let SBID_ACTIVITY = "GroupInfoViewController"
 
 // IMAGE NAMES
 

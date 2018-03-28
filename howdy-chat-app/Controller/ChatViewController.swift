@@ -62,6 +62,7 @@ class ChatViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         groupTitleLabel.text = group?.title.uppercased()
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapShot) in
             let data = dataSnapShot.childSnapshot(forPath: (self.group?.key)! )

@@ -21,9 +21,11 @@ class GroupsViewController: UIViewController {
         groupTableView.delegate = self
         groupTableView.dataSource = self
 
-        if Auth.auth().currentUser == nil {
-            guard let loginVC = storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController else { return }
-            present(loginVC, animated: true, completion: nil)
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user == nil {
+                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
+                self.present(loginVC!, animated: true, completion: nil)
+            }
         }
     }
     
@@ -60,8 +62,8 @@ class GroupsViewController: UIViewController {
         let logout_action = UIAlertAction(title: "Logout", style: .destructive) { (tapped) in
             do {
                 try Auth.auth().signOut()
-                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
-                self.present(loginVC!, animated: true, completion: nil)
+//                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
+//                self.present(loginVC!, animated: true, completion: nil)
             } catch {
                  print("GroupsViewController: Logout failed. \(error)")
             }

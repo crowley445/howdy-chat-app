@@ -13,43 +13,65 @@ class RegisterUserViewController: UIViewController {
     @IBOutlet weak var nameTextField : UITextField!
     @IBOutlet weak var emailTextField : UITextField!
     @IBOutlet weak var passwordTextField : UITextField!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImageView : UIImageView!
+    @IBOutlet weak var cameraIcomImageView : UIImageView!
     
     var profileImageSelected = false
-    
+    var capturedHeight: CGFloat!
+    var activityScreen =  ActivityViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(authSuccess), name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(authFailure), name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(registerSuccess), name: NOTIF_FIREBASE_REGISTER_SUCCESS, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(registerFailure), name: NOTIF_FIREBASE_REGISTER_FAILURE, object: nil)
         
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureToDismissKeyboard)))
+        
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        capturedHeight = heightConstraint.constant
+        activityScreen.modalPresentationStyle = .overCurrentContext
     }
 
     @objc func keyboardWillShow(_ notif: Notification) {
+        guard let LoginVC = presentingViewController as? LoginViewController else { return }
+        
+        let keyboardHeight = (notif.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+        let viewHeight = emailTextField.superview?.superview?.superview?.bounds.height
+        let constant = (UIScreen.main.bounds.height - keyboardHeight! - viewHeight!) / 2
         let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
-
-        UIView.animate(withDuration: duration) {
-            
-        }
+        
+        LoginVC.handleKeyboardShow(constraint: heightConstraint, constant: constant, duration: duration, _view: view)
     }
     
     @objc func keyboardWillHide(_ notif: Notification) {
-        let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+        guard let LoginVC = presentingViewController as? LoginViewController else { return }
 
-        UIView.animate(withDuration: duration) {
-            
+        let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+        LoginVC.handleKeyboardHide(constraint: heightConstraint, constant: capturedHeight, duration: duration, _view: view)
+    }
+    
+    @objc func registerSuccess() {
+        activityScreen.animateOut { _ in
+            self.activityScreen.dismiss(animated: false, completion: {
+                self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+            })
         }
     }
     
-    @objc func authSuccess() {
-        performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+    @objc func registerFailure() {
+        print("RegisterUserViewController: Authorisation failed!")
     }
     
-    @objc func authFailure() {
-        print("RegisterUserViewController: Authorisation failed!")
+    @objc func gestureToDismissKeyboard( sender: UIGestureRecognizer ) {
+        view.endEditing(true)
     }
     
     @IBAction func closeButtonTapped ( _ sender: Any ) {
@@ -59,9 +81,13 @@ class RegisterUserViewController: UIViewController {
     
     @IBAction func registerButtonTapped ( _ sender: Any ) {
         print("RegisterUserViewController: Register button tapped. \n")
+        
         guard let name = nameTextField.text, nameTextField.text != "",
         let email = emailTextField.text, emailTextField.text != "",
         let password = passwordTextField.text, passwordTextField.text != "" else { return }
+        
+        view.endEditing(true)
+        present(activityScreen, animated: false, completion: nil)
         
         if profileImageSelected {
             StorageService.instance.uploadImageToStorage(withImage: profileImageView.image!, andFolderKey: SK_PROFILE_IMG, completion: { (urlString) in
@@ -71,14 +97,9 @@ class RegisterUserViewController: UIViewController {
             AuthorisationService.instance.registerNewUser(name: name, email: email, password: password, photoUrl: "")
         }        
     }
-    
-    @IBAction func termsAgreementButtonTapped ( _ sender: Any ) {
-        print("RegisterUserViewController: Terms Agreement button tapped. \n")
-    }
 }
 
 extension RegisterUserViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     
     @objc func profileImageViewTapped() {
         let picker = UIImagePickerController()
@@ -105,11 +126,19 @@ extension RegisterUserViewController: UIImagePickerControllerDelegate, UINavigat
         }
         
         if let selectedImage = selectedImageFromPicker {
+            cameraIcomImageView.isHidden = true
             profileImageSelected = true
             profileImageView.image = selectedImage
         }
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension RegisterUserViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
