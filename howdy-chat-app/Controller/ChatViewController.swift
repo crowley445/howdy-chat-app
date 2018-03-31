@@ -25,6 +25,7 @@ class ChatViewController: UIViewController {
     var group : Group?
     var members = [String:User]()
     var messages = [Message]()
+    var groupTitle = ""
     let MessageType = Message.MessageType.self
 
     struct MessagesForDay {
@@ -63,7 +64,9 @@ class ChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        groupTitleLabel.text = group?.title.uppercased()
+        groupTitle = (group?.title.uppercased())!
+        groupTitleLabel.text = groupTitle
+
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapShot) in
             let data = dataSnapShot.childSnapshot(forPath: (self.group?.key)! )
             guard let group = DatabaseService.instance.getGroup(withDataSnapShot: data) else { return }
@@ -407,7 +410,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         StorageService.instance.uploadImageToStorage(withImage: image, andFolderKey: SK_MESSAGE_IMG, completion: { (imageUrl) in
             let message = Message(senderId: (Auth.auth().currentUser?.uid)!, type: self.MessageType.Image.rawValue, time: String(Int(NSDate().timeIntervalSince1970) ), content: imageUrl)
             
-            DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!, completion: { (success) in
+            DatabaseService.instance.uploadPost(withMessage: message, forGroupKey: (self.group?.key)!, completion: { (success) in                
                 if !success {
                     print("ChatViewController: Failed to upload Message.\n")
                 }
@@ -417,7 +420,6 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
     
     func uploadToStorageAndCreateMediaPost ( withNSURL url: NSURL) {
-        
         self.dismiss(animated: true, completion: nil)
 
         StorageService.instance.uploadVideoToStorage(withURL: url, andFolderKey: SK_MESSAGE_VID) { (_url) in

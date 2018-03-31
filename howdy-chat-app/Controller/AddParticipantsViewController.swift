@@ -26,17 +26,22 @@ class AddParticipantsViewController: UIViewController {
         super.viewDidLoad()
         usersTableView.delegate = self
         usersTableView.dataSource = self
+        usersTableView.alpha = 0
         searchBar.delegate = self
         searchBar.returnKeyType = .done
-        searchBar.isHidden = true
         nextButton.isEnabled = false
         participantsCollectionView.delegate = self
         participantsCollectionView.dataSource = self
-        getAllUsersForDisplay { (users) in
+        participantsCountLabel.text = ""
+        
+        DatabaseService.instance.getAllUsers { (users) in
             DispatchQueue.main.async {
                 self.usersArray = users
-                self.searchBar.isHidden = false
                 self.filterUsersAndReloadTableView()
+                self.getProfileImagesForUsers()
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.usersTableView.alpha = 1
+                })
             }
         }
     }
@@ -44,14 +49,6 @@ class AddParticipantsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.heightConstraint.constant = CGFloat(participants.count > 0 ? 120 : 1)
-    }
-
-    func getAllUsersForDisplay (completion: @escaping (_ users: [User]) -> ()) {
-        DatabaseService.instance.getAllUsers { (users) in
-            StorageService.instance.getProfileImages(forUsers: users, completion: { (_users) in
-                completion(_users)
-            })
-        }
     }
     
     func filterUsersAndReloadTableView () {
@@ -66,9 +63,21 @@ class AddParticipantsViewController: UIViewController {
             filteredUserArray = filteredUserArray.filter { a in !toIgnore.contains(where: {a.uid == $0.uid})}
         }
         
+        
         participantsCountLabel.text  = "\(participants.count) OF \(filteredUserArray.count)"
         participantsCollectionView.reloadData()
         usersTableView.reloadData()
+    }
+    
+    func getProfileImagesForUsers() {
+        for (index, user) in usersArray.enumerated() {
+            StorageService.instance.getImageFromStorage(withURLString: user.imageURL, completion: { (image) in
+                user.image = image
+                DispatchQueue.main.async {
+                    self.usersTableView.reloadRows(at: [IndexPath.init(row: index, section: 0)], with: .none)
+                }
+            })
+        }
     }
     
     @IBAction func backButtonPressed( _ sender: Any) {

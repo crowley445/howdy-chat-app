@@ -20,7 +20,8 @@ class GroupsViewController: UIViewController {
         super.viewDidLoad()
         groupTableView.delegate = self
         groupTableView.dataSource = self
-
+        groupTableView.alpha = 0
+        
         Auth.auth().addStateDidChangeListener { auth, user in
             if user == nil {
                 let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
@@ -37,14 +38,19 @@ class GroupsViewController: UIViewController {
     func observeGroupDatabaseAndReloadOnUpdate () {
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapshot) in
             DatabaseService.instance.getAllGroups(completion: { (groupsArray) in
-                
                 for group in groupsArray {
                     DatabaseService.instance.getMessagesFor(desiredGroup: group, completion: { (messages) in
                         group.messages = messages
-                        self.groupsArray = groupsArray
+                        self.groupsArray = groupsArray.reversed()
                         self.groupTableView.reloadData()
                     })
                 }
+                
+                if self.groupTableView.alpha == 1 { return }
+                
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.groupTableView.alpha = 1
+                })
             })
         }
     }
@@ -62,8 +68,6 @@ class GroupsViewController: UIViewController {
         let logout_action = UIAlertAction(title: "Logout", style: .destructive) { (tapped) in
             do {
                 try Auth.auth().signOut()
-//                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
-//                self.present(loginVC!, animated: true, completion: nil)
             } catch {
                  print("GroupsViewController: Logout failed. \(error)")
             }

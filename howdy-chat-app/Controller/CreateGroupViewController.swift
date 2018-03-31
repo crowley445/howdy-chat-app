@@ -24,6 +24,7 @@ class CreateGroupViewController: UIViewController {
     var participants = [User]()
     var groupImageSelected = false
     var maxTitleCount = 5
+    var activityScreen = ActivityViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class CreateGroupViewController: UIViewController {
 
         maxTitleCount = Int(remainingCharacterLabel.text!)!
         createButton.isEnabled = false
-        
+        activityScreen.modalPresentationStyle = .overFullScreen
         groupImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(groupImageViewTapped)))
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gesturedForCloseKeyboard)))
     }
@@ -65,29 +66,38 @@ class CreateGroupViewController: UIViewController {
                     let currentId = Auth.auth().currentUser?.uid,
                         participants.count > 0
                             else { return }
-
+        
+        present(activityScreen, animated: false, completion: nil)
+        
         var ids = participants.map{ $0.uid }
         ids.append(currentId)
         
         if groupImageSelected {
             StorageService.instance.uploadImageToStorage(withImage: groupImageView.image!, andFolderKey: SK_GROUP_IMG, completion: { (imageUrl) in
                 DatabaseService.instance.createGroup(withTitle: title, Description: "", andImageUrl: imageUrl, forUserIds: ids, completion: { (success) in
-                    if !success {
-                        print ("CreateGroupViewController: Failed to create new group.\n")
-                    }
-                    print ("CreateGroupViewController: Successfully created new group.\n")
-                    self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+                    
+                    self.activityScreen.animateOut(completion: { _ in
+                        if !success {
+                            print ("CreateGroupViewController: Failed to create new group.\n")
+                        }
+                        print ("CreateGroupViewController: Successfully created new group.\n")
+                        
+                        self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+                    })
                 })
             })
         } else {
             DatabaseService.instance.getUser(withUID: (Auth.auth().currentUser?.uid)!, completion: { (user) in
                 DatabaseService.instance.createGroup(withTitle: title, Description: " ", andImageUrl: user.imageURL, forUserIds: ids, completion: { (success) in
-                    if !success {
-                        print ("CreateGroupViewController: Failed to create new group.\n")
-                    }
-                    print ("CreateGroupViewController: Successfully created new group.\n")
                     
-                    self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+                    self.activityScreen.animateOut(completion: { _ in
+                        if !success {
+                            print ("CreateGroupViewController: Failed to create new group.\n")
+                        }
+                        print ("CreateGroupViewController: Successfully created new group.\n")
+                        
+                        self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
+                    })
                 })
             })
         }

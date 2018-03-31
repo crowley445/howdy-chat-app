@@ -82,7 +82,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }, completion: nil)
     }
     
-    @objc func authSuccess () {
+    @objc func registerSuccess () {
         activityScreen.animateOut { _ in
             self.activityScreen.dismiss(animated: false, completion: {
                 self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
@@ -90,7 +90,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    @objc func authFailure () {
+    @objc func registerFailure () {
         print("LoginViewController: Authorisation failed!")
     }
     
