@@ -27,7 +27,8 @@ let NOTIF_FIREBASE_AUTH_FAILURE = Notification.Name("firebaseAuthFailure")
 let NOTIF_FIREBASE_REGISTER_SUCCESS = Notification.Name("firebaseRegisterSuccess")
 let NOTIF_FIREBASE_REGISTER_FAILURE = Notification.Name("firebaseRegisterFailure")
 
-let NOTIF_ACTIVITY_COMPLETE = Notification.Name("activityComplete")
+let NOTIF_TASK_COMPLETE = Notification.Name("taskComplete")
+let NOTIF_TASK_FAILED = Notification.Name("taskFailed")
 
 // Type Aliases
 typealias CompletionHandler = (_ success: Bool) -> Void

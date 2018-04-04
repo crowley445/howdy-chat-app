@@ -45,7 +45,9 @@ class ActivityViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.visualEffectView.effect = nil
         }) { _ in
-            completion(true)
+            self.dismiss(animated: false, completion: {
+                completion(true)
+            })
         }
     }
 }

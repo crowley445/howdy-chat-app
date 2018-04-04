@@ -23,9 +23,10 @@ class StorageService {
         guard let data = UIImageJPEGRepresentation(image, 0.1) else { return }
         REF_STORAGE.child(key).child("\(NSUUID().uuidString).jpg").putData(data, metadata: nil) { (metadata, error) in
             if let error = error {
-                print("StorageService: Failed to upload image: \n \(error)")
+                self.handleErrorNotification(name: NOTIF_TASK_FAILED, message: error.localizedDescription)
                 return
             }
+            
             guard let imageURL = metadata?.downloadURL()?.absoluteString else { return }
             completion(imageURL)
         }
@@ -34,9 +35,10 @@ class StorageService {
     func uploadVideoToStorage (withURL videoURL: NSURL, andFolderKey key: String, completion: @escaping (_ vidUrl : String) -> ()) {
         REF_STORAGE.child(key).child("\(NSUUID().uuidString).mov").putFile(from: videoURL as URL, metadata: nil) { (metadata, error) in
             if let error = error {
-                print("StorageService: Failed to upload video: \n \(error)")
+                self.handleErrorNotification(name: NOTIF_TASK_FAILED, message: error.localizedDescription)
                 return
             }
+            
             guard let videoURL = metadata?.downloadURL()?.absoluteString else { return }
             completion(videoURL)
         }
@@ -50,7 +52,7 @@ class StorageService {
         guard  let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print("StorageService: Failed to get profile image with URL. \n \(error)")
+                self.handleErrorNotification(name: NOTIF_TASK_FAILED, message: error.localizedDescription)
                 return
             }
             
@@ -100,13 +102,9 @@ class StorageService {
             })
         }
     }
+    
+    func handleErrorNotification ( name: Notification.Name, message: String?) {
+        let _message = message != nil ? message : "Something went wrong. Please try again."
+        NotificationCenter.default.post(name: name, object: nil, userInfo: ["message": _message!  ])
+    }
 }
-
-
-
-
-
-
-
-
-

@@ -20,22 +20,42 @@ class DatabaseService {
 
     // WRITE
     
-    func createDatabaseUser( uid : String, data: Dictionary<String, Any>, completion: @escaping CompletionHandler ) {
-        REF_USERS.child(uid).updateChildValues(data) { (error, ref) in
+    func uploadPost(withMessage message: Message, forGroupKey key: String, completion: @escaping CompletionHandler) {
+        
+        let values = [DBK_MESSAGE_SENDER_ID: message.senderId, DBK_MESSAGE_TYPE: message.type.rawValue, DBK_MESSAGE_TIME: message.time, DBK_MESSAGE_CONTENT: message.content] as [String : Any]
+        
+        REF_GROUPS.child(key).child(DBK_GROUP_MESSAGES).childByAutoId().updateChildValues(values) { (error, ref) in
             if let error = error {
-                print("DatabaseService: Failed to create user with error: \n \(error)")
+                self.handleErrorNotification(name: NOTIF_TASK_FAILED, message: error.localizedDescription)
                 completion(false)
             }
+            
             completion(true)
         }
     }
     
-    func createGroup(withTitle title: String, Description description: String, andImageUrl imageUrl: String, forUserIds ids: [String], completion: @escaping CompletionHandler) {
-        REF_GROUPS.childByAutoId().updateChildValues([DBK_GROUP_TITLE: title, DBK_GROUP_DESCRIPTION: description, DBK_GROUP_IMAGE_URL: imageUrl, DBK_GROUP_MEMBERS: ids]) { (error, ref) in
+    func createDatabaseUser( uid : String, data: Dictionary<String, Any>, completion: @escaping CompletionHandler ) {
+        
+        REF_USERS.child(uid).updateChildValues(data) { (error, ref) in
             if let error = error {
-                print("DatabaseService: Failed to create group with error: \n \(error)")
+                self.handleErrorNotification(name: NOTIF_FIREBASE_REGISTER_FAILURE, message: error.localizedDescription)
                 completion(false)
             }
+            
+            completion(true)
+        }
+        
+    }
+    
+    func createGroup(withTitle title: String, Description description: String, andImageUrl imageUrl: String, forUserIds ids: [String], completion: @escaping CompletionHandler) {
+        
+        REF_GROUPS.childByAutoId().updateChildValues([DBK_GROUP_TITLE: title, DBK_GROUP_DESCRIPTION: description, DBK_GROUP_IMAGE_URL: imageUrl, DBK_GROUP_MEMBERS: ids]) { (error, ref) in
+            
+            if let error = error {
+                self.handleErrorNotification(name: NOTIF_TASK_FAILED, message: error.localizedDescription)
+                completion(false)
+            }
+            
             completion(true)
         }
     }
@@ -54,16 +74,6 @@ class DatabaseService {
         participants.forEach { uids.append($0.uid) }
         REF_GROUPS.child(group.key).updateChildValues([ DBK_GROUP_MEMBERS : uids ])
     }
-    
-    func uploadPost(withMessage message: Message, forGroupKey key: String, completion: @escaping CompletionHandler) {
-        
-        let values = [DBK_MESSAGE_SENDER_ID: message.senderId, DBK_MESSAGE_TYPE: message.type.rawValue, DBK_MESSAGE_TIME: message.time, DBK_MESSAGE_CONTENT: message.content] as [String : Any]
-        
-        REF_GROUPS.child(key).child(DBK_GROUP_MESSAGES).childByAutoId().updateChildValues(values)
-
-        completion(true)
-    }
-    
 
     // READ
     
@@ -87,10 +97,7 @@ class DatabaseService {
     
     func getUser(withUID uid: String, completion: @escaping(_ user: User) -> ()) {
         REF_USERS.observeSingleEvent(of: .value) { (userSnapShot) in
-            guard let userSnapShot = userSnapShot.children.allObjects as? [DataSnapshot] else {
-                print("DatabaseService: Failed to get user snap shot.")
-                return
-            }
+            guard let userSnapShot = userSnapShot.children.allObjects as? [DataSnapshot] else { return }
             
             for user in userSnapShot {
                 if user.key == uid {
@@ -142,7 +149,6 @@ class DatabaseService {
                     
                 }
             }
-            print("COUNT: \(groupsArray.count)")
             completion(groupsArray)
         }
     }
@@ -175,5 +181,10 @@ class DatabaseService {
             
             completion(messagesArray)
         }
+    }
+    
+    func handleErrorNotification ( name: Notification.Name, message: String?) {
+        let _message = message != nil ? message : "Something went wrong. Please try again."
+        NotificationCenter.default.post(name: name, object: nil, userInfo: ["message": _message!  ])
     }
 }

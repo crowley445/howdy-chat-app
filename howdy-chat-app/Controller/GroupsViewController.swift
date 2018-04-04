@@ -14,8 +14,7 @@ class GroupsViewController: UIViewController {
     @IBOutlet weak var groupTableView : UITableView!
     
     var groupsArray = [Group]()
-    var colorsArray = [UIColor]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         groupTableView.delegate = self
@@ -24,8 +23,7 @@ class GroupsViewController: UIViewController {
         
         Auth.auth().addStateDidChangeListener { auth, user in
             if user == nil {
-                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
-                self.present(loginVC!, animated: true, completion: nil)
+                self.logoutUserAndPresentLoginScreen()
             }
         }
     }
@@ -34,7 +32,7 @@ class GroupsViewController: UIViewController {
         super.viewWillAppear(animated)
         observeGroupDatabaseAndReloadOnUpdate()
     }
-    
+
     func observeGroupDatabaseAndReloadOnUpdate () {
         DatabaseService.instance.REF_GROUPS.observe(.value) { (dataSnapshot) in
             DatabaseService.instance.getAllGroups(completion: { (groupsArray) in
@@ -55,14 +53,19 @@ class GroupsViewController: UIViewController {
         }
     }
 
+    func logoutUserAndPresentLoginScreen() {
+        self.groupsArray = []
+        self.groupTableView.reloadData()
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: SBID_LOGIN_USER) as? LoginViewController
+        self.present(loginVC!, animated: true, completion: nil)
+    }
+    
     @IBAction func addGroupButtonTapped (_ sender: Any) {
-        print("GroupsViewController: Add group button tapped.")
         guard let addParticipantsVC = storyboard?.instantiateViewController(withIdentifier: SBID_ADD_PARTICIPANTS) else { return }
         present(addParticipantsVC, animated: true, completion: nil)
     }
     
     @IBAction func logoutButtonTapped (_ sender: Any) {
-        print("GroupsViewController: Logout button tapped.")
 
         let popup = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
         let logout_action = UIAlertAction(title: "Logout", style: .destructive) { (tapped) in
@@ -81,7 +84,7 @@ class GroupsViewController: UIViewController {
         
         present(popup, animated: true, completion: nil)
     }
-    
+
     @IBAction func unwindToGroupsViewController (segue:UIStoryboardSegue) {}
 }
 

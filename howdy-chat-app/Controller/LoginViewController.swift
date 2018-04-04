@@ -24,8 +24,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signOut()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(registerSuccess), name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(registerFailure), name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(authSuccess(_:)), name: NOTIF_FIREBASE_AUTH_SUCCESS, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(authFailure(_:)), name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         let keyboardHeight = (notif.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
         let viewHeight = emailTextField.superview?.superview?.superview?.bounds.height
-        let constant = (UIScreen.main.bounds.height - keyboardHeight! - viewHeight!) / 2
+        let constant = (UIScreen.main.bounds.height - keyboardHeight! - viewHeight!) / 4
         let duration = notif.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
         
         handleKeyboardShow(constraint: heightConstraint, constant: constant, duration: duration, _view: view)
@@ -82,16 +82,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }, completion: nil)
     }
     
-    @objc func registerSuccess () {
-        activityScreen.animateOut { _ in
-            self.activityScreen.dismiss(animated: false, completion: {
-                self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
-            })
+    @objc func authSuccess (_ notif: NSNotification) {
+        activityScreen.animateOut {_ in
+            self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
         }
     }
     
-    @objc func registerFailure () {
-        print("LoginViewController: Authorisation failed!")
+    @objc func authFailure (_ notif: NSNotification) {
+        activityScreen.animateOut { _ in
+            guard let message = notif.userInfo!["message"] as? String else { return }
+            self.present(errorAlert(title: "Authorization Failed", message: message), animated: true, completion: nil)
+        }
     }
     
     @objc func gestureToDismissKeyboard( sender: UIGestureRecognizer ) {
@@ -112,22 +113,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func facebookButtonTapped (_ sender: Any ) {
-        print("AuthorisationVC: Facebook button tapped. \n")
         AuthorisationService.instance.facebookAuthorisation(sender: self)
     }
     
     @IBAction func twitterButtonTapped (_ sender: Any ) {
-        print("AuthorisationVC: Twitter button tapped. \n")
         AuthorisationService.instance.twitterAuthorisation()
     }
     
     @IBAction func googleButtonTapped (_ sender: Any ) {
-        print("AuthorisationVC: Google button tapped. \n")
         AuthorisationService.instance.googleAuthorisation()
     }
     
     @IBAction func createAccountButtonTapped (_ sender: Any ) {
-        print("AuthorisationVC: Create account button tapped. \n")
         guard let registerUser = storyboard?.instantiateViewController(withIdentifier: SBID_REGISTER_USER) as? RegisterUserViewController
             else { return }
         presentDetail(registerUser)

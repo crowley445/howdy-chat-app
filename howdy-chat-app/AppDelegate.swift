@@ -69,14 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            print("AppDelegate: Failed to authorise via Google.\n\(error)")
+            NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil, userInfo: ["message" : error.localizedDescription])
             return
         }
-        
-        print("AppDelegate: Successfully authorised with Google")
-        
+                
         guard let idToken = user.authentication.idToken, let accessToken = user.authentication.accessToken else {
-            print("AppDelegate: Failed to get tokens for Google credentials.")
+            NotificationCenter.default.post(name: NOTIF_FIREBASE_AUTH_FAILURE, object: nil, userInfo: ["message" : "Something went wrong during authorization. Please try again."])
             return
         }
         

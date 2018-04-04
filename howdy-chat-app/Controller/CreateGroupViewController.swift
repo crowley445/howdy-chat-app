@@ -22,7 +22,6 @@ class CreateGroupViewController: UIViewController {
     
     var addContactsVC : AddParticipantsViewController!
     var participants = [User]()
-    var groupImageSelected = false
     var maxTitleCount = 5
     var activityScreen = ActivityViewController()
     
@@ -38,29 +37,25 @@ class CreateGroupViewController: UIViewController {
         maxTitleCount = Int(remainingCharacterLabel.text!)!
         createButton.isEnabled = false
         activityScreen.modalPresentationStyle = .overFullScreen
+        
         groupImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(groupImageViewTapped)))
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gesturedForCloseKeyboard)))
+    
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         countLabel.text  = "\(participants.count) OF \(addContactsVC.usersArray.count)"
+        cameraIconView.isHidden = groupImageView.image != nil
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(participantsView.frame)
-    }
-    
+
     @IBAction func backButtonTapped (_ sender: Any) {
-        print("CreateGroupViewController: Back button tapped.\n")
         addContactsVC.participants = participants
         addContactsVC.filterUsersAndReloadTableView()
         dismissDetail()
     }
 
     @IBAction func createButtonTapped (_ sender: Any) {
-        print("CreateGroupViewController: Create group button tapped.\n")
         
         guard let title = titleTextField.text, titleTextField.text != "",
                     let currentId = Auth.auth().currentUser?.uid,
@@ -72,37 +67,30 @@ class CreateGroupViewController: UIViewController {
         var ids = participants.map{ $0.uid }
         ids.append(currentId)
         
-        if groupImageSelected {
+        if groupImageView.image != nil {
             StorageService.instance.uploadImageToStorage(withImage: groupImageView.image!, andFolderKey: SK_GROUP_IMG, completion: { (imageUrl) in
                 DatabaseService.instance.createGroup(withTitle: title, Description: "", andImageUrl: imageUrl, forUserIds: ids, completion: { (success) in
-                    
                     self.activityScreen.animateOut(completion: { _ in
-                        if !success {
-                            print ("CreateGroupViewController: Failed to create new group.\n")
+                        if success {
+                            self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
                         }
-                        print ("CreateGroupViewController: Successfully created new group.\n")
                         
-                        self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
                     })
                 })
             })
         } else {
             DatabaseService.instance.getUser(withUID: (Auth.auth().currentUser?.uid)!, completion: { (user) in
                 DatabaseService.instance.createGroup(withTitle: title, Description: " ", andImageUrl: user.imageURL, forUserIds: ids, completion: { (success) in
-                    
                     self.activityScreen.animateOut(completion: { _ in
-                        if !success {
-                            print ("CreateGroupViewController: Failed to create new group.\n")
+                        if success {
+                            self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
                         }
-                        print ("CreateGroupViewController: Successfully created new group.\n")
-                        
-                        self.performSegue(withIdentifier: UNWIND_TO_GROUPS, sender: nil)
                     })
                 })
             })
         }
     }
-    
+
     @objc func gesturedForCloseKeyboard() {
         self.view.endEditing(true)
     }
@@ -137,39 +125,23 @@ extension CreateGroupViewController: UIImagePickerControllerDelegate, UINavigati
     
     
     @objc func groupImageViewTapped() {
-        let picker = UIImagePickerController()
- 
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-        picker.sourceType = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) ? .camera : .photoLibrary
-        present(picker, animated: true, completion: nil)
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            self.presentImagePicker(source: UIImagePickerControllerSourceType.photoLibrary)
+        } else {
+            present(imageActionSheet(presentImagePicker: presentImagePicker), animated: true, completion: nil)
+        }
     }
-    
+
+    func presentImagePicker( source: UIImagePickerControllerSourceType) {
+        present(getImagePicker(source: source, delegate: self), animated: true, completion: nil)
+    }
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("RegisterUserViewController: Did cancel image picker.")
-        groupImageSelected = false
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("RegisterUserViewController: Did select image from picker.")
-        
-        var selectedImageFromPicker : UIImage?
-        
-        if let editiedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImageFromPicker = editiedImage
-        }
-        else if let originalImage = info["UIImagePickerControllerReferenceURL"] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        
-        if let selectedImage = selectedImageFromPicker {
-            groupImageSelected = true
-            cameraIconView.isHidden = true
-            groupImageView.image = selectedImage
-        }
-        
+        groupImageView.image = selectedImageFromPicker(info: info)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -189,13 +161,6 @@ extension CreateGroupViewController: UITextFieldDelegate {
         remainingCharacterLabel.text = String(maxTitleCount - count)
     }
 }
-
-
-
-
-
-
-
 
 
 
